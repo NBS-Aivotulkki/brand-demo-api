@@ -7,6 +7,7 @@ import os
 import json
 import smtplib
 from email.message import EmailMessage
+import requests
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
@@ -328,13 +329,17 @@ async def ui_assess(request: Request):
 
 @app.post("/order")
 def order(req: OrderRequest):
+    # Gmail / Google Workspace SMTP
     mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
-    mail_port = int(os.getenv("MAIL_PORT", "465"))  # suositus Renderissä: 465
-    mail_user = os.getenv("MAIL_USER")
-    mail_password = os.getenv("MAIL_PASSWORD")  # Google App Password (16 merkkiä)
+    mail_port = int(os.getenv("MAIL_PORT", "465"))   # 465 = SSL
+    mail_user = os.getenv("MAIL_USER")               # esim. sinun@gmail.com
+    mail_password = os.getenv("MAIL_PASSWORD")       # Google App Password (16 merkkiä)
 
     if not mail_user or not mail_password:
-        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD)."}
+        return {
+            "ok": False,
+            "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD)."
+        }
 
     subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
 
@@ -372,9 +377,12 @@ Dimensiot:
         with smtplib.SMTP_SSL(mail_host, mail_port) as server:
             server.login(mail_user, mail_password)
             server.send_message(msg)
+
         return {"ok": True}
+
     except Exception as e:
         return {"ok": False, "error": str(e)}
+
 
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
