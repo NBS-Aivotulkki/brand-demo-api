@@ -553,6 +553,99 @@ def ui():
 async def ui_assess(request: Request):
     form = await request.form()
 
+@app.post("/order")
+def order(req: OrderRequest):
+    to_email = os.getenv("MAIL_TO")
+    from_email = os.getenv("MAIL_FROM")
+    api_key = os.getenv("SENDGRID_API_KEY")
+
+    if not to_email or not from_email or not api_key:
+        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_TO, MAIL_FROM, SENDGRID_API_KEY)"}
+
+    subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
+
+    body = f"""
+UUSI TILAUS / BRÄNDINRAKENNUSOPAS
+
+Yritys: {req.company_name}
+Y-tunnus: {req.business_id}
+
+Tilaaja: {req.person_name}
+Sähköposti: {req.person_email}
+
+Laskutustiedot:
+{req.billing_details}
+
+--- TULOKSET ---
+
+Primary: {req.primary_archetype}
+Secondary: {req.secondary_archetype}
+Shadow: {req.shadow_archetype}
+
+Top-vahvuudet: {", ".join(req.top_strengths)}
+
+Dimensiot:
+{req.dimensions}
+""".strip()
+
+    message = Mail(
+        from_email=from_email,
+        to_emails=to_email,
+        subject=subject,
+        plain_text_content=body,
+    )
+
+    try:
+        sg = SendGridAPIClient(api_key)
+        sg.send(message)
+        return {"ok": True}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+    @app.post("/ui-order", response_class=HTMLResponse)
+async def ui_order(request: Request):
+    import json
+    form = await request.form()
+
+    # pieni roskapostisuodatin: jos botti täyttää tämän, hylätään
+    honeypot = (form.get("website") or "").strip()
+    if honeypot:
+        return "<html><body><h2>Kiitos</h2></body></html>"
+
+    payload = OrderRequest(
+        company_name=(form.get("company_name") or "").strip(),
+        business_id=(form.get("business_id") or "").strip(),
+        person_name=(form.get("person_name") or "").strip(),
+        person_email=(form.get("person_email") or "").strip(),
+        billing_details=(form.get("billing_details") or "").strip(),
+        primary_archetype=(form.get("primary_archetype") or "").strip(),
+        secondary_archetype=(form.get("secondary_archetype") or "").strip() or None,
+        shadow_archetype=(form.get("shadow_archetype") or "").strip() or None,
+        dimensions=json.loads(form.get("dimensions_json") or "{}"),
+        top_strengths=json.loads(form.get("top_strengths_json") or "[]"),
+    )
+
+    res = order(payload)
+    if isinstance(res, dict) and res.get("ok"):
+        return """
+        <html><head><meta charset="utf-8"></head>
+        <body>
+          <h2>Kiitos!</h2>
+          <p>Tilaus on lähetetty. Palaan sinulle sähköpostilla.</p>
+          <p><a href="/">Tee uusi arviointi</a></p>
+        </body></html>
+        """
+    return f"""
+    <html><head><meta charset="utf-8"></head>
+    <body>
+      <h2>Virhe</h2>
+      <p>Tilausta ei saatu lähetettyä. Kokeile uudelleen.</p>
+      <pre>{res}</pre>
+      <p><a href="/">Takaisin</a></p>
+    </body></html>
+    """
+
+
     # rakennetaan Answer-lista kuten /assess odottaa
     parsed = []
     for q in QUESTIONS:
@@ -599,5 +692,32 @@ async def ui_assess(request: Request):
         out.append("</ul>")
 
     out.append("</body></html>")
+    import json
+
+out.append("<hr style='margin:24px 0;'>")
+out.append("<h3>Tilaa brändinrakennusopas</h3>")
+out.append("<p>Täytä tiedot, niin lähetän sinulle tilausvahvistuksen ja laskutuksen.</p>")
+
+out.append("<form method='post' action='/ui-order' style='max-width:520px;'>")
+
+# roskapostisuodatin (piilokenttä)
+out.append("<input type='text' name='website' style='display:none'>")
+
+out.append("<label>Yrityksen nimi<br><input name='company_name' required style='width:100%; padding:8px;'></label><br><br>")
+out.append("<label>Y-tunnus<br><input name='business_id' required style='width:100%; padding:8px;'></label><br><br>")
+out.append("<label>Henkilön nimi<br><input name='person_name' required style='width:100%; padding:8px;'></label><br><br>")
+out.append("<label>Henkilön sähköpostiosoite<br><input type='email' name='person_email' required style='width:100%; padding:8px;'></label><br><br>")
+out.append("<label>Laskutustiedot<br><textarea name='billing_details' required style='width:100%; padding:8px;' rows='5'></textarea></label><br><br>")
+
+# piilotetut tulokset mukaan
+out.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
+out.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
+out.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
+out.append(f"<input type='hidden' name='dimensions_json' value='{json.dumps(dim_scores)}'>")
+out.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
+
+out.append("<button type='submit' style='padding:10px 14px;'>Lähetä tilaus</button>")
+out.append("</form>")
+
     return "\n".join(out)
 
