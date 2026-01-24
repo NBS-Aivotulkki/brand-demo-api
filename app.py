@@ -564,26 +564,28 @@ async def ui_assess(request: Request):
 
     inner = f"""
 <style>
-.result-grid {{
+.result-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 560px 560px;
   gap: 80px;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}}
+}
 
-.card {{
+.card {
+  width: 560px;
   max-width: 560px;
-}}
+}
 
 .white-box {{
-  width: 420px;
-  height: 620px;
+  width: 520px;
+  height: 520px;
   background: white;
-  border-radius: 20px;
-  margin-left: auto;
+  border-radius: 24px;
+  margin: 0 auto;
+}
+
 }}
 </style>
 
