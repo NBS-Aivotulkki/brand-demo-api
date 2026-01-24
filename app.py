@@ -603,9 +603,9 @@ Dimensiot:
         return {"ok": False, "error": str(e)}
 
     @app.post("/ui-order", response_class=HTMLResponse)
-async def ui_order(request: Request):
-    import json
-    form = await request.form()
+    async def ui_order(request: Request):
+        import json
+        form = await request.form()
 
     # pieni roskapostisuodatin: jos botti täyttää tämän, hylätään
     honeypot = (form.get("website") or "").strip()
