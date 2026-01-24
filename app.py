@@ -562,7 +562,7 @@ async def ui_assess(request: Request):
     right = []
     right.append("<div class='white-box'></div>")
 
-   inner = f"""
+    inner = f"""
 <style>
 .result-grid {
     display: grid;
