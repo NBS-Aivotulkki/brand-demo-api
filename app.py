@@ -1,12 +1,8 @@
 from fastapi import FastAPI, Request
-from pathlib import Path
-from fastapi.staticfiles import StaticFiles
-
-BASE_DIR = Path(__file__).resolve().parent
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+
 from pydantic import BaseModel
 from typing import List, Literal, Dict, Any, Optional
 import math
@@ -15,10 +11,12 @@ import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
+# Luo FastAPI-app
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
-# Static assets (laita repoosi: static/bg.jpg ja static/crest.png)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Mountataan static-kansio
+BASE_DIR = Path(__file__).resolve().parent
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
 
 Option = Literal["A", "B", "C", "D", "E"]
 
