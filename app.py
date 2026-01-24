@@ -442,9 +442,9 @@ def ui_shell(title: str, inner_html: str) -> str:
 def ui_landing():
     inner = """
     <div class="hero">
-      <h1>Tähän tulee otsikko Garamond-fontilla</h1>
-      <p class="lead">Tähän tulee viitsen riviä kuvaavaa leipätekstiä Helveticaalla.</p>
-      <a class="btn" href="/survey">Tähän toimintanappi</a>
+      <h1>Brändikone</h1>
+      <p class="lead">Menestyvä brändi ei ole yrityksen näköinen, vaan menestyvä yritys on brändin näköinen. Brändi on yrityksen tavallisuutta suurempi pomo, jonka seuraa kuluttajat arvostavat.</p>
+      <a class="btn" href="/survey">Siirry kysymyksiin</a>
     </div>
     """
     return ui_shell("Brand Demo", inner)
