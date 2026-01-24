@@ -6,8 +6,9 @@ import math
 import os
 import json
 
-import smtplib
-from email.message import EmailMessage
+with smtplib.SMTP_SSL(mail_host, mail_port) as server:
+    server.login(mail_user, mail_password)
+    server.send_message(msg)
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
