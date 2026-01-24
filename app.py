@@ -332,7 +332,7 @@ def order(req: OrderRequest):
     # Gmail / Google Workspace SMTP
     mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
     mail_port = int(os.getenv("MAIL_PORT", "465"))   # 465 = SSL
-    mail_user = os.getenv("MAIL_USER, "tommi.salmelainen@nbs.fi")               # esim. sinun@gmail.com
+    mail_user = os.getenv("MAIL_USER", "tommi.salmelainen@nbs.fi")               # esim. sinun@gmail.com
     mail_password = os.getenv("MAIL_PASSWORD", "tjbf iuql npbb mgdm")       # Google App Password (16 merkkiä)
 
     if not mail_user or not mail_password:
