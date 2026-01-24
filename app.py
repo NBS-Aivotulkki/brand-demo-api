@@ -330,8 +330,8 @@ async def ui_assess(request: Request):
 @app.post("/order")
 def order(req: OrderRequest):
     # Gmail / Google Workspace SMTP
-    mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
-    mail_port = int(os.getenv("MAIL_PORT", "465"))   # 465 = SSL
+    mail_host = os.getenv("MAIL_HOST")
+    mail_port = int(os.getenv("MAIL_PORT"))   # 465 = SSL
     mail_user = os.getenv("MAIL_USER")               # esim. sinun@gmail.com
     mail_password = os.getenv("MAIL_PASSWORD")       # Google App Password (16 merkkiä)
 
