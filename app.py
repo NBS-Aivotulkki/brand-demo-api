@@ -563,6 +563,29 @@ async def ui_assess(request: Request):
     right.append("<div class='white-box'></div>")
 
     inner = f"""
+    <style>
+      .result-grid {{
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 60px;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }}
+
+      .card {{
+        max-width: 520px;
+      }}
+
+      .white-box {{
+        width: 100%;
+        height: 520px;
+        background: white;
+        border-radius: 20px;
+      }}
+    </style>
+
     <div class="result-grid">
       <div>{''.join(left)}</div>
       <div>{''.join(right)}</div>
