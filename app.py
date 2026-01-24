@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import List, Literal, Dict, Any, Optional
 import math
@@ -9,6 +10,9 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
+
+# Static assets (laita repoosi: static/bg.jpg ja static/crest.png)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 Option = Literal["A", "B", "C", "D", "E"]
 
@@ -218,41 +222,264 @@ def assess(req: AssessRequest):
         "recommendations": recs,
     }
 
-def render_form() -> str:
+# ---------------------------
+# VISUAL UI (landing / survey / results)
+# ---------------------------
+
+def ui_shell(title: str, inner_html: str) -> str:
+    return f"""<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {{
+      --cream: #f4e09a;
+      --ink: rgba(255,255,255,0.92);
+      --ink-soft: rgba(255,255,255,0.80);
+      --panel: rgba(0,0,0,0.18);
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      color: var(--ink);
+      font-family: Helvetica, Arial, sans-serif;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+        url('/static/bg.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
+    }}
+    .page {{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }}
+    .top {{
+      padding: 28px 16px 8px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }}
+    .crest {{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+    }}
+    .wrap {{
+      width: 100%;
+      max-width: 980px;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }}
+    .hero {{
+      width: 100%;
+      padding: 56px 18px;
+      text-align: center;
+    }}
+    h1, h2, h3 {{
+      font-family: "EB Garamond", Garamond, serif;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.2px;
+    }}
+    h1 {{ font-size: 44px; line-height: 1.1; }}
+    h2 {{ font-size: 28px; }}
+    .lead {{
+      margin: 0 auto 26px;
+      max-width: 720px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.5;
+    }}
+    .btn {{
+      display: inline-block;
+      background: var(--cream);
+      color: #1b1b1b;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.25);
+    }}
+    .btn:active {{ transform: translateY(1px); }}
+    .survey {{
+      width: 100%;
+      background: rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+      backdrop-filter: blur(2px);
+    }}
+    .q {{
+      margin: 14px 0 18px;
+      padding: 14px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.12);
+    }}
+    .q-title {{
+      font-family: "EB Garamond", Garamond, serif;
+      font-size: 20px;
+      margin: 0 0 10px;
+    }}
+    .opt {{
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 8px 0;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+    }}
+    .opt input {{
+      margin-top: 3px;
+      transform: scale(1.05);
+    }}
+    .hint {{
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }}
+    .actions {{
+      padding: 10px 0 0;
+      display: flex;
+      justify-content: flex-start;
+    }}
+    .result-grid {{
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }}
+    @media (max-width: 860px) {{
+      .result-grid {{ grid-template-columns: 1fr; }}
+      h1 {{ font-size: 34px; }}
+    }}
+    .card {{
+      background: rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }}
+    .white-box {{
+      background: rgba(255,255,255,0.95);
+      border-radius: 14px;
+      min-height: 240px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }}
+    .meta {{
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.4;
+    }}
+    .list {{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }}
+    .list li {{
+      margin: 6px 0;
+      font-size: 14px;
+      color: var(--ink);
+    }}
+    .sep {{
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+      margin: 18px 0;
+    }}
+    label {{
+      display: block;
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 10px 0 6px;
+    }}
+    input[type="text"], input[type="email"], textarea {{
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      outline: none;
+      font-family: Helvetica, Arial, sans-serif;
+    }}
+    textarea {{ min-height: 110px; resize: vertical; }}
+    .backlink {{
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+    }}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top">
+      <img class="crest" src="/static/crest.png" alt="Logo" />
+    </div>
+    <div class="wrap">
+      {inner_html}
+    </div>
+  </div>
+</body>
+</html>"""
+
+@app.get("/", response_class=HTMLResponse)
+def ui_landing():
+    inner = """
+    <div class="hero">
+      <h1>Tähän tulee otsikko Garamond-fontilla</h1>
+      <p class="lead">Tähän tulee viitsen riviä kuvaavaa leipätekstiä Helveticaalla.</p>
+      <a class="btn" href="/survey">Tähän toimintanappi</a>
+    </div>
+    """
+    return ui_shell("Brand Demo", inner)
+
+@app.get("/survey", response_class=HTMLResponse)
+def ui_survey():
     html = []
-    html.append("<html><head><meta charset='utf-8'><title>Brand Demo</title></head><body>")
-    html.append("<h2>Brändiarkkityyppi & persoonallisuus (demo)</h2>")
+    html.append("<div class='survey'>")
+    html.append("<h2>Kysely</h2>")
+    html.append("<p class='meta'>Vastaa valinnoilla. Kohtiin joissa lukee “Valitse kaksi”, voit valita kaksi.</p>")
     html.append("<form method='post' action='/ui-assess'>")
 
     for q in QUESTIONS:
         qid = q["id"]
-        html.append("<fieldset style='margin:12px 0; padding:12px; border:1px solid #ddd;'>")
-        html.append(f"<legend><b>{qid}. {q['text']}</b></legend>")
-
         multi = q.get("multi_select", False)
         input_type = "checkbox" if multi else "radio"
         name = f"q{qid}" if not multi else f"q{qid}[]"
 
+        html.append("<div class='q'>")
+        html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
+
         for opt, label in q["options"].items():
             html.append(
-                "<label style='display:block; margin:6px 0;'>"
+                f"<label class='opt'>"
                 f"<input type='{input_type}' name='{name}' value='{opt}'> "
-                f"<b>{opt}</b> {label}"
-                "</label>"
+                f"<span><b>{opt}</b> {label}</span>"
+                f"</label>"
             )
 
         if multi:
-            html.append("<div style='font-size:12px; color:#555;'>Valitse 2</div>")
+            html.append("<div class='hint'>Valitse 2</div>")
 
-        html.append("</fieldset>")
+        html.append("</div>")
 
-    html.append("<button type='submit' style='padding:10px 14px;'>Laske suositus</button>")
-    html.append("</form></body></html>")
-    return "\n".join(html)
+    html.append("<div class='actions'><button class='btn' type='submit'>Loppuun Tulos-nappi</button></div>")
+    html.append("</form>")
+    html.append("</div>")
 
-@app.get("/", response_class=HTMLResponse)
-def ui():
-    return render_form()
+    return ui_shell("Kysely", "\n".join(html))
 
 @app.post("/ui-assess", response_class=HTMLResponse)
 async def ui_assess(request: Request):
@@ -280,64 +507,80 @@ async def ui_assess(request: Request):
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
-    recs = make_recommendations(primary, top_dims)
 
-    out = []
-    out.append("<html><head><meta charset='utf-8'><title>Tulos</title></head><body>")
-    out.append("<a href='/'>← takaisin</a>")
-    out.append(f"<h2>Pääarkkityyppi: {primary}</h2>")
-    out.append(f"<p>Toissijainen: <b>{secondary or ''}</b> · Varjo: <b>{shadow or ''}</b></p>")
-    out.append(f"<p><b>Top-dimensiot:</b> {', '.join(top_dims)}</p>")
+    left = []
+    left.append("<div class='card'>")
+    left.append(f"<h2>Pääarkkityyppi: <span style='text-decoration: underline;'>{primary}</span></h2>")
+    left.append("<div class='meta'>")
+    left.append(f"Toissijainen: <b>{secondary or ''}</b><br>")
+    left.append(f"Varjo: <b>{shadow or ''}</b><br><br>")
+    left.append(f"Top-dimensiot: <b>{', '.join(top_dims)}</b><br><br>")
+    left.append("</div>")
 
-    out.append("<h3>Dimensiot (0–100)</h3><ul>")
+    left.append("<div class='meta'><b>Dimensiot (0–100)</b></div>")
+    left.append("<ul class='list'>")
     for k, v in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True):
-        out.append(f"<li>{k}: {v:.1f}</li>")
-    out.append("</ul>")
+        left.append(f"<li>{k}: {v:.1f}</li>")
+    left.append("</ul>")
 
-    out.append("<h3>Suositukset</h3>")
-    for b in recs:
-        out.append(f"<h4>{b['title']}</h4><ul>")
-        for it in b["items"]:
-            out.append(f"<li>{it}</li>")
-        out.append("</ul>")
+    left.append("<div class='sep'></div>")
+    left.append("<h2>Tähän tulee otsikko Garamond-fontilla</h2>")
+    left.append("<p class='meta'>Tähän tulee pari riviä tekstiä Helveticaalla kannustamaan tarjouksen pyytämiseen.</p>")
 
-    out.append("<hr style='margin:24px 0;'>")
-    out.append("<h3>Tilaa brändinrakennusopas</h3>")
-    out.append("<p>Täytä tiedot, niin saan tilauksen sähköpostiini.</p>")
+    left.append("<form method='post' action='/ui-order'>")
+    left.append("<input type='text' name='website' style='display:none'>")
 
-    out.append("<form method='post' action='/ui-order' style='max-width:520px;'>")
-    out.append("<input type='text' name='website' style='display:none'>")
+    left.append("<label>Nimesi</label>")
+    left.append("<input name='person_name' required type='text'>")
 
-    out.append("<label>Yrityksen nimi<br><input name='company_name' required style='width:100%; padding:8px;'></label><br><br>")
-    out.append("<label>Y-tunnus<br><input name='business_id' required style='width:100%; padding:8px;'></label><br><br>")
-    out.append("<label>Henkilön nimi<br><input name='person_name' required style='width:100%; padding:8px;'></label><br><br>")
-    out.append("<label>Henkilön sähköpostiosoite<br><input type='email' name='person_email' required style='width:100%; padding:8px;'></label><br><br>")
-    out.append("<label>Laskutustiedot<br><textarea name='billing_details' required style='width:100%; padding:8px;' rows='5'></textarea></label><br><br>")
+    left.append("<label>Sähköpostiosoitteesi</label>")
+    left.append("<input name='person_email' required type='email'>")
 
-    out.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
-    out.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
-    out.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
-    out.append(f"<input type='hidden' name='dimensions_json' value='{json.dumps(dim_scores)}'>")
-    out.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
+    left.append("<label>Yrityksenne nimi</label>")
+    left.append("<input name='company_name' required type='text'>")
 
-    out.append("<button type='submit' style='padding:10px 14px;'>Lähetä tilaus</button>")
-    out.append("</form>")
+    left.append("<label>Y-tunnus</label>")
+    left.append("<input name='business_id' required type='text'>")
 
-    out.append("</body></html>")
-    return "\n".join(out)
+    left.append("<label>Laskutustiedot</label>")
+    left.append("<textarea name='billing_details' required></textarea>")
+
+    left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
+    left.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
+    left.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
+    left.append(f"<input type='hidden' name='dimensions_json' value='{json.dumps(dim_scores)}'>")
+    left.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
+
+    left.append("<div style='margin-top:14px;'><button class='btn' type='submit'>Pyydä tarjous -nappi</button></div>")
+    left.append("</form>")
+    left.append("</div>")
+
+    right = []
+    right.append("<div class='white-box'></div>")
+
+    inner = f"""
+    <div class="result-grid">
+      <div>{''.join(left)}</div>
+      <div>{''.join(right)}</div>
+    </div>
+    <div style="width:100%; margin-top:14px;">
+      <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
+    </div>
+    """
+    return ui_shell("Tulos", inner)
+
+# ---------------------------
+# ORDER (SendGrid) + UI submit handler
+# ---------------------------
 
 @app.post("/order")
 def order(req: OrderRequest):
-    # SENDGRID (ei Gmail/SMTP)
     api_key = os.getenv("SENDGRID_API_KEY")
     from_email = os.getenv("MAIL_FROM")
     to_email = os.getenv("MAIL_TO")
 
     if not api_key or not from_email or not to_email:
-        return {
-            "ok": False,
-            "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."
-        }
+        return {"ok": False, "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."}
 
     subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
 
@@ -379,14 +622,13 @@ Dimensiot:
     except Exception as e:
         return {"ok": False, "error": str(e)}
 
-
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
     form = await request.form()
 
     honeypot = (form.get("website") or "").strip()
     if honeypot:
-        return "<html><body><h2>Kiitos</h2></body></html>"
+        return ui_shell("Kiitos", "<div class='hero'><h2>Kiitos</h2></div>")
 
     try:
         payload = OrderRequest(
@@ -402,33 +644,33 @@ async def ui_order(request: Request):
             top_strengths=json.loads(form.get("top_strengths_json") or "[]"),
         )
     except Exception as e:
-        return f"""
-        <html><head><meta charset="utf-8"></head>
-        <body>
+        inner = f"""
+        <div class="card" style="width:100%;">
           <h2>Virhe</h2>
-          <p>Lomakkeen tietoja ei saatu luettua.</p>
-          <pre>{e}</pre>
-          <p><a href="/">Takaisin</a></p>
-        </body></html>
+          <p class="meta">Lomakkeen tietoja ei saatu luettua.</p>
+          <pre style="white-space:pre-wrap; color:rgba(255,255,255,0.85);">{e}</pre>
+          <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
+        </div>
         """
+        return ui_shell("Virhe", inner)
 
     res = order(payload)
     if isinstance(res, dict) and res.get("ok"):
-        return """
-        <html><head><meta charset="utf-8"></head>
-        <body>
-          <h2>Kiitos!</h2>
-          <p>Tilaus on lähetetty. Palaan sinulle sähköpostilla.</p>
-          <p><a href="/">Tee uusi arviointi</a></p>
-        </body></html>
+        inner = """
+        <div class="hero">
+          <h1>Kiitos!</h1>
+          <p class="lead">Tilaus on lähetetty.</p>
+          <a class="btn" href="/">Etusivulle</a>
+        </div>
         """
+        return ui_shell("Kiitos", inner)
 
-    return f"""
-    <html><head><meta charset="utf-8"></head>
-    <body>
+    inner = f"""
+    <div class="card" style="width:100%;">
       <h2>Virhe</h2>
-      <p>Tilausta ei saatu lähetettyä. Tarkista asetukset ja kokeile uudelleen.</p>
-      <pre>{res}</pre>
-      <p><a href="/">Takaisin</a></p>
-    </body></html>
+      <p class="meta">Tilausta ei saatu lähetettyä.</p>
+      <pre style="white-space:pre-wrap; color:rgba(255,255,255,0.85);">{res}</pre>
+      <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
+    </div>
     """
+    return ui_shell("Virhe", inner)
