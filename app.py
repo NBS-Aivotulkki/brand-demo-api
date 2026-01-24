@@ -719,5 +719,5 @@ out.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(t
 out.append("<button type='submit' style='padding:10px 14px;'>Lähetä tilaus</button>")
 out.append("</form>")
 
-    return "\n".join(out)
+return "\n".join(out)
 
