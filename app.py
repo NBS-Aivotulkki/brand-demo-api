@@ -5,9 +5,8 @@ from typing import List, Literal, Dict, Any, Optional
 import math
 import os
 import json
-import smtplib
-from email.message import EmailMessage
-import requests
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
