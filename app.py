@@ -5,16 +5,13 @@ from typing import List, Literal, Dict, Any, Optional
 import math
 import os
 import json
-
-with smtplib.SMTP_SSL(mail_host, mail_port) as server:
-    server.login(mail_user, mail_password)
-    server.send_message(msg)
+import smtplib
+from email.message import EmailMessage
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
 Option = Literal["A", "B", "C", "D", "E"]
 
-# 1) Dimensiot (B2B-kestävä setti)
 DIMENSIONS = [
     "Competence",
     "Integrity",
@@ -27,7 +24,6 @@ DIMENSIONS = [
     "Playfulness",
 ]
 
-# 2) Arkkityyppiprototyypit (0..1 painot)
 ARCHETYPES: Dict[str, Dict[str, float]] = {
     "Ruler":     {"Authority": 0.95, "Discipline": 0.75, "Sophistication": 0.70, "Competence": 0.70, "Warmth": 0.20, "Playfulness": 0.05, "Boldness": 0.55, "Integrity": 0.60, "Vision": 0.30},
     "Sage":      {"Competence": 0.85, "Integrity": 0.65, "Authority": 0.60, "Vision": 0.55, "Discipline": 0.45, "Sophistication": 0.35, "Warmth": 0.25, "Playfulness": 0.05, "Boldness": 0.25},
@@ -43,7 +39,6 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
     "Innocent":  {"Integrity": 0.70, "Warmth": 0.60, "Discipline": 0.35, "Competence": 0.35, "Authority": 0.10, "Sophistication": 0.15, "Vision": 0.20, "Boldness": 0.10, "Playfulness": 0.15},
 }
 
-# 3) Kysymykset
 QUESTIONS = [
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
@@ -67,7 +62,6 @@ QUESTIONS = [
     {"id": 20, "text": "Jos meidät on pakko kuvata yhdellä lauseella, valitsemme mieluummin:", "options": {"A": "Turvallinen ja vahva", "B": "Rohkea ja erottuva", "C": "Lämmin ja inhimillinen", "D": "Älykäs ja visionäärinen"}},
 ]
 
-# 4) Painot
 WEIGHTS = {
     1: {"A": {"Competence": 0.7, "Discipline": 0.4}, "B": {"Authority": 0.6, "Vision": 0.5}, "C": {"Warmth": 0.6, "Integrity": 0.4}, "D": {"Sophistication": 0.6, "Playfulness": 0.4}},
     2: {"A": {"Competence": 0.7, "Discipline": 0.4}, "B": {"Warmth": 0.5, "Playfulness": 0.4}, "C": {"Authority": 0.5, "Integrity": 0.5}, "D": {"Vision": 0.6, "Sophistication": 0.4}},
@@ -91,7 +85,6 @@ WEIGHTS = {
     20: {"A": {"Authority": 0.7, "Integrity": 0.5}, "B": {"Boldness": 0.8, "Vision": 0.4}, "C": {"Warmth": 0.8, "Integrity": 0.4}, "D": {"Vision": 0.7, "Competence": 0.4}},
 }
 
-# 5) Micro-suositukset
 REC_ARCHETYPE = {
     "Ruler": {
         "tone": ["Puhu standardeista ja periaatteista, älä trendeistä.", "Käytä päätöskieltä; vältä liiallista selittelyä."],
@@ -128,16 +121,13 @@ REC_DIMENSION = {
     "Playfulness": ["Käytä keveyttä harkiten: selkeys ensin, vitsi vasta sitten.", "Pidä huumori brändin palvelijana, ei sen johtajana."],
 }
 
-
 class Answer(BaseModel):
     question_id: int
     option: Option
 
-
 class AssessRequest(BaseModel):
     answers: List[Answer]
     respondent_label: Optional[str] = None
-
 
 class OrderRequest(BaseModel):
     company_name: str
@@ -145,22 +135,19 @@ class OrderRequest(BaseModel):
     person_name: str
     person_email: str
     billing_details: str
-
     primary_archetype: str
     secondary_archetype: Optional[str] = None
     shadow_archetype: Optional[str] = None
     dimensions: Dict[str, float]
     top_strengths: List[str]
 
-
 def cosine_similarity(a: Dict[str, float], b: Dict[str, float]) -> float:
-    dot = sum(a[k] * b[k] for k in DIMENSIONS)
-    na = math.sqrt(sum(a[k] * a[k] for k in DIMENSIONS))
-    nb = math.sqrt(sum(b[k] * b[k] for k in DIMENSIONS))
+    dot = sum(a.get(k, 0.0) * b.get(k, 0.0) for k in DIMENSIONS)
+    na = math.sqrt(sum((a.get(k, 0.0) ** 2) for k in DIMENSIONS))
+    nb = math.sqrt(sum((b.get(k, 0.0) ** 2) for k in DIMENSIONS))
     if na == 0 or nb == 0:
         return 0.0
     return dot / (na * nb)
-
 
 def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     raw = {d: 0.0 for d in DIMENSIONS}
@@ -170,26 +157,24 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         for d, val in w.items():
             raw[d] += float(val)
 
-    out = {}
+    out: Dict[str, float] = {}
     for d, v in raw.items():
         lo, hi = -10.0, 10.0
         vv = max(lo, min(hi, v))
         out[d] = (vv - lo) / (hi - lo) * 100.0
     return out
 
-
 def score_archetypes(dim_scores: Dict[str, float]) -> List[Dict[str, Any]]:
     scores = []
     for name, proto in ARCHETYPES.items():
-        b = {d: float(proto.get(d, 0.0)) for d in DIMENSIONS}
-        sim = cosine_similarity(dim_scores, b)
+        proto_vec = {d: float(proto.get(d, 0.0)) for d in DIMENSIONS}
+        sim = cosine_similarity(dim_scores, proto_vec)
         scores.append({"key": name, "similarity": sim})
     scores.sort(key=lambda x: x["similarity"], reverse=True)
     return scores
 
-
 def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, Any]]:
-    recs = []
+    recs: List[Dict[str, Any]] = []
     arch = REC_ARCHETYPE.get(primary, {})
     if arch:
         recs.append({"title": "Tone of voice", "items": arch.get("tone", [])})
@@ -204,11 +189,9 @@ def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, An
             recs.append({"title": f"Tarkennus: {d}", "items": items})
     return recs
 
-
 @app.get("/questions")
 def get_questions():
     return QUESTIONS
-
 
 @app.post("/assess")
 def assess(req: AssessRequest):
@@ -234,7 +217,6 @@ def assess(req: AssessRequest):
         "conscious_lows": low_dims,
         "recommendations": recs,
     }
-
 
 def render_form() -> str:
     html = []
@@ -268,11 +250,9 @@ def render_form() -> str:
     html.append("</form></body></html>")
     return "\n".join(html)
 
-
 @app.get("/", response_class=HTMLResponse)
 def ui():
     return render_form()
-
 
 @app.post("/ui-assess", response_class=HTMLResponse)
 async def ui_assess(request: Request):
@@ -321,13 +301,12 @@ async def ui_assess(request: Request):
             out.append(f"<li>{it}</li>")
         out.append("</ul>")
 
-    # Tilauslomake
     out.append("<hr style='margin:24px 0;'>")
     out.append("<h3>Tilaa brändinrakennusopas</h3>")
     out.append("<p>Täytä tiedot, niin saan tilauksen sähköpostiini.</p>")
 
     out.append("<form method='post' action='/ui-order' style='max-width:520px;'>")
-    out.append("<input type='text' name='website' style='display:none'>")  # honeypot
+    out.append("<input type='text' name='website' style='display:none'>")
 
     out.append("<label>Yrityksen nimi<br><input name='company_name' required style='width:100%; padding:8px;'></label><br><br>")
     out.append("<label>Y-tunnus<br><input name='business_id' required style='width:100%; padding:8px;'></label><br><br>")
@@ -347,26 +326,15 @@ async def ui_assess(request: Request):
     out.append("</body></html>")
     return "\n".join(out)
 
-
-import os
-import json
-import smtplib
-from email.message import EmailMessage
-
-from fastapi import Request
-from fastapi.responses import HTMLResponse
-
-
 @app.post("/order")
 def order(req: OrderRequest):
-    # Google Workspace / Gmail SMTP -asetukset Renderin Environment Variableista
     mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
-    mail_port = int(os.getenv("MAIL_PORT", "587"))
-    mail_user = os.getenv("MAIL_USER")          # esim. tommi@nbs.fi
+    mail_port = int(os.getenv("MAIL_PORT", "465"))  # suositus Renderissä: 465
+    mail_user = os.getenv("MAIL_USER")
     mail_password = os.getenv("MAIL_PASSWORD")  # Google App Password (16 merkkiä)
 
     if not mail_user or not mail_password:
-        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD). Lisää ne Renderin Environment Variables -kohtaan."}
+        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD)."}
 
     subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
 
@@ -397,21 +365,16 @@ Dimensiot:
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = mail_user
-    msg["To"] = mail_user  # tulokset tulevat sinulle
-    # Halutessasi voit laittaa myös tilaajan kuittiin:
-    # msg["Cc"] = req.person_email
-
+    msg["To"] = mail_user
     msg.set_content(body)
 
     try:
-        with smtplib.SMTP(mail_host, mail_port) as server:
-            server.starttls()
+        with smtplib.SMTP_SSL(mail_host, mail_port) as server:
             server.login(mail_user, mail_password)
             server.send_message(msg)
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}
-
 
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
@@ -421,18 +384,29 @@ async def ui_order(request: Request):
     if honeypot:
         return "<html><body><h2>Kiitos</h2></body></html>"
 
-    payload = OrderRequest(
-        company_name=(form.get("company_name") or "").strip(),
-        business_id=(form.get("business_id") or "").strip(),
-        person_name=(form.get("person_name") or "").strip(),
-        person_email=(form.get("person_email") or "").strip(),
-        billing_details=(form.get("billing_details") or "").strip(),
-        primary_archetype=(form.get("primary_archetype") or "").strip(),
-        secondary_archetype=(form.get("secondary_archetype") or "").strip() or None,
-        shadow_archetype=(form.get("shadow_archetype") or "").strip() or None,
-        dimensions=json.loads(form.get("dimensions_json") or "{}"),
-        top_strengths=json.loads(form.get("top_strengths_json") or "[]"),
-    )
+    try:
+        payload = OrderRequest(
+            company_name=(form.get("company_name") or "").strip(),
+            business_id=(form.get("business_id") or "").strip(),
+            person_name=(form.get("person_name") or "").strip(),
+            person_email=(form.get("person_email") or "").strip(),
+            billing_details=(form.get("billing_details") or "").strip(),
+            primary_archetype=(form.get("primary_archetype") or "").strip(),
+            secondary_archetype=(form.get("secondary_archetype") or "").strip() or None,
+            shadow_archetype=(form.get("shadow_archetype") or "").strip() or None,
+            dimensions=json.loads(form.get("dimensions_json") or "{}"),
+            top_strengths=json.loads(form.get("top_strengths_json") or "[]"),
+        )
+    except Exception as e:
+        return f"""
+        <html><head><meta charset="utf-8"></head>
+        <body>
+          <h2>Virhe</h2>
+          <p>Lomakkeen tietoja ei saatu luettua.</p>
+          <pre>{e}</pre>
+          <p><a href="/">Takaisin</a></p>
+        </body></html>
+        """
 
     res = order(payload)
     if isinstance(res, dict) and res.get("ok"):
