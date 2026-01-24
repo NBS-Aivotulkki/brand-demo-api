@@ -562,9 +562,9 @@ async def ui_assess(request: Request):
     right = []
     right.append("<div class='white-box'></div>")
 
-    inner = f"""
-    <style>
-  .result-grid {
+   inner = f"""
+<style>
+.result-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 80px;
@@ -572,25 +572,26 @@ async def ui_assess(request: Request):
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-  }
+}
 
-  .card {
+.card {
     max-width: 560px;
-  }
+}
 
-  .white-box {
+.white-box {
     width: 420px;
     height: 620px;
     background: white;
     border-radius: 20px;
     margin-left: auto;
-  }
-
+}
+</style>
 
     <div class="result-grid">
-      <div>{''.join(left)}</div>
-      <div>{''.join(right)}</div>
-    </div>
+    <div>{''.join(left)}</div>
+    <div>{''.join(right)}</div>
+</div>
+
     <div style="width:100%; margin-top:14px;">
       <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
     </div>
