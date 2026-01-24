@@ -328,16 +328,15 @@ async def ui_assess(request: Request):
 
 @app.post("/order")
 def order(req: OrderRequest):
-    # Gmail / Google Workspace SMTP
-    mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
-    mail_port = int(os.getenv("MAIL_PORT", "465"))
-    mail_user = os.getenv("MAIL_USER")
-    mail_password = os.getenv("MAIL_PASSWORD")
+    # SENDGRID (ei Gmail/SMTP)
+    api_key = os.getenv("SENDGRID_API_KEY")
+    from_email = os.getenv("MAIL_FROM")
+    to_email = os.getenv("MAIL_TO")
 
-    if not mail_user or not mail_password:
+    if not api_key or not from_email or not to_email:
         return {
             "ok": False,
-            "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD)."
+            "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."
         }
 
     subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
@@ -366,19 +365,17 @@ Dimensiot:
 {req.dimensions}
 """.strip()
 
-    msg = EmailMessage()
-    msg["Subject"] = subject
-    msg["From"] = mail_user
-    msg["To"] = mail_user
-    msg.set_content(body)
+    message = Mail(
+        from_email=from_email,
+        to_emails=to_email,
+        subject=subject,
+        plain_text_content=body,
+    )
 
     try:
-        with smtplib.SMTP_SSL(mail_host, mail_port) as server:
-            server.login(mail_user, mail_password)
-            server.send_message(msg)
-
+        sg = SendGridAPIClient(api_key)
+        sg.send(message)
         return {"ok": True}
-
     except Exception as e:
         return {"ok": False, "error": str(e)}
 
