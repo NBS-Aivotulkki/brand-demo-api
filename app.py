@@ -40,124 +40,335 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
 QUESTIONS = [
     {
         "id": 1,
-        "text": "Haluamme, että yrityksemme olemassaolon syy nähdään ennen kaikkea näin:",
+        "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:",
         "options": {
-            "A": "Teemme asiat tehokkaammin kuin muut",
-            "B": "Teemme asiat laadukkaammin kuin muut",
-            "C": "Teemme asiat oikein, vaikka se olisi hitaampaa",
-            "D": "Muutamme koko toimialan toimintatapaa"
+            "A": "Yritysten tehokkaalta työkalulta",
+            "B": "Yritysten strategiselta suunnannäyttäjältä",
+            "C": "Ihmisten arkea helpottavalta kumppanilta",
+            "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"
         }
     },
     {
         "id": 2,
-        "text": "Haluamme, että meidät tunnetaan eniten siitä, että emme hyväksy:",
+        "text": "Haluamme brändimme painottuvan enemmän:",
         "options": {
-            "A": "Keskinkertaista laatua",
-            "B": "Epärehellistä toimintaa",
-            "C": "Lyhytnäköisiä ratkaisuja",
-            "D": "Rohkeuden puutetta"
+            "A": "Suorituskykyyn ja tuloksiin",
+            "B": "Kokemukseen ja vuorovaikutukseen",
+            "C": "Ajatteluun ja asiantuntijuuteen",
+            "D": "Tunnesuhteeseen ja merkitykseen"
+        }
+    },
+    {
+        "id": 3,
+        "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:",
+        "options": {
+            "A": "Luottamusta organisaatioon",
+            "B": "Vetovoimaa tuotteeseen",
+            "C": "Kiinnostusta ideologiaan",
+            "D": "Yhteyttä persoonaan"
+        }
+    },
+    {
+        "id": 4,
+        "text": "Haluamme mieluummin, että meistä sanotaan:",
+        "options": {
+            "A": "Toimii aina",
+            "B": "Tuntuu paremmalta kuin muut",
+            "C": "Näyttää paremmalta kuin muut",
+            "D": "Ajattelee pidemmälle kuin muut"
         }
     },
     {
         "id": 5,
-        "text": "Millaisena haluamme tulla nähdyksi:",
+        "text": "Kun asiakas valitsee meidät, hänen pitäisi ensisijaisesti tuntea:",
         "options": {
-            "A": "Varovainen",
-            "B": "Rohkea",
-            "C": "Kurinalainen",
-            "D": "Suora"
+            "A": "Turvaa",
+            "B": "Ylpeyttä",
+            "C": "Innostusta",
+            "D": "Rauhaa"
+        }
+    },
+    {
+        "id": 6,
+        "text": "Haluamme brändimme olevan mieluummin:",
+        "options": {
+            "A": "Auktoriteetti",
+            "B": "Kumppani",
+            "C": "Haastaja",
+            "D": "Suunnannäyttäjä"
         }
     },
     {
         "id": 7,
-        "text": "Asiakkaan pitäisi tuntea meitä valitessaan (valitse 2):",
-        "multi_select": True,
+        "text": "Valitsemme mieluummin:",
         "options": {
-            "A": "Ylpeyttä",
-            "B": "Kunnianhimoa",
-            "C": "Rauhallista varmuutta",
-            "D": "Moraalista selkeyttä"
+            "A": "Että kaikki eivät pidä meistä",
+            "B": "Että olemme helposti lähestyttäviä",
+            "C": "Että herätämme keskustelua",
+            "D": "Että koemme harvoin vastustusta"
+        }
+    },
+    {
+        "id": 8,
+        "text": "Brändimme on tarkoitus ennemmin:",
+        "options": {
+            "A": "Määritellä oikea tapa",
+            "B": "Rikkoa vanha tapa",
+            "C": "Yhdistää molemmat",
+            "D": "Ohittaa koko keskustelu"
         }
     },
     {
         "id": 9,
-        "text": "Brändin rooli päätöksessä:",
+        "text": "Valitsemme mieluummin, että ratkaisumme on:",
         "options": {
-            "A": "Auttaa vertailemaan",
-            "B": "Helpottaa valintaa",
-            "C": "Pienentää riskiä",
-            "D": "Määrittää, mikä on oikea valinta"
+            "A": "Kaunis",
+            "B": "Nopea",
+            "C": "Älykäs",
+            "D": "Turvallinen"
+        }
+    },
+    {
+        "id": 10,
+        "text": "Haluamme brändimme tuntuvan enemmän:",
+        "options": {
+            "A": "Lämpimältä",
+            "B": "Itsevarmalta",
+            "C": "Terävältä",
+            "D": "Ylevältä"
         }
     },
     {
         "id": 11,
-        "text": "Olemme ennen kaikkea:",
+        "text": "Brändimme suhtautuminen sääntöihin on mieluummin:",
         "options": {
-            "A": "Kurinalainen rakentaja",
-            "B": "Rohkea suunnannäyttäjä",
-            "C": "Moraalinen standardi",
-            "D": "Älyllinen auktoriteetti"
+            "A": "Noudatamme niitä",
+            "B": "Luomme niitä",
+            "C": "Muutamme niitä",
+            "D": "Rikomme niitä tarvittaessa"
         }
     },
     {
-  "id": 12,
-  "text": "Haluamme tulla nähdyksi ensisijaisesti:",
-  "options": {
-    "A": "Turvallisena",
-    "B": "Rohkeana",
-    "C": "Arvokkaana",
-    "D": "Uudistavana"
-  }
-}
-
+        "id": 12,
+        "text": "Jos brändimme olisi henkilö, hän olisi ennemmin:",
+        "options": {
+            "A": "Johtaja",
+            "B": "Ajattelija",
+            "C": "Ystävä",
+            "D": "Visionääri"
+        }
+    },
+    {
+        "id": 13,
+        "text": "Haluamme että meistä muistetaan ensisijaisesti:",
+        "options": {
+            "A": "Mitä saatiin aikaan",
+            "B": "Miltä tuntui",
+            "C": "Miten ajattelu muuttui",
+            "D": "Mitä uskallettiin"
+        }
+    },
+    {
+        "id": 14,
+        "text": "Valitsemme mieluummin:",
+        "options": {
+            "A": "Ennustettavuuden",
+            "B": "Hallitun riskin",
+            "C": "Rohkean position",
+            "D": "Epämukavan erottumisen"
+        }
+    },
+    {
+        "id": 15,
+        "text": "Haluamme brändimme olevan maailmassa ennen kaikkea:",
+        "options": {
+            "A": "Vakauden lähde",
+            "B": "Muutoksen katalyytti",
+            "C": "Turvan rakentaja",
+            "D": "Nautinnon mahdollistaja"
+        }
+    },
+    {
+        "id": 16,
+        "text": "Valitse kaksi, mihin haluamme eniten kallistua:",
+        "multi_select": True,
+        "options": {
+            "A": "Auktoriteetti",
+            "B": "Lämpö",
+            "C": "Rohkeus",
+            "D": "Estetiikka",
+            "E": "Äly"
+        }
+    },
+    {
+        "id": 17,
+        "text": "Valitse kaksi, mitä olemme valmiita uhraamaan:",
+        "multi_select": True,
+        "options": {
+            "A": "Nopeus",
+            "B": "Massasuosio",
+            "C": "Pehmeys",
+            "D": "Varovaisuus",
+            "E": "Mukavuus"
+        }
+    },
+    {
+        "id": 18,
+        "text": "Haluamme, että asiakas:",
+        "options": {
+            "A": "Kuuntelee meitä",
+            "B": "Kunnioittaa meitä",
+            "C": "Luottaa meihin",
+            "D": "Seuraa meitä"
+        }
+    },
+    {
+        "id": 19,
+        "text": "Haluamme olla enemmän:",
+        "options": {
+            "A": "Ratkaisu",
+            "B": "Ajatus",
+            "C": "Kokemus",
+            "D": "Liike"
+        }
+    },
+    {
+        "id": 20,
+        "text": "Jos meidät on pakko kuvata yhdellä lauseella, valitsemme mieluummin:",
+        "options": {
+            "A": "Turvallinen ja vahva",
+            "B": "Rohkea ja erottuva",
+            "C": "Lämmin ja inhimillinen",
+            "D": "Älykäs ja visionäärinen"
+        }
+    }
 ]
 
 # 4) Painot: (kysymys -> vaihtoehto -> dimensiot)
 # Tässä on esimerkki; tämä on se “aivot”, jota säädät.
-WEIGHTS: Dict[int, Dict[str, Dict[str, float]]] = {
+WEIGHTS = {
     1: {
-        "A": {"Competence": 0.6, "Discipline": 0.4},
-        "B": {"Competence": 0.8, "Sophistication": 0.2},
-        "C": {"Integrity": 0.9, "Discipline": 0.3},
-        "D": {"Vision": 0.9, "Boldness": 0.5, "Authority": 0.2}
+        "A": {"Competence": 0.7, "Discipline": 0.4},
+        "B": {"Authority": 0.6, "Vision": 0.5},
+        "C": {"Warmth": 0.6, "Integrity": 0.4},
+        "D": {"Sophistication": 0.6, "Playfulness": 0.4}
     },
     2: {
-        "A": {"Competence": 0.7, "Discipline": 0.3},
-        "B": {"Integrity": 0.9, "Authority": 0.2},
-        "C": {"Discipline": 0.5, "Authority": 0.3},
-        "D": {"Boldness": 0.8, "Vision": 0.4}
+        "A": {"Competence": 0.7, "Discipline": 0.4},
+        "B": {"Warmth": 0.5, "Playfulness": 0.4},
+        "C": {"Authority": 0.5, "Integrity": 0.5},
+        "D": {"Vision": 0.6, "Sophistication": 0.4}
+    },
+    3: {
+        "A": {"Authority": 0.6, "Integrity": 0.5},
+        "B": {"Sophistication": 0.6, "Playfulness": 0.3},
+        "C": {"Vision": 0.6, "Boldness": 0.4},
+        "D": {"Warmth": 0.7, "Integrity": 0.3}
+    },
+    4: {
+        "A": {"Discipline": 0.6, "Competence": 0.5},
+        "B": {"Warmth": 0.5, "Playfulness": 0.4},
+        "C": {"Sophistication": 0.6, "Authority": 0.4},
+        "D": {"Vision": 0.7, "Boldness": 0.4}
     },
     5: {
-        "A": {"Discipline": 0.5},
-        "B": {"Boldness": 0.7, "Vision": 0.3},
-        "C": {"Discipline": 0.8, "Authority": 0.2},
-        "D": {"Authority": 0.4, "Integrity": 0.2}
+        "A": {"Integrity": 0.7, "Discipline": 0.4},
+        "B": {"Boldness": 0.6, "Sophistication": 0.4},
+        "C": {"Vision": 0.6, "Playfulness": 0.4},
+        "D": {"Warmth": 0.6, "Integrity": 0.4}
+    },
+    6: {
+        "A": {"Authority": 0.8, "Discipline": 0.4},
+        "B": {"Warmth": 0.6, "Integrity": 0.4},
+        "C": {"Boldness": 0.7, "Vision": 0.4},
+        "D": {"Vision": 0.7, "Sophistication": 0.3}
     },
     7: {
-        "A": {"Sophistication": 0.4, "Authority": 0.2},
-        "B": {"Boldness": 0.5, "Vision": 0.3},
-        "C": {"Integrity": 0.4, "Discipline": 0.3},
-        "D": {"Integrity": 0.7, "Authority": 0.2}
+        "A": {"Boldness": 0.7, "Authority": 0.4},
+        "B": {"Warmth": 0.6, "Integrity": 0.4},
+        "C": {"Vision": 0.6, "Playfulness": 0.4},
+        "D": {"Discipline": 0.7, "Competence": 0.4}
+    },
+    8: {
+        "A": {"Authority": 0.8, "Discipline": 0.4},
+        "B": {"Boldness": 0.8, "Vision": 0.4},
+        "C": {"Vision": 0.5, "Integrity": 0.4},
+        "D": {"Sophistication": 0.6, "Playfulness": 0.3}
     },
     9: {
-        "A": {"Competence": 0.2},
-        "B": {"Competence": 0.3, "Warmth": 0.2},
-        "C": {"Integrity": 0.4, "Discipline": 0.4},
-        "D": {"Authority": 0.8, "Sophistication": 0.2}
+        "A": {"Sophistication": 0.7, "Playfulness": 0.3},
+        "B": {"Discipline": 0.7, "Competence": 0.4},
+        "C": {"Vision": 0.7, "Authority": 0.3},
+        "D": {"Integrity": 0.7, "Warmth": 0.3}
+    },
+    10: {
+        "A": {"Warmth": 0.8, "Integrity": 0.4},
+        "B": {"Authority": 0.7, "Discipline": 0.4},
+        "C": {"Boldness": 0.7, "Vision": 0.4},
+        "D": {"Sophistication": 0.7, "Authority": 0.3}
     },
     11: {
-        "A": {"Discipline": 0.8, "Competence": 0.3},
-        "B": {"Boldness": 0.7, "Vision": 0.5},
-        "C": {"Integrity": 0.9, "Authority": 0.4},
-        "D": {"Authority": 0.7, "Competence": 0.6}
+        "A": {"Discipline": 0.7, "Integrity": 0.4},
+        "B": {"Authority": 0.8, "Competence": 0.4},
+        "C": {"Vision": 0.7, "Warmth": 0.4},
+        "D": {"Boldness": 0.8, "Playfulness": 0.3}
     },
     12: {
-        "A": {"Integrity": 0.4, "Discipline": 0.4},
-        "B": {"Boldness": 0.6, "Vision": 0.2},
-        "C": {"Sophistication": 0.6, "Authority": 0.2},
-        "D": {"Vision": 0.7, "Boldness": 0.3}
-}
-
+        "A": {"Authority": 0.7, "Discipline": 0.4},
+        "B": {"Competence": 0.7, "Integrity": 0.4},
+        "C": {"Warmth": 0.7, "Playfulness": 0.3},
+        "D": {"Vision": 0.8, "Boldness": 0.4}
+    },
+    13: {
+        "A": {"Competence": 0.7, "Discipline": 0.4},
+        "B": {"Warmth": 0.7, "Playfulness": 0.3},
+        "C": {"Vision": 0.7, "Integrity": 0.4},
+        "D": {"Boldness": 0.7, "Sophistication": 0.3}
+    },
+    14: {
+        "A": {"Discipline": 0.8, "Integrity": 0.4},
+        "B": {"Competence": 0.6, "Vision": 0.4},
+        "C": {"Boldness": 0.8, "Vision": 0.4},
+        "D": {"Playfulness": 0.6, "Sophistication": 0.4}
+    },
+    15: {
+        "A": {"Authority": 0.7, "Integrity": 0.4},
+        "B": {"Vision": 0.8, "Boldness": 0.4},
+        "C": {"Warmth": 0.7, "Discipline": 0.4},
+        "D": {"Sophistication": 0.8, "Playfulness": 0.4}
+    },
+    16: {
+        "A": {"Authority": 0.8},
+        "B": {"Warmth": 0.8},
+        "C": {"Boldness": 0.8},
+        "D": {"Sophistication": 0.8},
+        "E": {"Competence": 0.8}
+    },
+    17: {
+        "A": {"Sophistication": 0.6},
+        "B": {"Authority": 0.6},
+        "C": {"Boldness": 0.6},
+        "D": {"Warmth": 0.6},
+        "E": {"Discipline": 0.6}
+    },
+    18: {
+        "A": {"Authority": 0.7, "Vision": 0.3},
+        "B": {"Authority": 0.7, "Integrity": 0.4},
+        "C": {"Integrity": 0.8, "Warmth": 0.4},
+        "D": {"Boldness": 0.8, "Playfulness": 0.3}
+    },
+    19: {
+        "A": {"Competence": 0.7, "Discipline": 0.4},
+        "B": {"Vision": 0.7, "Integrity": 0.4},
+        "C": {"Warmth": 0.6, "Playfulness": 0.4},
+        "D": {"Boldness": 0.7, "Sophistication": 0.4}
+    },
+    20: {
+        "A": {"Authority": 0.7, "Integrity": 0.5},
+        "B": {"Boldness": 0.8, "Vision": 0.4},
+        "C": {"Warmth": 0.8, "Integrity": 0.4},
+        "D": {"Vision": 0.7, "Competence": 0.4}
+    }
 }
 
 # 5) Micro-suositukset (minidemo)
