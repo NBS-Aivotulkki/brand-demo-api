@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Literal, Dict, Any, Optional
 import math
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
@@ -416,6 +419,20 @@ class Answer(BaseModel):
 class AssessRequest(BaseModel):
     answers: List[Answer]
     respondent_label: Optional[str] = None
+    
+class OrderRequest(BaseModel):
+    company_name: str
+    business_id: str
+    person_name: str
+    person_email: str
+    billing_details: str
+
+    primary_archetype: str
+    secondary_archetype: str | None = None
+    shadow_archetype: str | None = None
+    dimensions: dict
+    top_strengths: list
+
 
 def cosine_similarity(a: Dict[str, float], b: Dict[str, float]) -> float:
     dot = sum(a[k] * b[k] for k in DIMENSIONS)
