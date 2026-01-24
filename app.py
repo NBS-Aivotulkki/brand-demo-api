@@ -562,40 +562,23 @@ async def ui_assess(request: Request):
     right = []
     right.append("<div class='white-box'></div>")
 
-    inner = f"""
+inner = f"""
 <style>
-.result-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.card {
-    max-width: 560px;
-}
-
-.white-box {
-    width: 420px;
-    height: 620px;
-    background: white;
-    border-radius: 20px;
-    margin-left: auto;
-}
+.result-grid {{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}}
 </style>
-
-    <div class="result-grid">
-    <div>{''.join(left)}</div>
-    <div>{''.join(right)}</div>
+<div class="result-grid">
+  ...
 </div>
+"""
 
-    <div style="width:100%; margin-top:14px;">
-      <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
-    </div>
-    """
     return ui_shell("Tulos", inner)
 
 # ---------------------------
