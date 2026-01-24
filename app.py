@@ -6,9 +6,8 @@ import math
 import os
 import json
 
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-
+import smtplib
+from email.message import EmailMessage
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
@@ -348,14 +347,25 @@ async def ui_assess(request: Request):
     return "\n".join(out)
 
 
+import os
+import json
+import smtplib
+from email.message import EmailMessage
+
+from fastapi import Request
+from fastapi.responses import HTMLResponse
+
+
 @app.post("/order")
 def order(req: OrderRequest):
-    to_email = os.getenv("MAIL_TO")
-    from_email = os.getenv("MAIL_FROM")
-    api_key = os.getenv("SENDGRID_API_KEY")
+    # Google Workspace / Gmail SMTP -asetukset Renderin Environment Variableista
+    mail_host = os.getenv("MAIL_HOST", "smtp.gmail.com")
+    mail_port = int(os.getenv("MAIL_PORT", "587"))
+    mail_user = os.getenv("MAIL_USER")          # esim. tommi@nbs.fi
+    mail_password = os.getenv("MAIL_PASSWORD")  # Google App Password (16 merkkiä)
 
-    if not to_email or not from_email or not api_key:
-        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_TO, MAIL_FROM, SENDGRID_API_KEY)"}
+    if not mail_user or not mail_password:
+        return {"ok": False, "error": "Sähköpostiasetukset puuttuvat (MAIL_USER, MAIL_PASSWORD). Lisää ne Renderin Environment Variables -kohtaan."}
 
     subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
 
@@ -383,16 +393,20 @@ Dimensiot:
 {req.dimensions}
 """.strip()
 
-    message = Mail(
-        from_email=from_email,
-        to_emails=to_email,
-        subject=subject,
-        plain_text_content=body,
-    )
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = mail_user
+    msg["To"] = mail_user  # tulokset tulevat sinulle
+    # Halutessasi voit laittaa myös tilaajan kuittiin:
+    # msg["Cc"] = req.person_email
+
+    msg.set_content(body)
 
     try:
-        sg = SendGridAPIClient(api_key)
-        sg.send(message)
+        with smtplib.SMTP(mail_host, mail_port) as server:
+            server.starttls()
+            server.login(mail_user, mail_password)
+            server.send_message(msg)
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}
