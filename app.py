@@ -585,7 +585,6 @@ async def ui_assess(request: Request):
     border-radius: 20px;
     margin-left: auto;
   }
-</style>
 
 
     <div class="result-grid">
