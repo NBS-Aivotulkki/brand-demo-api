@@ -564,27 +564,29 @@ async def ui_assess(request: Request):
 
     inner = f"""
     <style>
-      .result-grid {{
-        display: grid;
-        grid-template-columns: 2fr 3fr;
-        gap: 60px;
-        align-items: flex-start;
-        width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-      }}
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-      .card {{
-        max-width: 520px;
-      }}
+  .card {
+    max-width: 560px;
+  }
 
-      .white-box {{
-        width: 100%;
-        height: 520px;
-        background: white;
-        border-radius: 20px;
-      }}
-    </style>
+  .white-box {
+    width: 420px;
+    height: 620px;
+    background: white;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+</style>
+
 
     <div class="result-grid">
       <div>{''.join(left)}</div>
