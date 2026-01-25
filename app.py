@@ -753,7 +753,7 @@ async def ui_order(request: Request):
           <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
         </div>
         """
-         ui_shell("Virhe", inner)
+        ui_shell("Virhe", inner)
 
     res = order(payload)
     if isinstance(res, dict) and res.get("ok"):
@@ -764,7 +764,7 @@ async def ui_order(request: Request):
           <a class="btn" href="/">Etusivulle</a>
         </div>
         """
-         ui_shell("Kiitos", inner)
+        ui_shell("Kiitos", inner)
 
     inner = f"""
     <div class="card" style="width:100%;">
