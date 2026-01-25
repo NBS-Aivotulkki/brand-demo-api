@@ -721,7 +721,7 @@ Dimensiot:
         sg.send(message)
         {"ok": True}
     except Exception as e:
-         {"ok": False, "error": str(e)}
+        {"ok": False, "error": str(e)}
 
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
