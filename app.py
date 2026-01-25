@@ -31,6 +31,20 @@ DIMENSIONS = [
     "Warmth",
     "Playfulness",
 ]
+ARCHETYPE_DESCRIPTIONS = {
+    "Ruler": "Ruler-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se näyttää suunnan ja asettaa standardin, jota muut seuraavat.",
+    "Sage": "Sage-brändi perustuu viisauteen, ymmärrykseen ja totuuden etsimiseen. Se opastaa, selkeyttää ja tuo varmuutta tiedon kautta.",
+    "Hero": "Hero-brändi edustaa rohkeutta, päättäväisyyttä ja kykyä voittaa vaikeudet. Se lupaa muutosta tekojen, ei sanojen, kautta.",
+    "Creator": "Creator-brändi ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut.",
+    "Explorer": "Explorer-brändi kutsuu vapauteen ja löytöretkelle. Se rikkoo rajoja ja etsii jatkuvasti uusia mahdollisuuksia.",
+    "Outlaw": "Outlaw-brändi syntyy kapinasta ja uudistamisesta. Se kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan.",
+    "Magician": "Magician-brändi lupaa transformaatiota. Se muuttaa näkökulmia ja tekee mahdottomasta mahdollista.",
+    "Caregiver": "Caregiver-brändi rakentaa turvaa ja huolenpitoa. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön.",
+    "Everyman": "Everyman-brändi edustaa aitoutta ja samaistuttavuutta. Se on lähellä, ymmärrettävä ja helposti lähestyttävä.",
+    "Lover": "Lover-brändi rakentuu intohimon, estetiikan ja emotionaalisen vetovoiman varaan.",
+    "Jester": "Jester-brändi tuo keveyttä, iloa ja vapautta. Se rikkoo jäykkyyden huumorilla ja oivalluksilla.",
+    "Innocent": "Innocent-brändi ilmentää puhtautta, optimismia ja vilpitöntä luottamusta hyvään."
+}
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
     "Ruler":     {"Authority": 0.95, "Discipline": 0.75, "Sophistication": 0.70, "Competence": 0.70, "Warmth": 0.20, "Playfulness": 0.05, "Boldness": 0.55, "Integrity": 0.60, "Vision": 0.30},
@@ -515,6 +529,7 @@ async def ui_assess(request: Request):
     left = []
     left.append("<div class='card'>")
     left.append(f"<h2>Pääarkkityyppi: <span style='text-decoration: underline;'>{primary}</span></h2>")
+    left.append(f"<p class='archetype-caption'>{ARCHETYPE_DESCRIPTIONS.get(primary, '')}</p>")
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary or ''}</b><br>")
     left.append(f"Varjo: <b>{shadow or ''}</b><br><br>")
@@ -560,7 +575,28 @@ async def ui_assess(request: Request):
     left.append("</div>")
 
     right = []
-    right.append("<div class='white-box'></div>")
+right.append("""
+<div class="archetype-images">
+  <div class="primary-img">
+    <img src="/static/archetypes/{primary}.png">
+  </div>
+
+  <div class="secondary-row">
+    <div class="secondary-img">
+      <img src="/static/archetypes/{secondary}.png">
+    </div>
+    <div class="secondary-img">
+      <img src="/static/archetypes/{shadow}.png">
+    </div>
+  </div>
+</div>
+""".format(
+    primary=primary.lower(),
+    secondary=(secondary or "").lower(),
+    shadow=(shadow or "").lower()
+))
+right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
+
 
     inner = f"""
 <style>
@@ -584,6 +620,40 @@ async def ui_assess(request: Request):
   background: white;
   border-radius: 24px;
   margin: 0 auto;
+}}
+.archetype-images {{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}}
+
+.primary-img img {{
+    width: 420px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 24px;
+}}
+
+.secondary-row {{
+    display: flex;
+    gap: 16px;
+}}
+
+.secondary-img img {{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 18px;
+}}
+
+.archetype-caption {{
+    margin-top: 8px;
+    max-width: 420px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #dfefff;
 }}
 
 }}
