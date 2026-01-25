@@ -719,7 +719,7 @@ Dimensiot:
     try:
         sg = SendGridAPIClient(api_key)
         sg.send(message)
-         {"ok": True}
+        {"ok": True}
     except Exception as e:
          {"ok": False, "error": str(e)}
 
