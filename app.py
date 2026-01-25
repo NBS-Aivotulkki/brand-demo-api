@@ -668,7 +668,7 @@ inner = f"""
 </div>
 """
 
-    return ui_shell("Tulos", inner)
+return ui_shell("Tulos", inner)
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
@@ -719,9 +719,9 @@ Dimensiot:
     try:
         sg = SendGridAPIClient(api_key)
         sg.send(message)
-        return {"ok": True}
+         {"ok": True}
     except Exception as e:
-        return {"ok": False, "error": str(e)}
+         {"ok": False, "error": str(e)}
 
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
@@ -729,7 +729,7 @@ async def ui_order(request: Request):
 
     honeypot = (form.get("website") or "").strip()
     if honeypot:
-        return ui_shell("Kiitos", "<div class='hero'><h2>Kiitos</h2></div>")
+         ui_shell("Kiitos", "<div class='hero'><h2>Kiitos</h2></div>")
 
     try:
         payload = OrderRequest(
@@ -753,7 +753,7 @@ async def ui_order(request: Request):
           <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
         </div>
         """
-        return ui_shell("Virhe", inner)
+         ui_shell("Virhe", inner)
 
     res = order(payload)
     if isinstance(res, dict) and res.get("ok"):
@@ -764,7 +764,7 @@ async def ui_order(request: Request):
           <a class="btn" href="/">Etusivulle</a>
         </div>
         """
-        return ui_shell("Kiitos", inner)
+         ui_shell("Kiitos", inner)
 
     inner = f"""
     <div class="card" style="width:100%;">
