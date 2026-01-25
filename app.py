@@ -574,7 +574,7 @@ async def ui_assess(request: Request):
     left.append("</form>")
     left.append("</div>")
 
-        right = []
+    right = []
     right.append("""
     <div class="archetype-images">
       <div class="primary-img">
