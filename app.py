@@ -574,28 +574,29 @@ async def ui_assess(request: Request):
     left.append("</form>")
     left.append("</div>")
 
-    right = []
-right.append("""
-<div class="archetype-images">
-  <div class="primary-img">
-    <img src="/static/archetypes/{primary}.png">
-  </div>
+        right = []
+    right.append("""
+    <div class="archetype-images">
+      <div class="primary-img">
+        <img src="/static/archetypes/{primary}.png">
+      </div>
 
-  <div class="secondary-row">
-    <div class="secondary-img">
-      <img src="/static/archetypes/{secondary}.png">
+      <div class="secondary-row">
+        <div class="secondary-img">
+          <img src="/static/archetypes/{secondary}.png">
+        </div>
+        <div class="secondary-img">
+          <img src="/static/archetypes/{shadow}.png">
+        </div>
+      </div>
     </div>
-    <div class="secondary-img">
-      <img src="/static/archetypes/{shadow}.png">
-    </div>
-  </div>
-</div>
-""".format(
-    primary=primary.lower(),
-    secondary=(secondary or "").lower(),
-    shadow=(shadow or "").lower()
-))
-right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
+    """.format(
+        primary=primary.lower(),
+        secondary=(secondary or "").lower(),
+        shadow=(shadow or "").lower()
+    ))
+    right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
+
 
 
 inner = f"""
@@ -656,7 +657,6 @@ inner = f"""
     color: #dfefff;
 }}
 
-}}
 </style>
 
 <div class="result-grid">
@@ -669,6 +669,7 @@ inner = f"""
 """
 
     return ui_shell("Tulos", inner)
+
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
