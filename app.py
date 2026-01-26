@@ -738,7 +738,7 @@ async def ui_assess(request: Request):
     ))
     right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
 
-        inner = f"""
+    inner = f"""
     <style>
     .result-grid {{
       display: grid;
