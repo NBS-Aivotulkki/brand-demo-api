@@ -274,7 +274,7 @@ top_dims_fi = [t(d) for d in top_dims]
 
 dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
 
-    low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
+low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
     recs = make_recommendations(primary, top_dims)
 
