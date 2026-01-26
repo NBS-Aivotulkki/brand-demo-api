@@ -770,19 +770,25 @@ async def ui_assess(request: Request):
     }}
 
     @media (max-width: 1100px) {{
-      .result-grid {
+      .result-grid {{
         grid-template-columns: 1fr;
-        max-width: 720px;
+        max-width: 100%;
+      }}
     }}
 
     .card {{
       width: 100%;
-      max-width: 520px;
+      max-width: 560px;
     }}
-    @media (max-width: 1100px) {
+
+    @media (max-width: 1100px) {{
       .card {{
         max-width: 100%;
       }}
+    }}
+    </style>
+    """
+
 
     .archetype-images {{
       display: flex;
