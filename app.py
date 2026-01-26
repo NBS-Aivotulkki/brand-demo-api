@@ -601,8 +601,8 @@ async def ui_assess(request: Request):
     left.append("</ul>")
 
     left.append("<div class='sep'></div>")
-    left.append("<h2>Tähän tulee otsikko Garamond-fontilla</h2>")
-    left.append("<p class='meta'>Tähän tulee pari riviä tekstiä Helveticaalla kannustamaan tarjouksen pyytämiseen.</p>")
+    left.append("<h2>Haluatko tarkemmat ohjeet brändäykseen?</h2>")
+    left.append("<p class='meta'>Ilmaisen kiinnostuksesi täyttämällä ja lähettämällä alta löytyvä lomake. Saat 24h sisällä yhteistyöehdotuksen.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
     left.append("<input type='text' name='website' style='display:none'>")
@@ -613,14 +613,9 @@ async def ui_assess(request: Request):
     left.append("<label>Sähköpostiosoitteesi</label>")
     left.append("<input name='person_email' required type='email'>")
 
-    left.append("<label>Yrityksenne nimi</label>")
+    left.append("<label>Yrityksenne verkkosivuosoite</label>")
     left.append("<input name='company_name' required type='text'>")
 
-    left.append("<label>Y-tunnus</label>")
-    left.append("<input name='business_id' required type='text'>")
-
-    left.append("<label>Laskutustiedot</label>")
-    left.append("<textarea name='billing_details' required></textarea>")
 
     # hidden-inputit pidetään englanniksi (lähetys ja kuvat pysyy ehjinä)
     left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
