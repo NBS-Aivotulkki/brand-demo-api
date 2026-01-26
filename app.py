@@ -658,7 +658,7 @@ inner = f"""
 }}    
 
 inner = f"""
-</style>
+<style>
 <div class="result-grid">
   <div>{''.join(left)}</div>
   <div>{''.join(right)}</div>
