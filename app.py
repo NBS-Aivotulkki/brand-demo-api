@@ -181,6 +181,7 @@ REC_DIMENSION = {
     "Competence": ["Todista osaaminen: caset, benchmarkit, referenssit, menetelmät.", "Näytä laadunvarmistus: miten estätte virheet."],
     "Playfulness": ["Käytä keveyttä harkiten: selkeys ensin, vitsi vasta sitten.", "Pidä huumori brändin palvelijana, ei sen johtajana."],
 }
+Option = Literal["A", "B", "C", "D", "E"]
 
 class Answer(BaseModel):
     question_id: int
