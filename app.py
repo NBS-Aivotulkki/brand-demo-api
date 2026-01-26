@@ -566,54 +566,43 @@ def ui_shell(title: str, inner_html: str) -> str:
 @app.get("/", response_class=HTMLResponse)
 def ui_landing():
     inner = """
-    <div class="hero" style="text-align:left; max-width:720px;">
+    <div class="hero">
       <h1>Brändikone</h1>
 
-      <div class="brand-text">
-        <h2>Mikä on brändi?</h2>
-        <p>
-          Brändi ei ole logo, visuaalinen ilme tai markkinointiviesti. Brändi on ihmisten mielessä syntyvä kokonaiskäsitys siitä,
-          mitä yritys edustaa, mihin se uskoo ja millaista todellisuutta se rakentaa. Se on yhdistelmä odotuksia, kokemuksia,
-          merkityksiä ja tunnetta. Brändi on päätöksentekoa ohjaava voima, ei vain viestinnällinen pinta.
-        </p>
+      <p class="lead" style="max-width: 760px;">
+        Useimmat yritykset näyttävät ulospäin samalta. Ne myyvät samoja lupauksia, samoilla sanoilla,
+        samoilla väreillä ja samoilla sivupohjilla. Siksi ne kilpailevat hinnalla.
+      </p>
 
-        <h2>Mitä merkitystä brändillä on?</h2>
-        <p>
-          Brändi ohjaa valintoja silloinkin, kun tuotteet ja hinnat ovat lähes identtisiä. Tutkimusten mukaan vahva brändi
-          lisää koettua arvoa, nostaa maksuhalukkuutta ja rakentaa luottamusta tilanteissa, joissa rationaalinen tieto ei riitä.
-          Neurotieteellinen tutkimus osoittaa, että suuri osa päätöksenteosta tapahtuu emotionaalisesti ennen rationaalista
-          perustelua. Brändi toimii tällöin kognitiivisena oikopolkuna: se vähentää epävarmuutta ja nopeuttaa päätöstä.
-        </p>
+      <p class="lead" style="max-width: 760px;">
+        Brändi ei ole logo eikä ulkoasu. Se on yrityksesi päätös siitä, millainen voima se haluaa olla markkinassa.
+      </p>
 
-        <h2>Miten brändi luodaan?</h2>
-        <p>
-          Brändiä ei rakenneta alhaalta ylöspäin vahvistamalla nykyistä toimintaa. Se rakennetaan ylhäältä alaspäin määrittelemällä,
-          millaiseksi yritys haluaa tulla. Brändi on aspiratiivinen malli: se asettaa tavoitetilan, johon liiketoiminta,
-          kulttuuri ja tekeminen muovautuvat.  
-          Brändi ei siis kuvaa nykytilaa, vaan luo tulevaisuuden, johon yritys kasvaa.
-        </p>
+      <p class="lead" style="max-width: 760px;">
+        Brändikone näyttää, mikä teidän brändinne on tällä hetkellä – ja mihin se voisi kasvaa.
+      </p>
 
-        <h2>Miten brändistä signaloidaan?</h2>
-        <p>
-          Brändi ei elä sanoissa vaan signaaleissa. Värit, typografia, kuvat, äänensävy, kieli, käyttöliittymä, käyttäjäkokemus,
-          palvelumallit ja tarinat muodostavat yhtenäisen sensorisen ja sisällöllisen kokonaisuuden. Jokainen yksityiskohta
-          joko vahvistaa brändin uskottavuutta tai murentaa sitä.  
-          Brändi syntyy siitä, mitä yritys toistuvasti tekee, ei siitä mitä se sanoo olevansa.
-        </p>
-
-        <h2>Brändikone</h2>
-        <p>
-          Brändikone on työkalu, joka tekee brändistä mitattavan, näkyvän ja ohjattavan. Se muuntaa abstraktin identiteetin
-          konkreettisiksi valinnoiksi: sävyksi, visuaaliseksi maailmaksi, käyttäytymismalleiksi ja päätöksentekoperiaatteiksi.
-          Brändikone ei kuvaa vain sitä, kuka olet – vaan sitä, kuka olet päättänyt olla.
-        </p>
+      <div class="meta" style="max-width: 760px; margin: 18px auto 26px; text-align: left;">
+        <b>Brändikoneessa:</b>
+        <ul class="list" style="margin-top: 10px;">
+          <li>näet, mihin 12 brändiarkkityypistä yrityksesi kallistuu</li>
+          <li>saat mitattavan profiilin brändisi vahvuuksista ja heikkouksista</li>
+          <li>saat suuntaviivat, joiden pohjalta brändiä voi oikeasti rakentaa</li>
+        </ul>
+        <div class="sep" style="margin: 18px 0;"></div>
+        <div style="color: rgba(255,255,255,0.80); font-size: 13px; line-height: 1.45;">
+          Tämä ei ole testi oikeista vastauksista. Tämä on testi siitä, mihin suuntaan yrityksesi haluaa kasvaa.
+        </div>
       </div>
 
-      <a class="btn" href="/survey">Siirry kysymyksiin</a>
-    </div>
+      <a class="btn" href="/survey">Aloita brändikartoitus</a>
 
+      <div class="meta" style="max-width: 760px; margin: 18px auto 0; text-align: left;">
+        Brändikone näyttää suunnan. Me autamme rakentamaan sen todelliseksi.
+      </div>
+    </div>
     """
-    return ui_shell("Brand Demo", inner)
+    return ui_shell("Brändikone", inner)
 
 @app.get("/survey", response_class=HTMLResponse)
 def ui_survey():
