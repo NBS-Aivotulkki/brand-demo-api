@@ -263,8 +263,17 @@ def assess(req: AssessRequest):
     primary = archetypes[0]["key"]
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
+    
+# Suomenkieliset nimet UI:lle
+primary_fi = t(primary)
+secondary_fi = t(secondary) if secondary else ""
+shadow_fi = t(shadow) if shadow else ""
 
-    top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
+top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
+top_dims_fi = [t(d) for d in top_dims]
+
+dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
+
     low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
     recs = make_recommendations(primary, top_dims)
@@ -578,8 +587,9 @@ async def ui_assess(request: Request):
 
     left.append("<div class='meta'><b>Dimensiot (0–100)</b></div>")
     left.append("<ul class='list'>")
-    for k, v in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True):
-        left.append(f"<li>{k}: {v:.1f}</li>")
+    for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
+    left.append(f"<li>{k}: {v:.1f}</li>")
+
     left.append("</ul>")
 
     left.append("<div class='sep'></div>")
