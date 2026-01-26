@@ -512,6 +512,19 @@ def ui_shell(title: str, inner_html: str) -> str:
       text-decoration: none;
       font-size: 13px;
     }}
+    .brand-text h2 {{
+      font-family: "EB Garamond", Garamond, serif;
+      font-size: 22px;
+      margin: 28px 0 8px;
+    }}
+
+    .brand-text p {{
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+    }}
+
   </style>
 </head>
 <body>
@@ -535,11 +548,53 @@ def ui_shell(title: str, inner_html: str) -> str:
 @app.get("/", response_class=HTMLResponse)
 def ui_landing():
     inner = """
-    <div class="hero">
+    <div class="hero" style="text-align:left; max-width:720px;">
       <h1>Brändikone</h1>
-      <p class="lead">Menestyvä brändi ei ole yrityksen näköinen, vaan menestyvä yritys on brändin näköinen. Brändi on yrityksen tavallisuutta suurempi pomo, jonka seuraa kuluttajat arvostavat.</p>
+
+      <div class="brand-text">
+        <h2>Mikä on brändi?</h2>
+        <p>
+          Brändi ei ole logo, visuaalinen ilme tai markkinointiviesti. Brändi on ihmisten mielessä syntyvä kokonaiskäsitys siitä,
+          mitä yritys edustaa, mihin se uskoo ja millaista todellisuutta se rakentaa. Se on yhdistelmä odotuksia, kokemuksia,
+          merkityksiä ja tunnetta. Brändi on päätöksentekoa ohjaava voima, ei vain viestinnällinen pinta.
+        </p>
+
+        <h2>Mitä merkitystä brändillä on?</h2>
+        <p>
+          Brändi ohjaa valintoja silloinkin, kun tuotteet ja hinnat ovat lähes identtisiä. Tutkimusten mukaan vahva brändi
+          lisää koettua arvoa, nostaa maksuhalukkuutta ja rakentaa luottamusta tilanteissa, joissa rationaalinen tieto ei riitä.
+          Neurotieteellinen tutkimus osoittaa, että suuri osa päätöksenteosta tapahtuu emotionaalisesti ennen rationaalista
+          perustelua. Brändi toimii tällöin kognitiivisena oikopolkuna: se vähentää epävarmuutta ja nopeuttaa päätöstä.
+        </p>
+
+        <h2>Miten brändi luodaan?</h2>
+        <p>
+          Brändiä ei rakenneta alhaalta ylöspäin vahvistamalla nykyistä toimintaa. Se rakennetaan ylhäältä alaspäin määrittelemällä,
+          millaiseksi yritys haluaa tulla. Brändi on aspiratiivinen malli: se asettaa tavoitetilan, johon liiketoiminta,
+          kulttuuri ja tekeminen muovautuvat.  
+          Brändi ei siis kuvaa nykytilaa, vaan luo tulevaisuuden, johon yritys kasvaa.
+        </p>
+
+        <h2>Miten brändistä signaloidaan?</h2>
+        <p>
+          Brändi ei elä sanoissa vaan signaaleissa. Värit, typografia, kuvat, äänensävy, kieli, käyttöliittymä, käyttäjäkokemus,
+          palvelumallit ja tarinat muodostavat yhtenäisen sensorisen ja sisällöllisen kokonaisuuden. Jokainen yksityiskohta
+          joko vahvistaa brändin uskottavuutta tai murentaa sitä.  
+          Brändi syntyy siitä, mitä yritys toistuvasti tekee, ei siitä mitä se sanoo olevansa.
+        </p>
+
+        <h2>Brändikone</h2>
+        <p>
+          Brändikone on työkalu, joka tekee brändistä mitattavan, näkyvän ja ohjattavan. Se muuntaa abstraktin identiteetin
+          konkreettisiksi valinnoiksi: sävyksi, visuaaliseksi maailmaksi, käyttäytymismalleiksi ja päätöksentekoperiaatteiksi.
+          Brändikone ei kuvaa vain sitä, kuka olet – vaan sitä, kuka olet päättänyt olla.
+        </p>
+      </div>
+
       <a class="btn" href="/survey">Siirry kysymyksiin</a>
     </div>
+    """
+
     """
     return ui_shell("Brand Demo", inner)
 
