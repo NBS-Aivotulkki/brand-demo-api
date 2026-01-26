@@ -567,42 +567,55 @@ def ui_shell(title: str, inner_html: str) -> str:
 def ui_landing():
     inner = """
     <div class="hero">
-      <h1>Brändikone</h1>
+      <div class="content-panel" style="
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: left;
+      ">
 
-      <p class="lead" style="max-width: 760px;">
-        Useimmat yritykset näyttävät ulospäin samalta. Ne myyvät samoja lupauksia, samoilla sanoilla,
-        samoilla väreillä ja samoilla sivupohjilla. Siksi ne kilpailevat hinnalla.
-      </p>
+        <h1 style="text-align:center;">Brändikone</h1>
 
-      <p class="lead" style="max-width: 760px;">
-        Brändi ei ole logo eikä ulkoasu. Se on yrityksesi päätös siitä, millainen voima se haluaa olla markkinassa.
-      </p>
+        <p style="font-size:16px; line-height:1.6;">
+          Useimmat yritykset näyttävät ulospäin samalta. Ne myyvät samoja lupauksia, samoilla sanoilla,
+          samoilla väreillä ja samoilla sivupohjilla. Siksi ne kilpailevat hinnalla.
+        </p>
 
-      <p class="lead" style="max-width: 760px;">
-        Brändikone näyttää, mikä teidän brändinne on tällä hetkellä – ja mihin se voisi kasvaa.
-      </p>
+        <p style="font-size:16px; line-height:1.6;">
+          Brändi ei ole logo eikä ulkoasu. Se on yrityksesi päätös siitä, millainen voima se haluaa olla markkinassa.
+        </p>
 
-      <div class="meta" style="max-width: 760px; margin: 18px auto 26px; text-align: left;">
-        <b>Brändikoneessa:</b>
-        <ul class="list" style="margin-top: 10px;">
-          <li>näet, mihin 12 brändiarkkityypistä yrityksesi kallistuu</li>
-          <li>saat mitattavan profiilin brändisi vahvuuksista ja heikkouksista</li>
-          <li>saat suuntaviivat, joiden pohjalta brändiä voi oikeasti rakentaa</li>
-        </ul>
-        <div class="sep" style="margin: 18px 0;"></div>
-        <div style="color: rgba(255,255,255,0.80); font-size: 13px; line-height: 1.45;">
+        <p style="font-size:16px; line-height:1.6;">
+          Brändikone näyttää, mikä teidän brändinne on tällä hetkellä – ja mihin se voisi kasvaa.
+        </p>
+
+        <div style="margin-top:24px; font-size:16px; line-height:1.6;">
+          <b>Brändikoneessa:</b>
+          <ul style="margin-top:12px; padding-left:20px;">
+            <li>näet, mihin 12 brändiarkkityypistä yrityksesi kallistuu</li>
+            <li>saat mitattavan profiilin brändisi vahvuuksista ja heikkouksista</li>
+            <li>saat suuntaviivat, joiden pohjalta brändiä voi oikeasti rakentaa</li>
+          </ul>
+        </div>
+
+        <div style="
+          margin: 24px 0;
+          padding-top: 16px;
+          border-top: 1px solid rgba(255,255,255,0.15);
+          font-size: 16px;
+          line-height: 1.6;
+        ">
           Tämä ei ole testi oikeista vastauksista. Tämä on testi siitä, mihin suuntaan yrityksesi haluaa kasvaa.
         </div>
-      </div>
 
-      <a class="btn" href="/survey">Aloita brändikartoitus</a>
+        <div style="text-align:center; margin-top:28px;">
+          <a class="btn" href="/survey">Aloita brändikartoitus</a>
+        </div>
 
-      <div class="meta" style="max-width: 760px; margin: 18px auto 0; text-align: left;">
-        Brändikone näyttää suunnan. Me autamme rakentamaan sen todelliseksi.
       </div>
     </div>
     """
     return ui_shell("Brändikone", inner)
+
 
 @app.get("/survey", response_class=HTMLResponse)
 def ui_survey():
