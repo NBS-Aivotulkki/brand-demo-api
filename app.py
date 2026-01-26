@@ -39,20 +39,22 @@ translations = {
     "Innocent": "Optimisti",
 }
 
+# Käännösapu: jos avainta ei löydy, palautetaan alkuperäinen
+def t(key: str) -> str:
+    return translations.get(key, key)
+
 
 # --- FASTAPI-APP LUODAAN TÄMÄN JÄLKEEN ---
-app = FastAPI()
+# HUOM: App luodaan vain kerran (poistettu tuplaluonti)
 
-
-# Luo FastAPI-app
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
 # Mountataan static-kansio
 BASE_DIR = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-Option = Literal["A", "B", "C", "D", "E"]
 
+# Englanninkieliset avaimet logiikkaa varten
 DIMENSIONS = [
     "Competence",
     "Integrity",
@@ -66,7 +68,7 @@ DIMENSIONS = [
 ]
 
 # Käyttöliittymää varten suomenkielinen lista
-DIMENSIONS_FI = [translations[d] for d in DIMENSIONS]
+DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 
 ARCHETYPE_DESCRIPTIONS = {
     "Ruler": "Ruler-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se näyttää suunnan ja asettaa standardin, jota muut seuraavat.",
