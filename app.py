@@ -598,7 +598,6 @@ async def ui_assess(request: Request):
     right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
 
 
-
 inner = f"""
 <style>
 .result-grid {{
@@ -615,60 +614,54 @@ inner = f"""
   max-width: 560px;
 }}
 
-.white-box {{
-  width: 520px;
-  height: 520px;
-  background: white;
-  border-radius: 24px;
-  margin: 0 auto;
-}}
 .archetype-images {{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }}
 
 .primary-img img {{
-    width: 420px;
-    height: 420px;
-    object-fit: cover;
-    border-radius: 24px;
+  width: 420px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 24px;
 }}
 
 .secondary-row {{
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }}
 
 .secondary-img img {{
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 18px;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
 }}
 
 .archetype-caption {{
-    margin-top: 8px;
-    max-width: 420px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #dfefff;
-}}    
+  margin-top: 8px;
+  max-width: 420px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #dfefff;
+}}
+</style>
 
-inner = f"""
-<style>
 <div class="result-grid">
   <div>{''.join(left)}</div>
   <div>{''.join(right)}</div>
 </div>
+
 <div style="width:100%; margin-top:14px;">
-  <a class="backlink" href="/survey"><- Takaisin kyselyyn</a>
+  <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
 </div>
 """
-
 return ui_shell("Tulos", inner)
+
+
 
 
 # ---------------------------
