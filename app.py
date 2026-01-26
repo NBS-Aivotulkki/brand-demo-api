@@ -554,10 +554,6 @@ def ui_survey():
 async def ui_assess(request: Request):
     form = await request.form()
 
-    @app.post("/ui-assess", response_class=HTMLResponse)
-async def ui_assess(request: Request):
-    form = await request.form()
-
     parsed: List[Answer] = []
     for q in QUESTIONS:
         qid = q["id"]
