@@ -588,7 +588,7 @@ async def ui_assess(request: Request):
     left.append("<div class='meta'><b>Dimensiot (0–100)</b></div>")
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
-    left.append(f"<li>{k}: {v:.1f}</li>")
+        left.append(f"<li>{k}: {v:.1f}</li>")
 
     left.append("</ul>")
 
