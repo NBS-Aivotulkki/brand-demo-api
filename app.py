@@ -11,6 +11,39 @@ import json
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
+
+# --- KÄÄNNÖSKARTTA (lisätään tähän, heti importtien jälkeen) ---
+
+translations = {
+    "Competence": "Osaaminen",
+    "Integrity": "Luotettavuus",
+    "Authority": "Auktoriteetti",
+    "Sophistication": "Tyylikkyys",
+    "Vision": "Näkemys",
+    "Discipline": "Jämäkkyys",
+    "Boldness": "Rohkeus",
+    "Warmth": "Lämpö",
+    "Playfulness": "Leikkisyys",
+
+    "Ruler": "Hallitsija",
+    "Sage": "Viisas",
+    "Hero": "Sankari",
+    "Creator": "Luoja",
+    "Explorer": "Tutkija",
+    "Outlaw": "Kapinallinen",
+    "Magician": "Visionääri",
+    "Caregiver": "Hoivaaja",
+    "Everyman": "Tavallinen",
+    "Lover": "Rakastaja",
+    "Jester": "Narri",
+    "Innocent": "Optimisti",
+}
+
+
+# --- FASTAPI-APP LUODAAN TÄMÄN JÄLKEEN ---
+app = FastAPI()
+
+
 # Luo FastAPI-app
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
@@ -31,6 +64,10 @@ DIMENSIONS = [
     "Warmth",
     "Playfulness",
 ]
+
+# Käyttöliittymää varten suomenkielinen lista
+DIMENSIONS_FI = [translations[d] for d in DIMENSIONS]
+
 ARCHETYPE_DESCRIPTIONS = {
     "Ruler": "Ruler-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se näyttää suunnan ja asettaa standardin, jota muut seuraavat.",
     "Sage": "Sage-brändi perustuu viisauteen, ymmärrykseen ja totuuden etsimiseen. Se opastaa, selkeyttää ja tuo varmuutta tiedon kautta.",
