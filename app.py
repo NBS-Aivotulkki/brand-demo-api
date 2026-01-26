@@ -278,15 +278,15 @@ low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
 recs = make_recommendations(primary, top_dims)
 
-    return {
-        "primary_archetype": primary,
-        "secondary_archetype": secondary,
-        "shadow_archetype": shadow,
-        "dimensions": dim_scores,
-        "archetypes": archetypes[:5],
-        "top_strengths": top_dims,
-        "conscious_lows": low_dims,
-        "recommendations": recs,
+return {
+    "primary_archetype": primary,
+    "secondary_archetype": secondary,
+    "shadow_archetype": shadow,
+    "dimensions": dim_scores,
+    "archetypes": archetypes[:5],
+    "top_strengths": top_dims,
+    "conscious_lows": low_dims,
+    "recommendations": recs,
     }
 
 # ---------------------------
