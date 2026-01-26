@@ -363,8 +363,8 @@ def ui_shell(title: str, inner_html: str) -> str:
     }}
     .wrap {{
       width: 100%;
-      max-width: 980px;
-      padding: 16px;
+      max-width: 1200px;
+      padding: 24px 16px 64px;
       display: flex;
       justify-content: center;
     }}
@@ -402,12 +402,11 @@ def ui_shell(title: str, inner_html: str) -> str:
     .btn:active {{ transform: translateY(1px); }}
     .survey {{
       width: 100%;
-      background: rgba(0,0,0,0.12);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
-      backdrop-filter: blur(2px);
+      background: transparent;
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      backdrop-filter: none;
     }}
     .q {{
       margin: 14px 0 18px;
@@ -524,6 +523,22 @@ def ui_shell(title: str, inner_html: str) -> str:
       color: var(--ink-soft);
       margin: 0 0 14px;
     }}
+    .content-panel {{
+      width: 100%;
+      background: rgba(0,0,0,0.86);
+      border-radius: 28px;
+      padding: 56px 64px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.70);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(2px);
+    }}
+
+@media (max-width: 860px) {
+  .content-panel {
+    padding: 28px 18px;
+    border-radius: 18px;
+  }
+}
 
   </style>
 </head>
@@ -745,17 +760,29 @@ async def ui_assess(request: Request):
     <style>
     .result-grid {{
       display: grid;
-      grid-template-columns: 560px 560px;
-      gap: 80px;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
       justify-content: center;
       align-items: flex-start;
       width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+    }}
+
+    @media (max-width: 1100px) {{
+      .result-grid {
+        grid-template-columns: 1fr;
+        max-width: 720px;
     }}
 
     .card {{
-      width: 560px;
-      max-width: 560px;
+      width: 100%;
+      max-width: 520px;
     }}
+    @media (max-width: 1100px) {
+      .card {{
+        max-width: 100%;
+      }}
 
     .archetype-images {{
       display: flex;
