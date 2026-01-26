@@ -756,102 +756,111 @@ async def ui_assess(request: Request):
     ))
     right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
 
-    inner = f"""
-    <style>
-    .result-grid {{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-    }}
-
-    @media (max-width: 1100px) {{
-      .result-grid {{
-        grid-template-columns: 1fr;
-        max-width: 100%;
-      }}
-    }}
-
-    .card {{
-      width: 100%;
-      max-width: 560px;
-    }}
-
-    @media (max-width: 1100px) {{
-      .card {{
-        max-width: 100%;
-      }}
-    }}
-    </style>
-    """
-
-
-    .archetype-images {{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-    }}
-
-    .primary-img img {{
-      width: 420px;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 24px;
-    }}
-
-    .secondary-row {{
-      display: flex;
-      width: 420px;
-      justify-content: space-between;
-      gap: 16px;
-    }}
-
-    .secondary-img img {{
-      width: 202px;
-      height: 202px;
-      object-fit: cover;
-      border-radius: 18px;
-    }}
-
-    .archetype-caption {{
-      margin-top: 8px;
-      max-width: 420px;
-      text-align: left;
-      font-size: 15px;
-      line-height: 1.4;
-      color: #dfefff;
-    }}
-    .content-panel {{
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.85),
-        rgba(0,0,0,0.70)
-      );
-      border-radius: 28px;
-      padding: 56px 64px;
-      max-width: 980px;
-      margin: 80px auto;
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.7),
-        inset 0 0 0 1px rgba(255,255,255,0.05);
+inner = f"""
+<style>
+.result-panel {{
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.70)
+  );
+  border-radius: 28px;
+  padding: 56px 64px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }}
-    </style>
 
-    <div class="result-grid">
-      <div>{''.join(left)}</div>
-      <div>{''.join(right)}</div>
-    </div>
+@media (max-width: 1100px) {{
+  .result-panel {{
+    padding: 28px 18px;
+    max-width: 100%;
+  }}
+}}
 
-    <div style="width:100%; margin-top:14px;">
-      <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
-    </div>
-    """
-    return ui_shell("Tulos", inner)
+.result-grid {{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}}
+
+@media (max-width: 1100px) {{
+  .result-grid {{
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }}
+}}
+
+.card {{
+  width: 100%;
+  max-width: 560px;
+}}
+
+@media (max-width: 1100px) {{
+  .card {{
+    max-width: 100%;
+  }}
+}}
+
+.archetype-images {{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}}
+
+.primary-img img {{
+  width: 420px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 24px;
+}}
+
+.secondary-row {{
+  display: flex;
+  width: 420px;
+  justify-content: space-between;
+  gap: 16px;
+}}
+
+.secondary-img img {{
+  width: 202px;
+  height: 202px;
+  object-fit: cover;
+  border-radius: 18px;
+}}
+
+.archetype-caption {{
+  margin-top: 8px;
+  max-width: 420px;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #dfefff;
+}}
+</style>
+
+<div class="result-panel">
+  <div class="result-grid">
+    <div>{''.join(left)}</div>
+    <div>{''.join(right)}</div>
+  </div>
+
+  <div style="width:100%; margin-top:14px;">
+    <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
+  </div>
+</div>
+"""
+return ui_shell("Tulos", inner)
+
 
 
 
