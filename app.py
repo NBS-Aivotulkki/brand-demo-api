@@ -276,7 +276,7 @@ dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
 
 low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
-    recs = make_recommendations(primary, top_dims)
+recs = make_recommendations(primary, top_dims)
 
     return {
         "primary_archetype": primary,
