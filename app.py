@@ -533,10 +533,11 @@ def ui_shell(title: str, inner_html: str) -> str:
       backdrop-filter: blur(2px);
     }}
 
-@media (max-width: 860px) {{
-  .content-panel {
-    padding: 28px 18px;
-    border-radius: 18px;
+    @media (max-width: 860px) {{
+      .content-panel {{
+        padding: 28px 18px;
+        border-radius: 18px;
+      }}
     }}
 
   </style>
