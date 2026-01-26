@@ -71,18 +71,18 @@ DIMENSIONS = [
 DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 
 ARCHETYPE_DESCRIPTIONS = {
-    "Ruler": "Ruler-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se näyttää suunnan ja asettaa standardin, jota muut seuraavat.",
-    "Sage": "Sage-brändi perustuu viisauteen, ymmärrykseen ja totuuden etsimiseen. Se opastaa, selkeyttää ja tuo varmuutta tiedon kautta.",
-    "Hero": "Hero-brändi edustaa rohkeutta, päättäväisyyttä ja kykyä voittaa vaikeudet. Se lupaa muutosta tekojen, ei sanojen, kautta.",
-    "Creator": "Creator-brändi ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut.",
-    "Explorer": "Explorer-brändi kutsuu vapauteen ja löytöretkelle. Se rikkoo rajoja ja etsii jatkuvasti uusia mahdollisuuksia.",
-    "Outlaw": "Outlaw-brändi syntyy kapinasta ja uudistamisesta. Se kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan.",
-    "Magician": "Magician-brändi lupaa transformaatiota. Se muuttaa näkökulmia ja tekee mahdottomasta mahdollista.",
-    "Caregiver": "Caregiver-brändi rakentaa turvaa ja huolenpitoa. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön.",
-    "Everyman": "Everyman-brändi edustaa aitoutta ja samaistuttavuutta. Se on lähellä, ymmärrettävä ja helposti lähestyttävä.",
-    "Lover": "Lover-brändi rakentuu intohimon, estetiikan ja emotionaalisen vetovoiman varaan.",
-    "Jester": "Jester-brändi tuo keveyttä, iloa ja vapautta. Se rikkoo jäykkyyden huumorilla ja oivalluksilla.",
-    "Innocent": "Innocent-brändi ilmentää puhtautta, optimismia ja vilpitöntä luottamusta hyvään."
+    "Ruler": "HALLITSIJA / JOHTAJA rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se määrittelee suunnan, luo järjestyksen ja asettaa standardin, jota muut seuraavat. HALLITSIJA / JOHTAJA -brändi viestii vakaudesta, kontrollista ja pitkäjänteisyydestä. Esimerkkejä ovat Rolex, Mercedes-Benz, IBM ja Microsoft.",
+    "Sage": "VIISAS / ASIANTUNTIJA perustuu tietoon, ymmärrykseen ja totuuden etsimiseen. Se auttaa asiakkaitaan näkemään maailmaa kirkkaammin ja tekemään parempia päätöksiä. VIISAS / ASIANTUNTIJA -brändi rakentaa arvonsa asiantuntijuudesta ja luotettavuudesta. Esimerkkejä: Google, BBC, TED, Harvard.",
+    "Hero": "SANKARI / VOITTAJA edustaa rohkeutta, päättäväisyyttä ja kykyä ylittää esteet. Se kutsuu toimintaan ja lupaa muutosta tekojen, ei sanojen kautta. SANKARI / VOITTAJA -brändi inspiroi parempaan suoritukseen. Esimerkkejä: Nike, Adidas, Red Bull, Gatorade.",
+    "Creator": "LUOJA / INNOSTAJA ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut. LUOJA / INNOSTAJA -brändi rohkaisee ilmaisemaan itseä ja rikkomaan rajoja. Esimerkkejä: Apple, LEGO, Adobe, Pixar.",
+    "Explorer": "TUTKIJA / SEIKKAILIJA kutsuu vapauteen ja itsensä löytämiseen. Se rikkoo rajoja, haastaa mukavuusalueen ja etsii jatkuvasti uusia mahdollisuuksia. TUTKIJA / SEIKKAILIJA -brändi lupaa elämyksiä ja itsenäisyyttä. Esimerkkejä: Jeep, The North Face, Patagonia, National Geographic.",
+    "Outlaw": "KAPINALLINEN / UUDISTAJA syntyy vastarinnasta ja halusta muuttaa maailmaa. Se rikkoo sääntöjä, kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan. KAPINALLINEN / UUDISTAJA -brändi vetää puoleensa rohkeita ajattelijoita. Esimerkkejä: Harley-Davidson, Diesel, Vice, Supreme.",
+    "Magician": "VISIONÄÄRI / TAIKURI lupaa transformaatiota ja uuden todellisuuden. Se tekee monimutkaisesta yksinkertaista ja mahdottomasta mahdollista. VISIONÄÄRI / TAIKURI -brändi herättää ihmetystä ja uskoa muutokseen. Esimerkkejä: Disney, Tesla, Apple (visionäärinen puoli), SpaceX.",
+    "Caregiver": "HOIVAAJA / SUOJELIJA rakentaa turvaa, luottamusta ja inhimillisyyttä. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön. HOIVAAJA / SUOJELIJA -brändi lupaa, että asiakkaasta pidetään huolta. Esimerkkejä: UNICEF, Red Cross, Dove, Volvo.",
+    "Everyman": "TAVALLINEN / LUOTETTAVA edustaa aitoutta, rehellisyyttä ja samaistuttavuutta. Se on helposti lähestyttävä ja tuntuu \"meidän kaltaiseltamme\". TAVALLINEN / LUOTETTAVA-brändi rakentaa luottamusta arkisuuden kautta. Esimerkkejä: IKEA, Levi’s, Target, Volkswagen.",
+    "Lover": "RAKASTAJA / ESTEETIKKO rakentuu intohimosta, kauneudesta ja emotionaalisesta vetovoimasta. Se korostaa nautintoa, estetiikkaa ja aistillisuutta. RAKASTAJA / ESTEETIKKO -brändi lupaa elämyksiä ja syvää tunnetta. Esimerkkejä: Chanel, Dior, Ferrari, Häagen-Dazs.",
+    "Jester": "NARRI / VIIHDYTTÄJÄ tuo keveyttä, iloa ja vapautta. Se rikkoo vakavuuden huumorilla ja yllättävillä näkökulmilla. NARRI / VIIHDYTTÄJÄ -brändi tekee elämästä hauskempaa ja rennompaa. Esimerkkejä: Old Spice, M&M’s, TikTok, Netflix (viihdepuoli).",
+    "Innocent": "VIATON / OPTIMISTI edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. VIATON / OPTIMISTI -brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno."
 }
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
@@ -329,19 +329,35 @@ def ui_shell(title: str, inner_html: str) -> str:
       align-items: center;
     }}
     .top {{
-      padding: 28px 16px 8px;
       width: 100%;
+      padding: 16px;
       display: flex;
       justify-content: center;
     }}
+    .top-inner {{
+      width: 100%;
+      max-width: 980px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 0;
+    }}
     .crest {{
-      width: 54px;
-      height: 54px;
+      width: 84px;
+      height: 84px;
       border-radius: 999px;
       display: block;
       object-fit: contain;
       filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
     }}
+    .footer {{
+      width: 100%;
+      max-width: 980px;
+      padding: 18px 16px 26px;
+      color: rgba(255,255,255,0.65);
+      font-size: 12px;
+    }}
+
     .wrap {{
       width: 100%;
       max-width: 980px;
@@ -455,12 +471,16 @@ def ui_shell(title: str, inner_html: str) -> str:
       line-height: 1.4;
     }}
     .list {{
-      margin: 10px 0 0;
+      margin: 10px 0;
       padding: 0;
+      padding-left: 0;
+      margin-left: 0;
       list-style: none;
     }}
     .list li {{
       margin: 6px 0;
+      padding-left: 0;
+      margin-left: 0;
       font-size: 14px;
       color: var(--ink);
     }}
@@ -494,12 +514,18 @@ def ui_shell(title: str, inner_html: str) -> str:
 <body>
   <div class="page">
     <div class="top">
-      <img class="crest" src="/static/crest.png" alt="Logo" />
+      <div class="top-inner">
+        <img class="crest" src="/static/crest.png" alt="Logo" />
+      </div>
     </div>
+
     <div class="wrap">
       {inner_html}
     </div>
+
+    <div class="footer">© NeuroBusiness Solutions 2026</div>
   </div>
+
 </body>
 </html>"""
 
@@ -586,7 +612,7 @@ async def ui_assess(request: Request):
 
     left = []
     left.append("<div class='card'>")
-    left.append(f"<h2>Pääarkkityyppi: <span style='text-decoration: underline;'>{primary_fi}</span></h2>")
+    left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
     left.append(f"<p class='archetype-caption'>{ARCHETYPE_DESCRIPTIONS.get(primary, '')}</p>")
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
@@ -594,7 +620,7 @@ async def ui_assess(request: Request):
     left.append(f"Top-dimensiot: <b>{', '.join(top_dims_fi)}</b><br><br>")
     left.append("</div>")
 
-    left.append("<div class='meta'><b>Dimensiot (0–100)</b></div>")
+    left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
@@ -602,7 +628,7 @@ async def ui_assess(request: Request):
 
     left.append("<div class='sep'></div>")
     left.append("<h2>Haluatko tarkemmat ohjeet brändäykseen?</h2>")
-    left.append("<p class='meta'>Ilmaisen kiinnostuksesi täyttämällä ja lähettämällä alta löytyvä lomake. Saat 24h sisällä yhteistyöehdotuksen.</p>")
+    left.append("<p class='meta'>Täytä ja lähetä alta löytyvä lomake. Saat 24h sisällä sähköpostiisi yhteistyöehdotuksen.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
     left.append("<input type='text' name='website' style='display:none'>")
@@ -624,7 +650,7 @@ async def ui_assess(request: Request):
     left.append(f"<input type='hidden' name='dimensions_json' value='{json.dumps(dim_scores)}'>")
     left.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
 
-    left.append("<div style='margin-top:14px;'><button class='btn' type='submit'>Pyydä tarjous -nappi</button></div>")
+    left.append("<div style='margin-top:14px;'><button class='btn' type='submit'>Lähetä</button></div>")
     left.append("</form>")
     left.append("</div>")
 
@@ -680,15 +706,17 @@ async def ui_assess(request: Request):
       object-fit: cover;
       border-radius: 24px;
     }}
-    
+
     .secondary-row {{
       display: flex;
-      gap: 16px;
+      width: 420px;              /* sama leveys kuin iso kuva */
+      justify-content: space-between;
+      gap: 16px;                 /* ok, mutta space-between hoitaa reunat */
     }}
-    
+
     .secondary-img img {{
-      width: 180px;
-      height: 180px;
+      width: 202px;              /* 202 + 202 + 16 = 420 */
+      height: 202px;
       object-fit: cover;
       border-radius: 18px;
     }}
