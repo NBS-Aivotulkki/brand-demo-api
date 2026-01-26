@@ -264,30 +264,31 @@ def assess(req: AssessRequest):
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
     
-# Suomenkieliset nimet UI:lle
-primary_fi = t(primary)
-secondary_fi = t(secondary) if secondary else ""
-shadow_fi = t(shadow) if shadow else ""
+    # Suomenkieliset nimet UI:lle
+    primary_fi = t(primary)
+    secondary_fi = t(secondary) if secondary else ""
+    shadow_fi = t(shadow) if shadow else ""
 
-top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
-top_dims_fi = [t(d) for d in top_dims]
+    top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
+    top_dims_fi = [t(d) for d in top_dims]
 
-dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
+    dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
 
-low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
+    low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
-recs = make_recommendations(primary, top_dims)
+    recs = make_recommendations(primary, top_dims)
 
-return {
-    "primary_archetype": primary_fi,
-    "secondary_archetype": secondary_fi,
-    "shadow_archetype": shadow_fi,
-    "dimensions": dim_scores_fi,
-    "archetypes": archetypes[:5],
-    "top_strengths": top_dims_fi,
-    "conscious_lows": low_dims,
-    "recommendations": recs,
-}
+    return {
+        "primary_archetype": primary_fi,
+        "secondary_archetype": secondary_fi,
+        "shadow_archetype": shadow_fi,
+        "dimensions": dim_scores_fi,
+        "archetypes": archetypes[:5],
+        "top_strengths": top_dims_fi,
+        "conscious_lows": low_dims,
+        "recommendations": recs,
+    }
+
 
 
 # ---------------------------
