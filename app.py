@@ -352,12 +352,15 @@ def ui_shell(title: str, inner_html: str) -> str:
     }}
     .footer {{
       width: 100%;
-      max-width: 980px;
-      padding: 18px 16px 26px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 0 26px;
       color: rgba(255,255,255,0.65);
       font-size: 12px;
+      text-align: center;
     }}
-
     .wrap {{
       width: 100%;
       max-width: 980px;
@@ -613,7 +616,11 @@ async def ui_assess(request: Request):
     left = []
     left.append("<div class='card'>")
     left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
-    left.append(f"<p class='archetype-caption'>{ARCHETYPE_DESCRIPTIONS.get(primary, '')}</p>")
+    left.append(
+    f"<p class='archetype-caption' style='text-align: left;'>"
+    f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
+    f"</p>"
+    )
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
     left.append(f"Varjo: <b>{shadow_fi}</b><br><br>")
