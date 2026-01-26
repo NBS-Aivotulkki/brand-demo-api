@@ -537,7 +537,7 @@ def ui_shell(title: str, inner_html: str) -> str:
   .content-panel {
     padding: 28px 18px;
     border-radius: 18px;
-  }}
+    }}
 
   </style>
 </head>
