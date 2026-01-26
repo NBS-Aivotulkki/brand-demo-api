@@ -739,7 +739,7 @@ async def ui_assess(request: Request):
     ))
     right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
 
-    inner = f"""
+        inner = f"""
     <style>
     .result-grid {{
       display: grid;
@@ -749,19 +749,19 @@ async def ui_assess(request: Request):
       align-items: flex-start;
       width: 100%;
     }}
-    
+
     .card {{
       width: 560px;
       max-width: 560px;
     }}
-    
+
     .archetype-images {{
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 18px;
     }}
-    
+
     .primary-img img {{
       width: 420px;
       height: 420px;
@@ -771,22 +771,22 @@ async def ui_assess(request: Request):
 
     .secondary-row {{
       display: flex;
-      width: 420px;              /* sama leveys kuin iso kuva */
+      width: 420px;
       justify-content: space-between;
-      gap: 16px;                 /* ok, mutta space-between hoitaa reunat */
+      gap: 16px;
     }}
 
     .secondary-img img {{
-      width: 202px;              /* 202 + 202 + 16 = 420 */
+      width: 202px;
       height: 202px;
       object-fit: cover;
       border-radius: 18px;
     }}
-    
+
     .archetype-caption {{
       margin-top: 8px;
       max-width: 420px;
-      text-align: center;
+      text-align: left;
       font-size: 15px;
       line-height: 1.4;
       color: #dfefff;
@@ -797,7 +797,7 @@ async def ui_assess(request: Request):
       <div>{''.join(left)}</div>
       <div>{''.join(right)}</div>
     </div>
-    
+
     <div style="width:100%; margin-top:14px;">
       <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
     </div>
