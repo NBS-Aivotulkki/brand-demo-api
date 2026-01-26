@@ -319,7 +319,7 @@ def ui_shell(title: str, inner_html: str) -> str:
       font-family: Helvetica, Arial, sans-serif;
       background:
         linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
-        url('/static/bg.jpg') center/cover no-repeat fixed;
+        url('/static/bg_2.jpg') center/cover no-repeat fixed;
       min-height: 100vh;
     }}
     .page {{
