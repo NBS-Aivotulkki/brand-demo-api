@@ -536,8 +536,11 @@ def ui_shell(title: str, inner_html: str) -> str:
     </div>
 
     <div class="wrap">
-      {inner_html}
-    </div>
+  <div class="content-panel">
+    {inner_html}
+  </div>
+</div>
+
 
     <div class="footer">© NeuroBusiness Solutions 2026</div>
   </div>
@@ -790,6 +793,20 @@ async def ui_assess(request: Request):
       line-height: 1.4;
       color: #dfefff;
     }}
+    .content-panel {{
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.70)
+      );
+      border-radius: 28px;
+      padding: 56px 64px;
+      max-width: 980px;
+      margin: 80px auto;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.7),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+}}
     </style>
 
     <div class="result-grid">
