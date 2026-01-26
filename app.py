@@ -593,7 +593,6 @@ def ui_landing():
 
       <a class="btn" href="/survey">Siirry kysymyksiin</a>
     </div>
-    """
 
     """
     return ui_shell("Brand Demo", inner)
