@@ -667,9 +667,7 @@ inner = f"""
   <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
 </div>
 """
-
-    return ui_shell("Tulos", inner)
-
+return ui_shell("Tulos", inner)
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
