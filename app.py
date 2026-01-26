@@ -658,16 +658,15 @@ inner = f"""
 }}
 
 </style>
-
-<div class="result-grid">
-  <div>{''.join(left)}</div>
-  <div>{''.join(right)}</div>
-</div>
-<div style="width:100%; margin-top:14px;">
-  <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
-</div>
-"""
-return ui_shell("Tulos", inner)
+    <div class="result-grid">
+      <div>{''.join(left)}</div>
+      <div>{''.join(right)}</div>
+    </div>
+    <div style="width:100%; margin-top:14px;">
+      <a class="backlink" href="/survey">← Takaisin kyselyyn</a>
+    </div>
+    """
+    return ui_shell("Tulos", inner)
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
