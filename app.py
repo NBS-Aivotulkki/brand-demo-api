@@ -554,6 +554,10 @@ def ui_survey():
 async def ui_assess(request: Request):
     form = await request.form()
 
+    @app.post("/ui-assess", response_class=HTMLResponse)
+async def ui_assess(request: Request):
+    form = await request.form()
+
     parsed: List[Answer] = []
     for q in QUESTIONS:
         qid = q["id"]
@@ -577,21 +581,27 @@ async def ui_assess(request: Request):
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
 
+    # UI-käännökset (nämä puuttuivat sinulta -> 500-virhe)
+    primary_fi = t(primary)
+    secondary_fi = t(secondary) if secondary else ""
+    shadow_fi = t(shadow) if shadow else ""
+    top_dims_fi = [t(d) for d in top_dims]
+    dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
+
     left = []
     left.append("<div class='card'>")
-    left.append(f"<h2>Pääarkkityyppi: <span style='text-decoration: underline;'>{primary}</span></h2>")
+    left.append(f"<h2>Pääarkkityyppi: <span style='text-decoration: underline;'>{primary_fi}</span></h2>")
     left.append(f"<p class='archetype-caption'>{ARCHETYPE_DESCRIPTIONS.get(primary, '')}</p>")
     left.append("<div class='meta'>")
-    left.append(f"Toissijainen: <b>{secondary or ''}</b><br>")
-    left.append(f"Varjo: <b>{shadow or ''}</b><br><br>")
-    left.append(f"Top-dimensiot: <b>{', '.join(top_dims)}</b><br><br>")
+    left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
+    left.append(f"Varjo: <b>{shadow_fi}</b><br><br>")
+    left.append(f"Top-dimensiot: <b>{', '.join(top_dims_fi)}</b><br><br>")
     left.append("</div>")
 
     left.append("<div class='meta'><b>Dimensiot (0–100)</b></div>")
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
-
     left.append("</ul>")
 
     left.append("<div class='sep'></div>")
@@ -616,6 +626,7 @@ async def ui_assess(request: Request):
     left.append("<label>Laskutustiedot</label>")
     left.append("<textarea name='billing_details' required></textarea>")
 
+    # hidden-inputit pidetään englanniksi (lähetys ja kuvat pysyy ehjinä)
     left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
     left.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
     left.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
@@ -652,62 +663,62 @@ async def ui_assess(request: Request):
     inner = f"""
     <style>
     .result-grid {{
-    display: grid;
-    grid-template-columns: 560px 560px;
-    gap: 80px;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
+      display: grid;
+      grid-template-columns: 560px 560px;
+      gap: 80px;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
     }}
     
     .card {{
-    width: 560px;
-    max-width: 560px;
+      width: 560px;
+      max-width: 560px;
     }}
     
     .archetype-images {{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
     }}
     
     .primary-img img {{
-    width: 420px;
-    height: 420px;
-    object-fit: cover;
-    border-radius: 24px;
+      width: 420px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 24px;
     }}
     
     .secondary-row {{
-    display: flex;
-    gap: 16px;
+      display: flex;
+      gap: 16px;
     }}
     
     .secondary-img img {{
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 18px;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 18px;
     }}
     
     .archetype-caption {{
-    margin-top: 8px;
-    max-width: 420px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #dfefff;
+      margin-top: 8px;
+      max-width: 420px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #dfefff;
     }}
-    
     </style>
+
     <div class="result-grid">
-    <div>{''.join(left)}</div>
-    <div>{''.join(right)}</div>
+      <div>{''.join(left)}</div>
+      <div>{''.join(right)}</div>
     </div>
     
     <div style="width:100%; margin-top:14px;">
-    <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
+      <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
     </div>
     """
     return ui_shell("Tulos", inner)
