@@ -576,12 +576,14 @@ def ui_landing():
         <h1 style="text-align:center;">Brändikone</h1>
 
         <p style="font-size:16px; line-height:1.6;">
-          Useimmat yritykset näyttävät ulospäin samalta. Ne myyvät samoja lupauksia, samoilla sanoilla,
-          samoilla väreillä ja samoilla sivupohjilla. Siksi ne kilpailevat hinnalla.
+         Oletteko luotettava toimija, joka tarjoaa asiakkailleen laatua – kenties tehokkaasti ja vastuullisesti? Niin todennäköisesti ovat kilpailijannekin.
+         Ulospäin samalta näyttävät, kuulostavat ja tuntuvat yritykset ajatuvat usein hintakilpailuun taistellessaan asiakkaiden huomiosta. 
+         Vahvan brändin omaavat yritykset voivat sen sijaan pelata omaa peliään.
         </p>
 
         <p style="font-size:16px; line-height:1.6;">
-          Brändi ei ole logo eikä ulkoasu. Se on yrityksesi päätös siitä, millainen voima se haluaa olla markkinassa.
+          Vahva brändi ei rakennu siitä mitä yritys ja asiakkaat ovat vaan siitä, mitä he haluaisivat olla. 
+          Menestynyt brändi ei ole yrityksen tuottama. Se on yrityksen toteuttama. Brändi on yrityksen toimintaa ohjaava osapuoli ja kunnianhimoinen kuva siitä, minkälaiseksi yritys toivoo asiakkaiden silmissä tulevansa.
         </p>
 
         <p style="font-size:16px; line-height:1.6;">
