@@ -16,27 +16,27 @@ from sendgrid.helpers.mail import Mail
 # --- KÄÄNNÖSKARTTA ---
 
 translations = {
-    "Competence": "Osaaminen",
+    "Competence": "Ammattitaitoisuus",
     "Integrity": "Luotettavuus",
-    "Authority": "Auktoriteetti",
-    "Sophistication": "Tyylikkyys",
+    "Authority": "Vaikutusvaltaisuus",
+    "Sophistication": "Sivistyneisyys",
     "Vision": "Näkemys",
-    "Discipline": "Jämäkkyys",
+    "Discipline": "Kurinalaisuus",
     "Boldness": "Rohkeus",
     "Warmth": "Lämpö",
     "Playfulness": "Leikkisyys",
-    "Ruler": "Hallitsija",
-    "Sage": "Viisas",
+    "Ruler": "Hallitsija / Johtaja",
+    "Sage": "Viisas / Asiantuntija",
     "Hero": "Sankari",
-    "Creator": "Luoja",
-    "Explorer": "Tutkija",
+    "Creator": "Luoja / Innostaja",
+    "Explorer": "Tutkimusmatkailija",
     "Outlaw": "Kapinallinen",
-    "Magician": "Visionääri",
+    "Magician": "Taikuri / Visionääri",
     "Caregiver": "Hoivaaja",
-    "Everyman": "Tavallinen",
+    "Everyman": "Tavallinen jokamies/-nainen",
     "Lover": "Rakastaja",
-    "Jester": "Narri",
-    "Innocent": "Optimisti",
+    "Jester": "Narri / Viihdyttäjä",
+    "Innocent": "Viaton / Optimisti",
 }
 
 
@@ -70,18 +70,18 @@ DIMENSIONS = [
 DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 
 ARCHETYPE_DESCRIPTIONS = {
-    "Ruler": "HALLITSIJA / JOHTAJA rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se määrittelee suunnan, luo järjestyksen ja asettaa standardin, jota muut seuraavat. HALLITSIJA / JOHTAJA -brändi viestii vakaudesta, kontrollista ja pitkäjänteisyydestä. Esimerkkejä ovat Rolex, Mercedes-Benz, IBM ja Microsoft.",
-    "Sage": "VIISAS / ASIANTUNTIJA perustuu tietoon, ymmärrykseen ja totuuden etsimiseen. Se auttaa asiakkaitaan näkemään maailmaa kirkkaammin ja tekemään parempia päätöksiä. VIISAS / ASIANTUNTIJA -brändi rakentaa arvonsa asiantuntijuudesta ja luotettavuudesta. Esimerkkejä: Google, BBC, TED, Harvard.",
-    "Hero": "SANKARI / VOITTAJA edustaa rohkeutta, päättäväisyyttä ja kykyä ylittää esteet. Se kutsuu toimintaan ja lupaa muutosta tekojen, ei sanojen kautta. SANKARI / VOITTAJA -brändi inspiroi parempaan suoritukseen. Esimerkkejä: Nike, Adidas, Red Bull, Gatorade.",
-    "Creator": "LUOJA / INNOSTAJA ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut. LUOJA / INNOSTAJA -brändi rohkaisee ilmaisemaan itseä ja rikkomaan rajoja. Esimerkkejä: Apple, LEGO, Adobe, Pixar.",
-    "Explorer": "TUTKIJA / SEIKKAILIJA kutsuu vapauteen ja itsensä löytämiseen. Se rikkoo rajoja, haastaa mukavuusalueen ja etsii jatkuvasti uusia mahdollisuuksia. TUTKIJA / SEIKKAILIJA -brändi lupaa elämyksiä ja itsenäisyyttä. Esimerkkejä: Jeep, The North Face, Patagonia, National Geographic.",
-    "Outlaw": "KAPINALLINEN / UUDISTAJA syntyy vastarinnasta ja halusta muuttaa maailmaa. Se rikkoo sääntöjä, kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan. KAPINALLINEN / UUDISTAJA -brändi vetää puoleensa rohkeita ajattelijoita. Esimerkkejä: Harley-Davidson, Diesel, Vice, Supreme.",
-    "Magician": "VISIONÄÄRI / TAIKURI lupaa transformaatiota ja uuden todellisuuden. Se tekee monimutkaisesta yksinkertaista ja mahdottomasta mahdollista. VISIONÄÄRI / TAIKURI -brändi herättää ihmetystä ja uskoa muutokseen. Esimerkkejä: Disney, Tesla, Apple (visionäärinen puoli), SpaceX.",
-    "Caregiver": "HOIVAAJA / SUOJELIJA rakentaa turvaa, luottamusta ja inhimillisyyttä. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön. HOIVAAJA / SUOJELIJA -brändi lupaa, että asiakkaasta pidetään huolta. Esimerkkejä: UNICEF, Red Cross, Dove, Volvo.",
-    "Everyman": "TAVALLINEN / LUOTETTAVA edustaa aitoutta, rehellisyyttä ja samaistuttavuutta. Se on helposti lähestyttävä ja tuntuu \"meidän kaltaiseltamme\". TAVALLINEN / LUOTETTAVA-brändi rakentaa luottamusta arkisuuden kautta. Esimerkkejä: IKEA, Levi’s, Target, Volkswagen.",
-    "Lover": "RAKASTAJA / ESTEETIKKO rakentuu intohimosta, kauneudesta ja emotionaalisesta vetovoimasta. Se korostaa nautintoa, estetiikkaa ja aistillisuutta. RAKASTAJA / ESTEETIKKO -brändi lupaa elämyksiä ja syvää tunnetta. Esimerkkejä: Chanel, Dior, Ferrari, Häagen-Dazs.",
-    "Jester": "NARRI / VIIHDYTTÄJÄ tuo keveyttä, iloa ja vapautta. Se rikkoo vakavuuden huumorilla ja yllättävillä näkökulmilla. NARRI / VIIHDYTTÄJÄ -brändi tekee elämästä hauskempaa ja rennompaa. Esimerkkejä: Old Spice, M&M’s, TikTok, Netflix (viihdepuoli).",
-    "Innocent": "VIATON / OPTIMISTI edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. VIATON / OPTIMISTI -brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno.",
+    "Ruler": "Hallitsija-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se määrittelee suunnan, luo järjestyksen ja asettaa standardin, jota muut seuraavat. Hallitsija-brändi viestii vakaudesta, kontrollista ja pitkäjänteisyydestä. Esimerkkejä ovat Rolex, Mercedes-Benz, IBM ja Microsoft.",
+    "Sage": "Viisas-brändi perustuu tietoon, ymmärrykseen ja totuuden etsimiseen. Se auttaa asiakkaitaan näkemään maailmaa kirkkaammin ja tekemään parempia päätöksiä. Viisas-brändi rakentaa arvonsa asiantuntijuudesta ja luotettavuudesta. Esimerkkejä: Google, BBC, TED, Harvard.",
+    "Hero": "Sankari-brändi edustaa rohkeutta, päättäväisyyttä ja kykyä ylittää esteet. Se kutsuu toimintaan ja lupaa muutosta tekojen, ei sanojen kautta. Sankari-brändi kannustaa parempaan suoritukseen. Esimerkkejä: Nike, Adidas, Red Bull, Gatorade.",
+    "Creator": "Luoja-brändi ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut. Luoja-brändi rohkaisee ilmaisemaan itseä ja rikkomaan rajoja. Esimerkkejä: Apple, LEGO, Adobe, Pixar.",
+    "Explorer": "Tutkimusmatkailija-brändi kutsuu vapauteen ja itsensä löytämiseen. Se rikkoo rajoja, haastaa mukavuusalueen ja etsii jatkuvasti uusia mahdollisuuksia. Tutkimusmatkailija-brändi lupaa elämyksiä ja itsenäisyyttä. Esimerkkejä: Jeep, The North Face, Patagonia, National Geographic.",
+    "Outlaw": "Kapinallinen-brändi syntyy vastarinnasta ja halusta muuttaa maailmaa. Se rikkoo sääntöjä, kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan. Kapinallinen-brändi vetää puoleensa rohkeita oman tiensä kulkijoita. Esimerkkejä: Harley-Davidson, Diesel, Vice, Supreme.",
+    "Magician": "Taikuri-brändi lupaa transformaatiota ja uuden todellisuuden. Se tekee monimutkaisesta yksinkertaista ja mahdottomasta mahdollista. Taikuri-brändi herättää ihmetystä ja uskoa muutokseen. Esimerkkejä: Disney, Tesla, Apple (visionäärinen puoli), SpaceX.",
+    "Caregiver": "Hoivaaja-brändi rakentaa turvaa, luottamusta ja inhimillisyyttä. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön. Hoivaaja-brändi lupaa, että asiakkaasta pidetään huolta. Esimerkkejä: UNICEF, Red Cross, Dove, Volvo.",
+    "Everyman": "Jokamies-brändi edustaa aitoutta, rehellisyyttä ja samaistuttavuutta. Se on helposti lähestyttävä ja tuntuu \"meidän kaltaiseltamme\". Jokamies-brändi rakentaa luottamusta arkisuuden kautta. Esimerkkejä: IKEA, Levi’s, Target, Volkswagen.",
+    "Lover": "Rakastaja-brändi rakentuu intohimosta, kauneudesta ja emotionaalisesta vetovoimasta. Se korostaa nautintoa, estetiikkaa ja aistillisuutta. Rakastaja-brändi lupaa elämyksiä ja syvää tunnetta. Esimerkkejä: Chanel, Dior, Ferrari, Häagen-Dazs.",
+    "Jester": "Narri-brändi tuo keveyttä, iloa ja vapautta. Se rikkoo vakavuuden huumorilla ja yllättävillä näkökulmilla. Narri-brändi tekee elämästä hauskempaa ja rennompaa. Esimerkkejä: Old Spice, M&M’s, TikTok, Netflix (viihdepuoli).",
+    "Innocent": "Viaton-brändi edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. Viaton-brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno.",
 }
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
@@ -101,26 +101,26 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
 
 QUESTIONS = [
     {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
-    {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
+    {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Yksilöiden arkea helpottavalta kumppanilta", "D": "Yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
-    {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioon", "B": "Vetovoimaa tuotteeseen", "C": "Kiinnostusta ideologiaan", "D": "Yhteyttä persoonaan"}},
-    {"id": 4, "text": "Haluamme mieluummin, että meistä sanotaan:", "options": {"A": "Toimii aina", "B": "Tuntuu paremmalta kuin muut", "C": "Näyttää paremmalta kuin muut", "D": "Ajattelee pidemmälle kuin muut"}},
+    {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioomme", "B": "Vetovoimaa tuotteeseemme/palveluumme", "C": "Kiinnostusta aatemaailmaamme kohtaan", "D": "Yhteyttä persoonaan"}},
+    {"id": 4, "text": "Haluamme mieluummin, että meistä sanotaan:", "options": {"A": ""Toimii aina."", "B": ""Tuntuu paremmalta kuin muut."", "C": ""Näyttää paremmalta kuin muut."", "D": ""Ajattelee pidemmälle kuin muut.""}},
     {"id": 5, "text": "Kun asiakas valitsee meidät, hänen pitäisi ensisijaisesti tuntea:", "options": {"A": "Turvaa", "B": "Ylpeyttä", "C": "Innostusta", "D": "Rauhaa"}},
     {"id": 6, "text": "Haluamme brändimme olevan mieluummin:", "options": {"A": "Auktoriteetti", "B": "Kumppani", "C": "Haastaja", "D": "Suunnannäyttäjä"}},
-    {"id": 7, "text": "Valitsemme mieluummin:", "options": {"A": "Että kaikki eivät pidä meistä", "B": "Että olemme helposti lähestyttäviä", "C": "Että herätämme keskustelua", "D": "Että koemme harvoin vastustusta"}},
-    {"id": 8, "text": "Brändimme on tarkoitus ennemmin:", "options": {"A": "Määritellä oikea tapa", "B": "Rikkoa vanha tapa", "C": "Yhdistää molemmat", "D": "Ohittaa koko keskustelu"}},
-    {"id": 9, "text": "Valitsemme mieluummin, että ratkaisumme on:", "options": {"A": "Kaunis", "B": "Nopea", "C": "Älykäs", "D": "Turvallinen"}},
-    {"id": 10, "text": "Haluamme brändimme tuntuvan enemmän:", "options": {"A": "Lämpimältä", "B": "Itsevarmalta", "C": "Terävältä", "D": "Ylevältä"}},
-    {"id": 11, "text": "Brändimme suhtautuminen sääntöihin on mieluummin:", "options": {"A": "Noudatamme niitä", "B": "Luomme niitä", "C": "Muutamme niitä", "D": "Rikomme niitä tarvittaessa"}},
-    {"id": 12, "text": "Jos brändimme olisi henkilö, hän olisi ennemmin:", "options": {"A": "Johtaja", "B": "Ajattelija", "C": "Ystävä", "D": "Visionääri"}},
-    {"id": 13, "text": "Haluamme että meistä muistetaan ensisijaisesti:", "options": {"A": "Mitä saatiin aikaan", "B": "Miltä tuntui", "C": "Miten ajattelu muuttui", "D": "Mitä uskallettiin"}},
-    {"id": 14, "text": "Valitsemme mieluummin:", "options": {"A": "Ennustettavuuden", "B": "Hallitun riskin", "C": "Rohkean position", "D": "Epämukavan erottumisen"}},
-    {"id": 15, "text": "Haluamme brändimme olevan maailmassa ennen kaikkea:", "options": {"A": "Vakauden lähde", "B": "Muutoksen katalyytti", "C": "Turvan rakentaja", "D": "Nautinnon mahdollistaja"}},
-    {"id": 16, "text": "Valitse kaksi, mihin haluamme eniten kallistua:", "multi_select": True, "options": {"A": "Auktoriteetti", "B": "Lämpö", "C": "Rohkeus", "D": "Estetiikka", "E": "Äly"}},
-    {"id": 17, "text": "Valitse kaksi, mitä olemme valmiita uhraamaan:", "multi_select": True, "options": {"A": "Nopeus", "B": "Massasuosio", "C": "Pehmeys", "D": "Varovaisuus", "E": "Mukavuus"}},
-    {"id": 18, "text": "Haluamme, että asiakas:", "options": {"A": "Kuuntelee meitä", "B": "Kunnioittaa meitä", "C": "Luottaa meihin", "D": "Seuraa meitä"}},
-    {"id": 19, "text": "Haluamme olla enemmän:", "options": {"A": "Ratkaisu", "B": "Ajatus", "C": "Kokemus", "D": "Liike"}},
-    {"id": 20, "text": "Jos meidät on pakko kuvata yhdellä lauseella, valitsemme mieluummin:", "options": {"A": "Turvallinen ja vahva", "B": "Rohkea ja erottuva", "C": "Lämmin ja inhimillinen", "D": "Älykäs ja visionäärinen"}},
+    {"id": 7, "text": "Valitsemme mieluummin sen:", "options": {"A": "että kaikki eivät pidä meistä", "B": "että olemme helposti lähestyttäviä", "C": "että herätämme keskustelua", "D": "että koemme harvoin vastustusta"}},
+    {"id": 8, "text": "Yrityksemme on tarkoitus ennemmin:", "options": {"A": "määritellä oikea tapa", "B": "rikkoa vanha tapa", "C": "yhdistää molemmat", "D": "ohittaa koko keskustelu"}},
+    {"id": 9, "text": "Valitsemme mieluummin, että ratkaisumme on:", "options": {"A": "tyylikäs", "B": "nopea", "C": "älykäs", "D": "turvallinen"}},
+    {"id": 10, "text": "Haluamme yrityksemme vaikuttavan eniten:", "options": {"A": "lämpimältä", "B": "itsevarmalta", "C": "älykkäältä", "D": "ylevältä"}},
+    {"id": 11, "text": "Yrityksemme tavoiteltu suhtautuminen sääntöihin:", "options": {"A": "Noudatamme niitä", "B": "Luomme niitä", "C": "Muutamme niitä", "D": "Rikomme niitä tarvittaessa"}},
+    {"id": 12, "text": "Jos brändimme olisi henkilö, hän olisi ennemmin:", "options": {"A": "johtaja", "B": "ajattelija", "C": "ystävä", "D": "visionääri"}},
+    {"id": 13, "text": "Haluamme että asiakkaamme muistavat meistä ensisijaisesti:", "options": {"A": "mitä me saimme aikaan", "B": "minkälaisia tunteita me herätimme", "C": "miten vaikutimme heidän ajattelutapaansa", "D": "miten uskalsimme toimia tyylillämme"}},
+    {"id": 14, "text": "Valitsemme yrityksenä mieluummin:", "options": {"A": "ennustettavuuden", "B": "hallitun riskin", "C": "rohkean aseman", "D": "epämukavan erottumisen"}},
+    {"id": 15, "text": "Haluamme yrityksemme toimivan ennen kaikkea:", "options": {"A": "vakauden lähteenä", "B": "muutoksen kiihdyttäjänä", "C": "turvan rakentajana", "D": "nautinnon mahdollistajana"}},
+    {"id": 16, "text": "Valitse kaksi(2), jotka vastaavat parhaiten yrityksenne tavoittelemia ominaisuuksia:", "multi_select": True, "options": {"A": "Vaikutusvaltaisuus", "B": "Lämmminhenkisyys", "C": "Rohkeus", "D": "Esteettisyys", "E": "Älykkyys"}},
+    {"id": 17, "text": "Valitse kaksi(2) yritykseenne liitettävää arvoa, joista olette valmiita luopumaan:", "multi_select": True, "options": {"A": "Nopeus", "B": "Massasuosio", "C": "Pehmeys", "D": "Varovaisuus", "E": "Mukavuus"}},
+    {"id": 18, "text": "Haluamme, että asiakas:", "options": {"A": "kuuntelee meitä", "B": "kunnioittaa meitä", "C": "luottaa meihin", "D": "toimii mallimme mukaisesti"}},
+    {"id": 19, "text": "Haluamme yrityksemme olevan eniten:", "options": {"A": "ratkaisu", "B": "ajatus", "C": "kokemus", "D": "ilmiö"}},
+    {"id": 20, "text": "Jos yritystämme täytyy kuvata yhdellä lauseella, valitsemme mieluiten:", "options": {"A": ""Turvallinen ja vahva."", "B": ""Rohkea ja erottuva."", "C": ""Lämmin ja inhimillinen."", "D": ""Älykäs ja näkemyksellinen.""}},
 ]
 
 WEIGHTS = {
@@ -150,17 +150,17 @@ REC_ARCHETYPE = {
     "Ruler": {
         "tone": [
             "Puhu standardeista ja periaatteista, älä trendeistä.",
-            "Käytä päätöskieltä; vältä liiallista selittelyä.",
+            "Viesti määrätietoisesti; vältä selittelyä.",
         ],
         "proof": [
-            "Sertifikaatit/auditoinnit + referenssitalot.",
-            "SLA:t, vasteajat ja riskinpoistomekanismit.",
+            "Sertifikaatit/auditoinnit, referenssit ja suosittelut.",
+            "Kirjalliset palvelulupaukset, reagoinnin vasteajat ja riskinpoistomekanismit.",
         ],
         "design": [
-            "Järjestelmällinen, selkeä hierarkia, ei koristeita.",
+            "Järjestelmällinen, selkeä ja pelkistetty.",
         ],
         "cx": [
-            "Ennustettava rytmi, selkeä omistajuus, eskalointipolku.",
+            "Ennustettava rytmi, selkeä omistajuus, organisoitu ongelmanratkaisu",
         ],
         "bounds": [
             "Karsi asiakkuudet, joissa periaatteita ei kunnioiteta.",
@@ -462,11 +462,11 @@ def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, An
     recs: List[Dict[str, Any]] = []
     arch = REC_ARCHETYPE.get(primary, {})
     if arch:
-        recs.append({"title": "Tone of voice", "items": arch.get("tone", [])})
-        recs.append({"title": "Proof-strategia", "items": arch.get("proof", [])})
-        recs.append({"title": "Design-signaalit", "items": arch.get("design", [])})
-        recs.append({"title": "CX-signaalit", "items": arch.get("cx", [])})
-        recs.append({"title": "Rajaus", "items": arch.get("bounds", [])})
+        recs.append({"title": "Äänensävy (Tone of Voice)", "items": arch.get("tone", [])})
+        recs.append({"title": "Osaamisen todistaminen", "items": arch.get("proof", [])})
+        recs.append({"title": "Visuaalinen viestintä", "items": arch.get("design", [])})
+        recs.append({"title": "Asiakaskokemustekijät", "items": arch.get("cx", [])})
+        recs.append({"title": "Rajojen määrittely", "items": arch.get("bounds", [])})
 
     for d in top_dims:
         items = REC_DIMENSION.get(d, [])
@@ -562,6 +562,23 @@ def ui_shell(title: str, inner_html: str) -> str:
       display: flex;
       justify-content: center;
     }}
+    .rec-list {{
+      margin: 8px 0 18px;
+      padding-left: 18px;      /* sisennys palluroille */
+      list-style: disc;        /* pallurat päälle */
+    }}
+
+    .rec-list li {{
+      margin: 6px 0;
+      font-size: 14px;
+      color: var(--ink);
+    }}
+
+    /* Väli listan ja seuraavan otsikon väliin */
+    .rec-list + h3 {{
+      margin-top: 18px;
+    }}
+
     .content-panel {{
       width: 100%;
       background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.74));
@@ -878,14 +895,8 @@ async def ui_assess(request: Request):
     left.append("<label>Sähköpostiosoitteesi</label>")
     left.append("<input name='person_email' required type='email'>")
 
-    left.append("<label>Yrityksenne nimi / verkkosivuosoite</label>")
+    left.append("<label>Yrityksenne verkkosivuosoite</label>")
     left.append("<input name='company_name' required type='text'>")
-
-    left.append("<label>Y-tunnus (valinnainen)</label>")
-    left.append("<input name='business_id' type='text'>")
-
-    left.append("<label>Laskutustiedot (valinnainen)</label>")
-    left.append("<textarea name='billing_details'></textarea>")
 
     left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
     left.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
