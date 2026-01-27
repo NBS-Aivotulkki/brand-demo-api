@@ -646,18 +646,18 @@ primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
 
 
 parsed: List[Answer] = []
-    for q in QUESTIONS:
-        qid = q["id"]
-        multi = q.get("multi_select", False)
+for q in QUESTIONS:
+    qid = q["id"]
+    multi = q.get("multi_select", False)
 
-        if not multi:
-            val = form.get(f"q{qid}")
-            if val:
-                parsed.append(Answer(question_id=qid, option=val))
-        else:
-            vals = form.getlist(f"q{qid}[]")
-            for v in vals[:2]:
-                parsed.append(Answer(question_id=qid, option=v))
+    if not multi:
+        val = form.get(f"q{qid}")
+        if val:
+            parsed.append(Answer(question_id=qid, option=val))
+    else:
+        vals = form.getlist(f"q{qid}[]")
+        for v in vals[:2]:
+            parsed.append(Answer(question_id=qid, option=v))
 
     dim_scores = compute_dimensions(parsed)
     archetypes = score_archetypes(dim_scores)
