@@ -915,12 +915,12 @@ async def ui_order(request: Request):
         return ui_shell("Kiitos", inner)
 
     inner = f"""
-    <div class="card" style="width:100%;">
-      <h2>Virhe</h2>
-      <p class="meta">Tilausta ei saatu lähetettyä.</p>
-      <pre style="white-space:pre-wrap; color:rgba(255,255,255,0.85);">{res}</pre>
-      <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
-    </div>
-    """
-    return ui_shell("Virhe", inner)
+        <div class="card" style="width:100%;">
+          <h2>Virhe</h2>
+          <p class="meta">Tilausta ei saatu lähetettyä.</p>
+          <pre style="white-space:pre-wrap; color:rgba(255,255,255,0.85);">{res}</pre>
+          <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
+        </div>
+        """
+        return ui_shell("Virhe", inner)
 
