@@ -295,6 +295,9 @@ def assess(req: AssessRequest):
 # VISUAL UI (landing / survey / results)
 # ---------------------------
 
+# KORVAA koko ui_shell()-funktion <head>…</style>-osuus tällä versiolla.
+# (Sisältö muuten samaksi; tämä poistaa Garamondit ja pakottaa Helvetica-tyylin + vasemman asemoinnin.)
+
 def ui_shell(title: str, inner_html: str) -> str:
     return f"""<!doctype html>
 <html lang="fi">
@@ -302,9 +305,6 @@ def ui_shell(title: str, inner_html: str) -> str:
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {{
       --cream: #f4e09a;
@@ -313,82 +313,87 @@ def ui_shell(title: str, inner_html: str) -> str:
       --panel: rgba(0,0,0,0.18);
     }}
     * {{ box-sizing: border-box; }}
+
     body {{
       margin: 0;
       color: var(--ink);
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: Helvetica, Arial, sans-serif; /* <-- kaikki Helvetica */
       background:
         linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
-        url('/static/bg_2.jpg') center/cover no-repeat fixed;
+        url('/static/bg.jpg') center/cover no-repeat fixed;
       min-height: 100vh;
     }}
+
     .page {{
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }}
+
     .top {{
+      padding: 28px 16px 8px;
       width: 100%;
-      padding: 16px;
       display: flex;
       justify-content: center;
     }}
-    .top-inner {{
-      width: 100%;
-      max-width: 980px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 0;
-    }}
+
     .crest {{
-      width: 84px;
-      height: 84px;
+      width: 54px;
+      height: 54px;
       border-radius: 999px;
       display: block;
       object-fit: contain;
       filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
     }}
-    .footer {{
-      width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px 0 26px;
-      color: rgba(255,255,255,0.65);
-      font-size: 12px;
-      text-align: center;
-    }}
+
     .wrap {{
       width: 100%;
-      max-width: 1200px;
-      padding: 24px 16px 64px;
+      max-width: 980px;
+      padding: 16px;
       display: flex;
       justify-content: center;
     }}
-    .hero {{
+
+    /* Tämä on se “musta palikka” kaikkien sivujen tekstien taakse */
+    .content-panel {{
       width: 100%;
-      padding: 56px 18px;
-      text-align: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.74));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 56px 64px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.70),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+      backdrop-filter: blur(2px);
+      text-align: left;                 /* <-- leipäteksti aina vasemmalta */
     }}
+
+    /* Otsikot myös Helveticaa + sama väri kuin muu teksti */
     h1, h2, h3 {{
-      font-family: "EB Garamond", Garamond, serif;
-      margin: 0 0 10px 0;
+      font-family: Helvetica, Arial, sans-serif;  /* <-- ei Garamond */
+      margin: 0 0 12px 0;
       letter-spacing: 0.2px;
+      color: var(--ink);                           /* <-- sama väri kuin muu */
     }}
-    h1 {{ font-size: 44px; line-height: 1.1; }}
-    h2 {{ font-size: 28px; }}
+    h1 {{ font-size: 44px; line-height: 1.1; font-weight: 800; }}
+    h2 {{ font-size: 26px; line-height: 1.2; font-weight: 800; }}
+    h3 {{ font-size: 18px; line-height: 1.25; font-weight: 800; }}
+
     .lead {{
-      margin: 0 auto 26px;
+      margin: 0 0 26px 0;
       max-width: 720px;
       color: var(--ink-soft);
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
+      text-align: left; /* <-- leipäteksti vasemmalle */
     }}
+
+    /* CTA-napit saman levyisiksi kaikkialla */
     .btn {{
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: var(--cream);
       color: #1b1b1b;
       border: none;
@@ -398,16 +403,14 @@ def ui_shell(title: str, inner_html: str) -> str:
       cursor: pointer;
       text-decoration: none;
       box-shadow: 0 12px 26px rgba(0,0,0,0.25);
+      min-width: 220px;   /* <-- sama leveys kuin muilla CTA-napeilla */
     }}
     .btn:active {{ transform: translateY(1px); }}
+
     .survey {{
       width: 100%;
-      background: transparent;
-      border: none;
-      padding: 0;
-      box-shadow: none;
-      backdrop-filter: none;
     }}
+
     .q {{
       margin: 14px 0 18px;
       padding: 14px 12px;
@@ -415,11 +418,15 @@ def ui_shell(title: str, inner_html: str) -> str:
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(0,0,0,0.12);
     }}
+
     .q-title {{
-      font-family: "EB Garamond", Garamond, serif;
-      font-size: 20px;
+      font-family: Helvetica, Arial, sans-serif;  /* <-- ei Garamond */
+      font-size: 18px;
+      font-weight: 800;
       margin: 0 0 10px;
+      color: var(--ink);
     }}
+
     .opt {{
       display: flex;
       gap: 10px;
@@ -429,20 +436,24 @@ def ui_shell(title: str, inner_html: str) -> str:
       font-size: 14px;
       line-height: 1.35;
     }}
+
     .opt input {{
       margin-top: 3px;
       transform: scale(1.05);
     }}
+
     .hint {{
       font-size: 12px;
       color: var(--ink-soft);
       margin-top: 8px;
     }}
+
     .actions {{
       padding: 10px 0 0;
       display: flex;
       justify-content: flex-start;
     }}
+
     .result-grid {{
       width: 100%;
       display: grid;
@@ -450,10 +461,17 @@ def ui_shell(title: str, inner_html: str) -> str:
       gap: 18px;
       align-items: start;
     }}
+
     @media (max-width: 860px) {{
-      .result-grid {{ grid-template-columns: 1fr; }}
       h1 {{ font-size: 34px; }}
+      .result-grid {{ grid-template-columns: 1fr; }}
+      .content-panel {{
+        padding: 28px 18px;
+        border-radius: 18px;
+      }}
+      .btn {{ min-width: 200px; }}
     }}
+
     .card {{
       background: rgba(0,0,0,0.12);
       border: 1px solid rgba(255,255,255,0.08);
@@ -461,42 +479,38 @@ def ui_shell(title: str, inner_html: str) -> str:
       padding: 18px;
       box-shadow: 0 18px 40px rgba(0,0,0,0.28);
     }}
-    .white-box {{
-      background: rgba(255,255,255,0.95);
-      border-radius: 14px;
-      min-height: 240px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-    }}
+
     .meta {{
       color: var(--ink-soft);
       font-size: 14px;
       line-height: 1.4;
     }}
+
     .list {{
-      margin: 10px 0;
+      margin: 10px 0 0;
       padding: 0;
-      padding-left: 0;
-      margin-left: 0;
       list-style: none;
     }}
+
     .list li {{
       margin: 6px 0;
-      padding-left: 0;
-      margin-left: 0;
       font-size: 14px;
       color: var(--ink);
     }}
+
     .sep {{
       height: 1px;
       background: rgba(255,255,255,0.10);
       margin: 18px 0;
     }}
+
     label {{
       display: block;
       font-size: 13px;
       color: var(--ink-soft);
       margin: 10px 0 6px;
     }}
+
     input[type="text"], input[type="email"], textarea {{
       width: 100%;
       padding: 10px 12px;
@@ -505,61 +519,27 @@ def ui_shell(title: str, inner_html: str) -> str:
       outline: none;
       font-family: Helvetica, Arial, sans-serif;
     }}
+
     textarea {{ min-height: 110px; resize: vertical; }}
+
     .backlink {{
       color: rgba(255,255,255,0.75);
       text-decoration: none;
       font-size: 13px;
     }}
-    .brand-text h2 {{
-      font-family: "EB Garamond", Garamond, serif;
-      font-size: 22px;
-      margin: 28px 0 8px;
-    }}
-
-    .brand-text p {{
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      margin: 0 0 14px;
-    }}
-    .content-panel {{
-      width: 100%;
-      background: rgba(0,0,0,0.86);
-      border-radius: 28px;
-      padding: 56px 64px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.70);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(2px);
-    }}
-
-    @media (max-width: 860px) {{
-      .content-panel {{
-        padding: 28px 18px;
-        border-radius: 18px;
-      }}
-    }}
-
   </style>
 </head>
 <body>
   <div class="page">
     <div class="top">
-      <div class="top-inner">
-        <img class="crest" src="/static/crest.png" alt="Logo" />
+      <img class="crest" src="/static/crest.png" alt="Logo" />
+    </div>
+    <div class="wrap">
+      <div class="content-panel">
+        {inner_html}
       </div>
     </div>
-
-    <div class="wrap">
-  <div class="content-panel">
-    {inner_html}
   </div>
-</div>
-
-
-    <div class="footer">© NeuroBusiness Solutions 2026</div>
-  </div>
-
 </body>
 </html>"""
 
@@ -575,7 +555,7 @@ def ui_landing():
         </p>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          1. kuvitella yrityksenne henkilöhahmoksi, jollainen haluaisit lapsena olla<br>
+          1. kuvitella yrityksenne henkilöhahmoksi, jollainen halusit lapsena olla<br>
           2. muuttaa yrityksenne ulkoasu, ääni ja toiminta vastaamaan kyseistä henkilöhahmoa
         </p>
 
@@ -588,7 +568,7 @@ def ui_landing():
         <div style="height:36px;"></div>
 
         <div style="text-align:center;">
-          <a class="btn" href="/survey">Luo brändigenomi</a>
+          <a class="btn" href="/survey">Selvitä brändihahmo</a>
         </div>
       </div>
     </div>
@@ -628,7 +608,12 @@ def ui_survey():
 
         html.append("</div>")
 
-    html.append("<div class='actions'><button class='btn' type='submit'>Loppuun Tulos-nappi</button></div>")
+    html.append("""
+    <div class="actions">
+      <button class="btn" type="submit">Näytä tulos</button>
+    </div>
+    """)
+
     html.append("</form>")
     html.append("</div>")
 
@@ -712,7 +697,12 @@ async def ui_assess(request: Request):
     left.append(f"<input type='hidden' name='dimensions_json' value='{json.dumps(dim_scores)}'>")
     left.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
 
-    left.append("<div style='margin-top:14px;'><button class='btn' type='submit'>Lähetä</button></div>")
+    left.append("""
+    <div class="actions">
+      <button class="btn" type="submit">Lähetä</button>
+    </div>
+    """)
+
     left.append("</form>")
     left.append("</div>")
 
