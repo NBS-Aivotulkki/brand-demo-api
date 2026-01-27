@@ -855,14 +855,15 @@ async def ui_assess(request: Request):
     left.append("<h2>Suositukset brändille</h2>")
 
     for block in recs:
-    left.append(f"<h3>{block['title']}</h3>")
-    left.append("<ul class='list'>")
-    for item in block["items"]:
-        left.append(f"<li>{item}</li>")
-    left.append("</ul>")
+        left.append(f"<h3>{block['title']}</h3>")
+        left.append("<ul class='list'>")
+        for item in block["items"]:
+            left.append(f"<li>{item}</li>")
+        left.append("</ul>")
 
     left.append("<div class='sep'></div>")
     left.append("<h2>Haluatko tarkemmat ohjeet brändäykseen?</h2>")
+
     left.append("<p class='meta'>Täytä ja lähetä alta löytyvä lomake. Saat 24h sisällä sähköpostiisi yhteistyöehdotuksen.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
