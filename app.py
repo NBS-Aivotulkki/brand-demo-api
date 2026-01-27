@@ -565,58 +565,37 @@ def ui_shell(title: str, inner_html: str) -> str:
 
 @app.get("/", response_class=HTMLResponse)
 def ui_landing():
-    inner = """
+    inner = f"""
     <div class="hero">
-      <div class="content-panel" style="
-        max-width: 720px;
-        margin: 0 auto;
-        text-align: left;
-      ">
-
+      <div class="content-panel" style="max-width:720px; margin:0 auto; text-align:left;">
         <h1 style="text-align:center;">Brändikone</h1>
 
-        <p style="font-size:16px; line-height:1.6;">
-         Oletteko luotettava toimija, joka tarjoaa asiakkailleen laatua – kenties tehokkaasti ja vastuullisesti? Niin todennäköisesti ovat kilpailijannekin.
-         Ulospäin samalta näyttävät, kuulostavat ja tuntuvat yritykset ajatuvat usein hintakilpailuun taistellessaan asiakkaiden huomiosta. 
-         Vahvan brändin omaavat yritykset voivat sen sijaan pelata omaa peliään.
+        <p style="font-size:16px; line-height:1.6; text-align:left;">
+          Edustamasi yrityksen brändin luominen on todellisuudessa melko helppoa. Sinun tarvitsee vain:
         </p>
 
-        <p style="font-size:16px; line-height:1.6;">
-          Vahva brändi ei rakennu siitä mitä yritys ja asiakkaat ovat vaan siitä, mitä he haluaisivat olla. 
-          Menestynyt brändi ei ole yrityksen tuottama. Se on yrityksen toteuttama. Brändi on yrityksen toimintaa ohjaava osapuoli ja kunnianhimoinen kuva siitä, minkälaiseksi yritys toivoo asiakkaiden silmissä tulevansa.
+        <p style="font-size:16px; line-height:1.6; text-align:left;">
+          1. kuvitella yrityksenne henkilöhahmoksi, jollainen haluaisit lapsena olla<br>
+          2. muuttaa yrityksenne ulkoasu, ääni ja toiminta vastaamaan kyseistä henkilöhahmoa
         </p>
 
-        <p style="font-size:16px; line-height:1.6;">
-          Brändikone näyttää, mikä teidän brändinne on tällä hetkellä – ja mihin se voisi kasvaa.
+        <div style="height:24px;"></div>
+
+        <p style="font-size:16px; line-height:1.6; text-align:left;">
+          Brändikoneen avulla selvität, miltä yrityksenne henkilöhahmon, eli brändin, kannattaa näyttää, viestiä ja toimia aikuisten yritysmaailmassa.
         </p>
 
-        <div style="margin-top:24px; font-size:16px; line-height:1.6;">
-          <b>Brändikoneessa:</b>
-          <ul style="margin-top:12px; padding-left:20px;">
-            <li>näet, mihin 12 brändiarkkityypistä yrityksesi kallistuu</li>
-            <li>saat mitattavan profiilin brändisi vahvuuksista ja heikkouksista</li>
-            <li>saat suuntaviivat, joiden pohjalta brändiä voi oikeasti rakentaa</li>
-          </ul>
-        </div>
+        <div style="height:36px;"></div>
 
-        <div style="
-          margin: 24px 0;
-          padding-top: 16px;
-          border-top: 1px solid rgba(255,255,255,0.15);
-          font-size: 16px;
-          line-height: 1.6;
-        ">
-          Tämä ei ole testi oikeista vastauksista. Tämä on testi siitä, mihin suuntaan yrityksesi haluaa kasvaa.
+        <div style="text-align:center;">
+          <a class="btn" href="/survey">Luo brändigenomi</a>
         </div>
-
-        <div style="text-align:center; margin-top:28px;">
-          <a class="btn" href="/survey">Aloita brändikartoitus</a>
-        </div>
-
       </div>
     </div>
     """
     return ui_shell("Brändikone", inner)
+
+
 
 
 @app.get("/survey", response_class=HTMLResponse)
