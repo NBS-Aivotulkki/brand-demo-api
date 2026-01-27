@@ -736,7 +736,7 @@ for q in QUESTIONS:
     </div>
     """)
 
-    inner = f"""
+inner = f"""
 <style>
   .result-panel {{
     background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
@@ -811,7 +811,7 @@ for q in QUESTIONS:
   </div>
 </div>
 """
-    return ui_shell("Tulos", inner)
+return ui_shell("Tulos", inner)
 
 
 # ---------------------------
