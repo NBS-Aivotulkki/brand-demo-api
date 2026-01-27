@@ -3,16 +3,17 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import List, Literal, Dict, Any, Optional
 import math
 import os
 import json
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 
-# --- KÄÄNNÖSKARTTA (lisätään tähän, heti importtien jälkeen) ---
+# --- KÄÄNNÖSKARTTA ---
 
 translations = {
     "Competence": "Osaaminen",
@@ -24,7 +25,6 @@ translations = {
     "Boldness": "Rohkeus",
     "Warmth": "Lämpö",
     "Playfulness": "Leikkisyys",
-
     "Ruler": "Hallitsija",
     "Sage": "Viisas",
     "Hero": "Sankari",
@@ -39,22 +39,22 @@ translations = {
     "Innocent": "Optimisti",
 }
 
-# Käännösapu: jos avainta ei löydy, palautetaan alkuperäinen
-def t(key: str) -> str:
+
+def t(key: Optional[str]) -> str:
+    if not key:
+        return ""
     return translations.get(key, key)
 
 
-# --- FASTAPI-APP LUODAAN TÄMÄN JÄLKEEN ---
-# HUOM: App luodaan vain kerran (poistettu tuplaluonti)
+# --- FASTAPI APP ---
 
 app = FastAPI(title="Brand Archetype Demo", version="0.1")
 
-# Mountataan static-kansio
 BASE_DIR = Path(__file__).resolve().parent
-app.mount("/static", StaticFiles(directory="static"), name="static")
+STATIC_DIR = BASE_DIR / "static"
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
-# Englanninkieliset avaimet logiikkaa varten
 DIMENSIONS = [
     "Competence",
     "Integrity",
@@ -67,7 +67,6 @@ DIMENSIONS = [
     "Playfulness",
 ]
 
-# Käyttöliittymää varten suomenkielinen lista
 DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 
 ARCHETYPE_DESCRIPTIONS = {
@@ -82,7 +81,7 @@ ARCHETYPE_DESCRIPTIONS = {
     "Everyman": "TAVALLINEN / LUOTETTAVA edustaa aitoutta, rehellisyyttä ja samaistuttavuutta. Se on helposti lähestyttävä ja tuntuu \"meidän kaltaiseltamme\". TAVALLINEN / LUOTETTAVA-brändi rakentaa luottamusta arkisuuden kautta. Esimerkkejä: IKEA, Levi’s, Target, Volkswagen.",
     "Lover": "RAKASTAJA / ESTEETIKKO rakentuu intohimosta, kauneudesta ja emotionaalisesta vetovoimasta. Se korostaa nautintoa, estetiikkaa ja aistillisuutta. RAKASTAJA / ESTEETIKKO -brändi lupaa elämyksiä ja syvää tunnetta. Esimerkkejä: Chanel, Dior, Ferrari, Häagen-Dazs.",
     "Jester": "NARRI / VIIHDYTTÄJÄ tuo keveyttä, iloa ja vapautta. Se rikkoo vakavuuden huumorilla ja yllättävillä näkökulmilla. NARRI / VIIHDYTTÄJÄ -brändi tekee elämästä hauskempaa ja rennompaa. Esimerkkejä: Old Spice, M&M’s, TikTok, Netflix (viihdepuoli).",
-    "Innocent": "VIATON / OPTIMISTI edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. VIATON / OPTIMISTI -brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno."
+    "Innocent": "VIATON / OPTIMISTI edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. VIATON / OPTIMISTI -brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno.",
 }
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
@@ -101,15 +100,7 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
 }
 
 QUESTIONS = [
-    {
-        "id": 0,
-        "text": "Onko yrityksenne asiakkaista suurin osa",
-        "options": {
-            "A": "miehiä",
-            "B": "naisia",
-            "C": "molempia yhtä paljon",
-    },
-},
+    {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
     {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioon", "B": "Vetovoimaa tuotteeseen", "C": "Kiinnostusta ideologiaan", "D": "Yhteyttä persoonaan"}},
@@ -190,27 +181,32 @@ REC_DIMENSION = {
     "Competence": ["Todista osaaminen: caset, benchmarkit, referenssit, menetelmät.", "Näytä laadunvarmistus: miten estätte virheet."],
     "Playfulness": ["Käytä keveyttä harkiten: selkeys ensin, vitsi vasta sitten.", "Pidä huumori brändin palvelijana, ei sen johtajana."],
 }
+
 Option = Literal["A", "B", "C", "D", "E"]
+
 
 class Answer(BaseModel):
     question_id: int
     option: Option
 
+
 class AssessRequest(BaseModel):
     answers: List[Answer]
     respondent_label: Optional[str] = None
 
+
 class OrderRequest(BaseModel):
     company_name: str
-    business_id: str
+    business_id: str = ""
     person_name: str
-    person_email: str
-    billing_details: str
+    person_email: EmailStr
+    billing_details: str = ""
     primary_archetype: str
     secondary_archetype: Optional[str] = None
     shadow_archetype: Optional[str] = None
     dimensions: Dict[str, float]
     top_strengths: List[str]
+
 
 def cosine_similarity(a: Dict[str, float], b: Dict[str, float]) -> float:
     dot = sum(a.get(k, 0.0) * b.get(k, 0.0) for k in DIMENSIONS)
@@ -220,14 +216,19 @@ def cosine_similarity(a: Dict[str, float], b: Dict[str, float]) -> float:
         return 0.0
     return dot / (na * nb)
 
+
 def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     raw = {d: 0.0 for d in DIMENSIONS}
     for a in answers:
+        # q0 on UI:n valinta (sukupuoli), ei vaikuta dimensioihin
+        if a.question_id == 0:
+            continue
         qmap = WEIGHTS.get(a.question_id, {})
         w = qmap.get(a.option, {})
         for d, val in w.items():
             raw[d] += float(val)
 
+    # normalisointi 0–100
     out: Dict[str, float] = {}
     for d, v in raw.items():
         lo, hi = -10.0, 10.0
@@ -235,14 +236,18 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         out[d] = (vv - lo) / (hi - lo) * 100.0
     return out
 
-def score_archetypes(dim_scores: Dict[str, float]) -> List[Dict[str, Any]]:
-    scores = []
+
+def score_archetypes(dim_scores_0_100: Dict[str, float]) -> List[Dict[str, Any]]:
+    # Skaalataan 0..100 -> 0..1 jotta on samassa mittakaavassa protojen kanssa
+    dim_scores = {k: float(v) / 100.0 for k, v in dim_scores_0_100.items()}
+    scores: List[Dict[str, Any]] = []
     for name, proto in ARCHETYPES.items():
         proto_vec = {d: float(proto.get(d, 0.0)) for d in DIMENSIONS}
         sim = cosine_similarity(dim_scores, proto_vec)
-        scores.append({"key": name, "similarity": sim})
+        scores.append({"key": name, "similarity": sim, "label": t(name)})
     scores.sort(key=lambda x: x["similarity"], reverse=True)
     return scores
+
 
 def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, Any]]:
     recs: List[Dict[str, Any]] = []
@@ -257,55 +262,44 @@ def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, An
     for d in top_dims:
         items = REC_DIMENSION.get(d, [])
         if items:
-            recs.append({"title": f"Tarkennus: {d}", "items": items})
+            recs.append({"title": f"Tarkennus: {t(d)}", "items": items})
     return recs
+
 
 @app.get("/questions")
 def get_questions():
     return QUESTIONS
+
 
 @app.post("/assess")
 def assess(req: AssessRequest):
     dim_scores = compute_dimensions(req.answers)
     archetypes = score_archetypes(dim_scores)
 
-    primary = archetypes[0]["key"]
+    primary = archetypes[0]["key"] if archetypes else ""
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
-    
-    # Suomenkieliset nimet UI:lle
-    primary_fi = t(primary)
-    secondary_fi = t(secondary) if secondary else ""
-    shadow_fi = t(shadow) if shadow else ""
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
-    top_dims_fi = [t(d) for d in top_dims]
-
-    dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
-
     low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
     recs = make_recommendations(primary, top_dims)
 
     return {
-        "primary_archetype": primary_fi,
-        "secondary_archetype": secondary_fi,
-        "shadow_archetype": shadow_fi,
-        "dimensions": dim_scores_fi,
-        "archetypes": archetypes[:5],
-        "top_strengths": top_dims_fi,
-        "conscious_lows": low_dims,
+        "primary_archetype": t(primary),
+        "secondary_archetype": t(secondary),
+        "shadow_archetype": t(shadow),
+        "dimensions": {t(k): v for k, v in dim_scores.items()},
+        "archetypes": archetypes[:5],  # sisältää myös label-kentän
+        "top_strengths": [t(d) for d in top_dims],
+        "conscious_lows": [t(d) for d in low_dims],
         "recommendations": recs,
     }
 
 
-
 # ---------------------------
-# VISUAL UI (landing / survey / results)
+# UI
 # ---------------------------
-
-# KORVAA koko ui_shell()-funktion <head>…</style>-osuus tällä versiolla.
-# (Sisältö muuten samaksi; tämä poistaa Garamondit ja pakottaa Helvetica-tyylin + vasemman asemoinnin.)
 
 def ui_shell(title: str, inner_html: str) -> str:
     return f"""<!doctype html>
@@ -322,31 +316,27 @@ def ui_shell(title: str, inner_html: str) -> str:
       --panel: rgba(0,0,0,0.18);
     }}
     * {{ box-sizing: border-box; }}
-
     body {{
       margin: 0;
       color: var(--ink);
-      font-family: Helvetica, Arial, sans-serif; /* <-- kaikki Helvetica */
+      font-family: Helvetica, Arial, sans-serif;
       background:
         linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
         url('/static/bg.jpg') center/cover no-repeat fixed;
       min-height: 100vh;
     }}
-
     .page {{
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }}
-
     .top {{
       padding: 28px 16px 8px;
       width: 100%;
       display: flex;
       justify-content: center;
     }}
-
     .crest {{
       width: 54px;
       height: 54px;
@@ -355,7 +345,6 @@ def ui_shell(title: str, inner_html: str) -> str:
       object-fit: contain;
       filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
     }}
-
     .wrap {{
       width: 100%;
       max-width: 980px;
@@ -363,8 +352,6 @@ def ui_shell(title: str, inner_html: str) -> str:
       display: flex;
       justify-content: center;
     }}
-
-    /* Tämä on se “musta palikka” kaikkien sivujen tekstien taakse */
     .content-panel {{
       width: 100%;
       background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.74));
@@ -375,30 +362,25 @@ def ui_shell(title: str, inner_html: str) -> str:
         0 30px 80px rgba(0,0,0,0.70),
         inset 0 0 0 1px rgba(255,255,255,0.05);
       backdrop-filter: blur(2px);
-      text-align: left;                 /* <-- leipäteksti aina vasemmalta */
+      text-align: left;
     }}
-
-    /* Otsikot myös Helveticaa + sama väri kuin muu teksti */
     h1, h2, h3 {{
-      font-family: Helvetica, Arial, sans-serif;  /* <-- ei Garamond */
+      font-family: Helvetica, Arial, sans-serif;
       margin: 0 0 12px 0;
       letter-spacing: 0.2px;
-      color: var(--ink);                           /* <-- sama väri kuin muu */
+      color: var(--ink);
     }}
     h1 {{ font-size: 44px; line-height: 1.1; font-weight: 800; }}
     h2 {{ font-size: 26px; line-height: 1.2; font-weight: 800; }}
     h3 {{ font-size: 18px; line-height: 1.25; font-weight: 800; }}
-
     .lead {{
       margin: 0 0 26px 0;
       max-width: 720px;
       color: var(--ink-soft);
       font-size: 16px;
       line-height: 1.6;
-      text-align: left; /* <-- leipäteksti vasemmalle */
+      text-align: left;
     }}
-
-    /* CTA-napit saman levyisiksi kaikkialla */
     .btn {{
       display: inline-flex;
       align-items: center;
@@ -412,14 +394,10 @@ def ui_shell(title: str, inner_html: str) -> str:
       cursor: pointer;
       text-decoration: none;
       box-shadow: 0 12px 26px rgba(0,0,0,0.25);
-      min-width: 220px;   /* <-- sama leveys kuin muilla CTA-napeilla */
+      min-width: 220px;
     }}
     .btn:active {{ transform: translateY(1px); }}
-
-    .survey {{
-      width: 100%;
-    }}
-
+    .survey {{ width: 100%; }}
     .q {{
       margin: 14px 0 18px;
       padding: 14px 12px;
@@ -427,15 +405,13 @@ def ui_shell(title: str, inner_html: str) -> str:
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(0,0,0,0.12);
     }}
-
     .q-title {{
-      font-family: Helvetica, Arial, sans-serif;  /* <-- ei Garamond */
+      font-family: Helvetica, Arial, sans-serif;
       font-size: 18px;
       font-weight: 800;
       margin: 0 0 10px;
       color: var(--ink);
     }}
-
     .opt {{
       display: flex;
       gap: 10px;
@@ -445,42 +421,28 @@ def ui_shell(title: str, inner_html: str) -> str:
       font-size: 14px;
       line-height: 1.35;
     }}
-
     .opt input {{
       margin-top: 3px;
       transform: scale(1.05);
     }}
-
     .hint {{
       font-size: 12px;
       color: var(--ink-soft);
       margin-top: 8px;
     }}
-
     .actions {{
       padding: 10px 0 0;
       display: flex;
       justify-content: flex-start;
     }}
-
-    .result-grid {{
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      align-items: start;
-    }}
-
     @media (max-width: 860px) {{
       h1 {{ font-size: 34px; }}
-      .result-grid {{ grid-template-columns: 1fr; }}
       .content-panel {{
         padding: 28px 18px;
         border-radius: 18px;
       }}
       .btn {{ min-width: 200px; }}
     }}
-
     .card {{
       background: rgba(0,0,0,0.12);
       border: 1px solid rgba(255,255,255,0.08);
@@ -488,38 +450,32 @@ def ui_shell(title: str, inner_html: str) -> str:
       padding: 18px;
       box-shadow: 0 18px 40px rgba(0,0,0,0.28);
     }}
-
     .meta {{
       color: var(--ink-soft);
       font-size: 14px;
       line-height: 1.4;
     }}
-
     .list {{
       margin: 10px 0 0;
       padding: 0;
       list-style: none;
     }}
-
     .list li {{
       margin: 6px 0;
       font-size: 14px;
       color: var(--ink);
     }}
-
     .sep {{
       height: 1px;
       background: rgba(255,255,255,0.10);
       margin: 18px 0;
     }}
-
     label {{
       display: block;
       font-size: 13px;
       color: var(--ink-soft);
       margin: 10px 0 6px;
     }}
-
     input[type="text"], input[type="email"], textarea {{
       width: 100%;
       padding: 10px 12px;
@@ -528,9 +484,7 @@ def ui_shell(title: str, inner_html: str) -> str:
       outline: none;
       font-family: Helvetica, Arial, sans-serif;
     }}
-
     textarea {{ min-height: 110px; resize: vertical; }}
-
     .backlink {{
       color: rgba(255,255,255,0.75);
       text-decoration: none;
@@ -552,9 +506,10 @@ def ui_shell(title: str, inner_html: str) -> str:
 </body>
 </html>"""
 
+
 @app.get("/", response_class=HTMLResponse)
 def ui_landing():
-    inner = f"""
+    inner = """
     <div class="hero">
       <div class="content-panel" style="max-width:720px; margin:0 auto; text-align:left;">
         <h1 style="text-align:left;">Brändikone</h1>
@@ -585,11 +540,9 @@ def ui_landing():
     return ui_shell("Brändikone", inner)
 
 
-
-
 @app.get("/survey", response_class=HTMLResponse)
 def ui_survey():
-    html = []
+    html: List[str] = []
     html.append("<div class='survey'>")
     html.append("<h2>Kysely</h2>")
     html.append("<p class='meta'>Vastaa valinnoilla. Kohtiin joissa lukee “Valitse kaksi”, voit valita kaksi.</p>")
@@ -602,11 +555,10 @@ def ui_survey():
         name = f"q{qid}" if not multi else f"q{qid}[]"
 
         html.append("<div class='q'>")
-    if qid == 0:
-        html.append(f"<div class='q-title'>{q['text']}</div>")
-    else:
-        html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
-
+        if qid == 0:
+            html.append(f"<div class='q-title'>{q['text']}</div>")
+        else:
+            html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
 
         for opt, label in q["options"].items():
             html.append(
@@ -622,9 +574,9 @@ def ui_survey():
         html.append("</div>")
 
     html.append("""
-    <div class="actions">
-      <button class="btn" type="submit">Näytä tulos</button>
-    </div>
+      <div class="actions">
+        <button class="btn" type="submit">Näytä tulos</button>
+      </div>
     """)
 
     html.append("</form>")
@@ -632,56 +584,51 @@ def ui_survey():
 
     return ui_shell("Kysely", "\n".join(html))
 
+
 @app.post("/ui-assess", response_class=HTMLResponse)
 async def ui_assess(request: Request):
     form = await request.form()
-    # Luetaan ensimmäisen kysymyksen vastaus (sukupuoli)
-# A = miehiä, B = naisia, C = molempia
-audience = form.get("q0", "C")
 
-# Päätetään kuvatiedoston pääte
-# Jos valittiin "naisia", käytetään naisversiota (v2w.png)
-# Muuten käytetään miesversiota (v2.png)
-primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
+    # A = miehiä, B = naisia, C = molempia
+    audience = form.get("q0", "C")
+    primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
 
+    parsed: List[Answer] = []
+    for q in QUESTIONS:
+        qid = q["id"]
+        multi = q.get("multi_select", False)
 
-parsed: List[Answer] = []
-for q in QUESTIONS:
-    qid = q["id"]
-    multi = q.get("multi_select", False)
-
-    if not multi:
-        val = form.get(f"q{qid}")
-        if val:
-            parsed.append(Answer(question_id=qid, option=val))
-    else:
-        vals = form.getlist(f"q{qid}[]")
-        for v in vals[:2]:
-            parsed.append(Answer(question_id=qid, option=v))
+        if not multi:
+            val = form.get(f"q{qid}")
+            if val:
+                parsed.append(Answer(question_id=qid, option=val))
+        else:
+            vals = form.getlist(f"q{qid}[]")
+            for v in vals[:2]:
+                parsed.append(Answer(question_id=qid, option=v))
 
     dim_scores = compute_dimensions(parsed)
     archetypes = score_archetypes(dim_scores)
 
-    primary = archetypes[0]["key"]
+    primary = archetypes[0]["key"] if archetypes else ""
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
 
-    # UI-käännökset (nämä puuttuivat sinulta -> 500-virhe)
     primary_fi = t(primary)
-    secondary_fi = t(secondary) if secondary else ""
-    shadow_fi = t(shadow) if shadow else ""
+    secondary_fi = t(secondary)
+    shadow_fi = t(shadow)
     top_dims_fi = [t(d) for d in top_dims]
     dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
 
-    left = []
+    left: List[str] = []
     left.append("<div class='card'>")
     left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
     left.append(
-    f"<p class='archetype-caption' style='text-align: left;'>"
-    f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
-    f"</p>"
+        f"<p class='archetype-caption' style='text-align:left;'>"
+        f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
+        f"</p>"
     )
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
@@ -708,11 +655,15 @@ for q in QUESTIONS:
     left.append("<label>Sähköpostiosoitteesi</label>")
     left.append("<input name='person_email' required type='email'>")
 
-    left.append("<label>Yrityksenne verkkosivuosoite</label>")
+    left.append("<label>Yrityksenne nimi / verkkosivuosoite</label>")
     left.append("<input name='company_name' required type='text'>")
 
+    left.append("<label>Y-tunnus (valinnainen)</label>")
+    left.append("<input name='business_id' type='text'>")
 
-    # hidden-inputit pidetään englanniksi (lähetys ja kuvat pysyy ehjinä)
+    left.append("<label>Laskutustiedot (valinnainen)</label>")
+    left.append("<textarea name='billing_details'></textarea>")
+
     left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
     left.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
     left.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
@@ -720,23 +671,21 @@ for q in QUESTIONS:
     left.append(f"<input type='hidden' name='top_strengths_json' value='{json.dumps(top_dims)}'>")
 
     left.append("""
-    <div class="actions">
-      <button class="btn" type="submit">Lähetä</button>
-    </div>
+      <div class="actions">
+        <button class="btn" type="submit">Lähetä</button>
+      </div>
     """)
-
     left.append("</form>")
     left.append("</div>")
 
-
-    right = []
+    right: List[str] = []
     right.append(f"""
-    <div class="primary-img">
-      <img src="/static/archetypes/{primary.lower()}{primary_suffix}" alt="{primary}">
-    </div>
+      <div class="primary-img">
+        <img src="/static/archetypes/{primary.lower()}{primary_suffix}" alt="{primary}">
+      </div>
     """)
 
-inner = f"""
+    inner = f"""
 <style>
   .result-panel {{
     background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
@@ -749,32 +698,27 @@ inner = f"""
       0 30px 80px rgba(0,0,0,0.7),
       inset 0 0 0 1px rgba(255,255,255,0.05);
   }}
-
   @media (max-width: 860px) {{
     .result-panel {{
       padding: 28px 18px;
       max-width: 100%;
     }}
   }}
-
   .result-stack {{
     display: flex;
     flex-direction: column;
     gap: 28px;
     width: 100%;
   }}
-
   .archetype-images {{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 18px;
   }}
-
   .archetype-text {{
     width: 100%;
   }}
-
   .primary-img img {{
     width: 420px;
     height: 420px;
@@ -782,7 +726,6 @@ inner = f"""
     border-radius: 24px;
     max-width: 100%;
   }}
-
   @media (max-width: 520px) {{
     .primary-img img {{
       width: 100%;
@@ -811,7 +754,7 @@ inner = f"""
   </div>
 </div>
 """
-return ui_shell("Tulos", inner)
+    return ui_shell("Tulos", inner)
 
 
 # ---------------------------
@@ -827,7 +770,7 @@ def order(req: OrderRequest):
     if not api_key or not from_email or not to_email:
         return {"ok": False, "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."}
 
-    subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})"
+    subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})".strip()
 
     body = f"""
 UUSI TILAUS / BRÄNDINRAKENNUSOPAS
