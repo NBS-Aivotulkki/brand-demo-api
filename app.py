@@ -101,7 +101,6 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
 }
 
 QUESTIONS = [
-    QUESTIONS = [
     {
         "id": 0,
         "text": "Onko yrityksenne asiakkaista suurin osa",
@@ -111,7 +110,6 @@ QUESTIONS = [
             "C": "molempia yhtä paljon",
         },
     },
-    # ... nykyiset id=1..20 tästä eteenpäin
 ]
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
