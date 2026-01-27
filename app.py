@@ -736,7 +736,7 @@ for q in QUESTIONS:
     </div>
     """)
 
-        inner = f"""
+    inner = f"""
 <style>
   .result-panel {{
     background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
