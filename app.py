@@ -742,7 +742,7 @@ inner = f"""
     border-radius: 28px;
     padding: 56px 64px;
     width: 100%;
-    max-width: 980px;   /* sama leveys kuin muilla sivuilla */
+    max-width: 980px;
     margin: 0 auto;
     box-shadow:
       0 30px 80px rgba(0,0,0,0.7),
@@ -782,7 +782,6 @@ inner = f"""
     max-width: 100%;
   }}
 
-  /* pienillä näytöillä kuva skaalautuu */
   @media (max-width: 520px) {{
     .primary-img img {{
       width: 100%;
@@ -794,14 +793,10 @@ inner = f"""
 <div class="result-panel">
   <div class="result-stack">
 
-    <!-- Kuvablokki ensin -->
     <div class="archetype-images">
       {''.join(right)}
     </div>
 
-    <div class="sep"></div>
-
-    <!-- Tekstiblokki kuvan alle -->
     <div class="archetype-text">
       {''.join(left)}
     </div>
@@ -813,9 +808,8 @@ inner = f"""
   </div>
 </div>
 """
+
 return ui_shell("Tulos", inner)
-
-
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
