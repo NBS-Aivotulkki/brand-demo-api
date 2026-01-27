@@ -734,10 +734,6 @@ for q in QUESTIONS:
       <img src="/static/archetypes/{primary.lower()}{primary_suffix}">
     </div>
     """)
-    .format(
-        primary=primary.lower(),
-        secondary=(secondary or "").lower(),
-        shadow=(shadow or "").lower()
     )
 
     inner = f"""
