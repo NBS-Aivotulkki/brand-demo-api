@@ -108,9 +108,10 @@ QUESTIONS = [
             "A": "miehiä",
             "B": "naisia",
             "C": "molempia yhtä paljon",
-        },
     },
-]
+},
+    
+{
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
     {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioon", "B": "Vetovoimaa tuotteeseen", "C": "Kiinnostusta ideologiaan", "D": "Yhteyttä persoonaan"}},
