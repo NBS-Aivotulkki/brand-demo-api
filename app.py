@@ -851,6 +851,9 @@ async def ui_assess(request: Request):
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
     left.append("</ul>")
+    
+    recs = make_recommendations(primary, top_dims)
+    
     left.append("<div class='sep'></div>")
     left.append("<h2>Suositukset brändille</h2>")
 
