@@ -132,7 +132,7 @@ QUESTIONS = [
     {"id": 18, "text": "Haluamme, että asiakas:", "options": {"A": "Kuuntelee meitä", "B": "Kunnioittaa meitä", "C": "Luottaa meihin", "D": "Seuraa meitä"}},
     {"id": 19, "text": "Haluamme olla enemmän:", "options": {"A": "Ratkaisu", "B": "Ajatus", "C": "Kokemus", "D": "Liike"}},
     {"id": 20, "text": "Jos meidät on pakko kuvata yhdellä lauseella, valitsemme mieluummin:", "options": {"A": "Turvallinen ja vahva", "B": "Rohkea ja erottuva", "C": "Lämmin ja inhimillinen", "D": "Älykäs ja visionäärinen"}},
-{
+]
 
 WEIGHTS = {
     1: {"A": {"Competence": 0.7, "Discipline": 0.4}, "B": {"Authority": 0.6, "Vision": 0.5}, "C": {"Warmth": 0.6, "Integrity": 0.4}, "D": {"Sophistication": 0.6, "Playfulness": 0.4}},
