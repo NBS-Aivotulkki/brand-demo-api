@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import List, Literal, Dict, Any, Optional
 import math
 import os
@@ -199,7 +199,7 @@ class OrderRequest(BaseModel):
     company_name: str
     business_id: str = ""
     person_name: str
-    person_email: EmailStr
+    person_email: str
     billing_details: str = ""
     primary_archetype: str
     secondary_archetype: Optional[str] = None
