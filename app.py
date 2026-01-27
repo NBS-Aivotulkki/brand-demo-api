@@ -728,10 +728,12 @@ for q in QUESTIONS:
     left.append("</form>")
     left.append("</div>")
 
+# ... (tätä ennen rakennat left ja primary ym.)
+
 right = []
 right.append(f"""
 <div class="primary-img">
-  <img src="/static/archetypes/{primary.lower()}{primary_suffix}">
+  <img src="/static/archetypes/{primary.lower()}{primary_suffix}" alt="{primary}">
 </div>
 """)
 
@@ -742,7 +744,7 @@ inner = f"""
     border-radius: 28px;
     padding: 56px 64px;
     width: 100%;
-    max-width: 980px;
+    max-width: 980px;   /* sama leveys kuin muilla sivuilla */
     margin: 0 auto;
     box-shadow:
       0 30px 80px rgba(0,0,0,0.7),
@@ -780,6 +782,7 @@ inner = f"""
     object-fit: cover;
     border-radius: 24px;
     max-width: 100%;
+    display: block;
   }}
 
   @media (max-width: 520px) {{
@@ -797,6 +800,8 @@ inner = f"""
       {''.join(right)}
     </div>
 
+    <div class="sep"></div>
+
     <div class="archetype-text">
       {''.join(left)}
     </div>
@@ -809,7 +814,8 @@ inner = f"""
 </div>
 """
 
-    return ui_shell("Tulos", inner)
+return ui_shell("Tulos", inner)
+
 
 # ---------------------------
 # ORDER (SendGrid) + UI submit handler
