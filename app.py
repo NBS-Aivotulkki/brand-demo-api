@@ -645,7 +645,7 @@ audience = form.get("q0", "C")
 primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
 
 
-    parsed: List[Answer] = []
+parsed: List[Answer] = []
     for q in QUESTIONS:
         qid = q["id"]
         multi = q.get("multi_select", False)
