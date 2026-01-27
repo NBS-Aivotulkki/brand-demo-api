@@ -741,7 +741,7 @@ primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
         primary=primary.lower(),
         secondary=(secondary or "").lower(),
         shadow=(shadow or "").lower()
-    ))
+    )
 
     inner = f"""
         <style>
