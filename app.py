@@ -635,29 +635,30 @@ def ui_survey():
 @app.post("/ui-assess", response_class=HTMLResponse)
 async def ui_assess(request: Request):
     form = await request.form()
+    # Luetaan ensimmäisen kysymyksen vastaus (sukupuoli)
+# A = miehiä, B = naisia, C = molempia
+audience = form.get("q0", "C")
 
-    # 1. Luetaan yleisön sukupuoli
-    # A = miehiä, B = naisia, C = molempia
-    audience = form.get("q0", "C")
-    primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
+# Päätetään kuvatiedoston pääte
+# Jos valittiin "naisia", käytetään naisversiota (v2w.png)
+# Muuten käytetään miesversiota (v2.png)
+primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
 
-    # 2. Parsitaan vastaukset
-    parsed: List[Answer] = []
 
-    for q in QUESTIONS:
-        qid = q["id"]
-        multi = q.get("multi_select", False)
+parsed: List[Answer] = []
+for q in QUESTIONS:
+    qid = q["id"]
+    multi = q.get("multi_select", False)
 
-        if not multi:
-            val = form.get(f"q{qid}")
-            if val:
-                parsed.append(Answer(question_id=qid, option=val))
-        else:
-            vals = form.getlist(f"q{qid}[]")
-            for v in vals[:2]:
-                parsed.append(Answer(question_id=qid, option=v))
+    if not multi:
+        val = form.get(f"q{qid}")
+        if val:
+            parsed.append(Answer(question_id=qid, option=val))
+    else:
+        vals = form.getlist(f"q{qid}[]")
+        for v in vals[:2]:
+            parsed.append(Answer(question_id=qid, option=v))
 
-    # 3. Lasketaan tulokset (TÄMÄ EI OLE SILMUKASSA)
     dim_scores = compute_dimensions(parsed)
     archetypes = score_archetypes(dim_scores)
 
@@ -667,24 +668,25 @@ async def ui_assess(request: Request):
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
 
-    # 4. Käännökset UI:lle
+    # UI-käännökset (nämä puuttuivat sinulta -> 500-virhe)
     primary_fi = t(primary)
     secondary_fi = t(secondary) if secondary else ""
     shadow_fi = t(shadow) if shadow else ""
     top_dims_fi = [t(d) for d in top_dims]
     dim_scores_fi = {t(k): v for k, v in dim_scores.items()}
 
-    # 5. Vasemman puolen sisältö (tekstit + lomake)
     left = []
     left.append("<div class='card'>")
-    left.append(f"<h2>Pääarkkityyppi: {primary_fi}</h2>")
+    left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
     left.append(
-        f"<p class='archetype-caption'>{ARCHETYPE_DESCRIPTIONS.get(primary, '')}</p>"
+    f"<p class='archetype-caption' style='text-align: left;'>"
+    f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
+    f"</p>"
     )
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
     left.append(f"Varjo: <b>{shadow_fi}</b><br><br>")
-    left.append(f"Top-dimensiot: <b>{', '.join(top_dims_fi)}</b><br>")
+    left.append(f"Top-dimensiot: <b>{', '.join(top_dims_fi)}</b><br><br>")
     left.append("</div>")
 
     left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
@@ -695,7 +697,7 @@ async def ui_assess(request: Request):
 
     left.append("<div class='sep'></div>")
     left.append("<h2>Haluatko tarkemmat ohjeet brändäykseen?</h2>")
-    left.append("<p class='meta'>Täytä lomake ja saat 24h sisällä vastauksen.</p>")
+    left.append("<p class='meta'>Täytä ja lähetä alta löytyvä lomake. Saat 24h sisällä sähköpostiisi yhteistyöehdotuksen.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
     left.append("<input type='text' name='website' style='display:none'>")
@@ -703,12 +705,14 @@ async def ui_assess(request: Request):
     left.append("<label>Nimesi</label>")
     left.append("<input name='person_name' required type='text'>")
 
-    left.append("<label>Sähköposti</label>")
+    left.append("<label>Sähköpostiosoitteesi</label>")
     left.append("<input name='person_email' required type='email'>")
 
-    left.append("<label>Yrityksen nimi</label>")
+    left.append("<label>Yrityksenne verkkosivuosoite</label>")
     left.append("<input name='company_name' required type='text'>")
 
+
+    # hidden-inputit pidetään englanniksi (lähetys ja kuvat pysyy ehjinä)
     left.append(f"<input type='hidden' name='primary_archetype' value='{primary}'>")
     left.append(f"<input type='hidden' name='secondary_archetype' value='{secondary or ''}'>")
     left.append(f"<input type='hidden' name='shadow_archetype' value='{shadow or ''}'>")
@@ -724,7 +728,7 @@ async def ui_assess(request: Request):
     left.append("</form>")
     left.append("</div>")
 
-    # 6. Oikea puoli = vain yksi kuva
+
     right = []
     right.append(f"""
     <div class="primary-img">
@@ -732,8 +736,61 @@ async def ui_assess(request: Request):
     </div>
     """)
 
-    # 7. Sivun layout
     inner = f"""
+<style>
+  .result-panel {{
+    background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
+    border-radius: 28px;
+    padding: 56px 64px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.7),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+  }}
+
+  @media (max-width: 860px) {{
+    .result-panel {{
+      padding: 28px 18px;
+      max-width: 100%;
+    }}
+  }}
+
+  .result-stack {{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+  }}
+
+  .archetype-images {{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }}
+
+  .archetype-text {{
+    width: 100%;
+  }}
+
+  .primary-img img {{
+    width: 420px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 24px;
+    max-width: 100%;
+  }}
+
+  @media (max-width: 520px) {{
+    .primary-img img {{
+      width: 100%;
+      height: auto;
+    }}
+  }}
+</style>
+
 <div class="result-panel">
   <div class="result-stack">
 
@@ -753,7 +810,7 @@ async def ui_assess(request: Request):
 
   </div>
 </div>
-"""
+    """
     return ui_shell("Tulos", inner)
 
 
