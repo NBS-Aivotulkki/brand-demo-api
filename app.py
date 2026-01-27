@@ -728,92 +728,92 @@ for q in QUESTIONS:
     left.append("</form>")
     left.append("</div>")
 
-    right = []
-    right.append(f"""
-    <div class="primary-img">
-      <img src="/static/archetypes/{primary.lower()}{primary_suffix}">
+right = []
+right.append(f"""
+<div class="primary-img">
+  <img src="/static/archetypes/{primary.lower()}{primary_suffix}">
+</div>
+""")
+
+inner = f"""
+<style>
+  .result-panel {{
+    background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
+    border-radius: 28px;
+    padding: 56px 64px;
+    width: 100%;
+    max-width: 980px;   /* sama leveys kuin muilla sivuilla */
+    margin: 0 auto;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.7),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+  }}
+
+  @media (max-width: 860px) {{
+    .result-panel {{
+      padding: 28px 18px;
+      max-width: 100%;
+    }}
+  }}
+
+  .result-stack {{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+  }}
+
+  .archetype-images {{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }}
+
+  .archetype-text {{
+    width: 100%;
+  }}
+
+  .primary-img img {{
+    width: 420px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 24px;
+    max-width: 100%;
+  }}
+
+  /* pienillä näytöillä kuva skaalautuu */
+  @media (max-width: 520px) {{
+    .primary-img img {{
+      width: 100%;
+      height: auto;
+    }}
+  }}
+</style>
+
+<div class="result-panel">
+  <div class="result-stack">
+
+    <!-- Kuvablokki ensin -->
+    <div class="archetype-images">
+      {''.join(right)}
     </div>
-    """)
-    )
 
-    inner = f"""
-        <style>
-      .result-panel {{
-        background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
-        border-radius: 28px;
-        padding: 56px 64px;
-        width: 100%;
-        max-width: 980px;   /* sama leveys kuin muilla sivuilla */
-        margin: 0 auto;
-        box-shadow:
-          0 30px 80px rgba(0,0,0,0.7),
-          inset 0 0 0 1px rgba(255,255,255,0.05);
-      }}
+    <div class="sep"></div>
 
-      @media (max-width: 860px) {{
-        .result-panel {{
-          padding: 28px 18px;
-          max-width: 100%;
-        }}
-      }}
-
-      .result-stack {{
-        display: flex;
-        flex-direction: column;
-        gap: 28px;
-        width: 100%;
-      }}
-
-      .archetype-images {{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-      }}
-
-      .primary-img img {{
-        width: 420px;
-        height: 420px;
-        object-fit: cover;
-        border-radius: 24px;
-        max-width: 100%;
-      }}
-
-
-      /* pienillä näytöillä kuvat skaalautuvat nätisti */
-      @media (max-width: 520px) {{
-        .primary-img img {{
-          width: 100%;
-          height: auto;
-        }}
-      }}
-    </style>
-
-    <div class="result-panel">
-      <div class="result-stack">
-
-        <!-- Kuvablokki ensin -->
-        <div class="archetype-images">
-          {''.join(right)}
-        </div>
-
-        <div class="sep"></div>
-
-        <!-- Tekstiblokki kuvan alle -->
-        <div class="archetype-text">
-          {''.join(left)}
-        </div>
-
-        <div style="width:100%; margin-top:14px;">
-          <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
-        </div>
-
-      </div>
+    <!-- Tekstiblokki kuvan alle -->
+    <div class="archetype-text">
+      {''.join(left)}
     </div>
-    """
-    return ui_shell("Tulos", inner)
 
+    <div style="width:100%; margin-top:14px;">
+      <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
+    </div>
 
+  </div>
+</div>
+"""
+return ui_shell("Tulos", inner)
 
 
 
@@ -866,9 +866,10 @@ Dimensiot:
     try:
         sg = SendGridAPIClient(api_key)
         sg.send(message)
-        {"ok": True}
+        return {"ok": True}
     except Exception as e:
-        {"ok": False, "error": str(e)}
+        return {"ok": False, "error": str(e)}
+
 
 @app.post("/ui-order", response_class=HTMLResponse)
 async def ui_order(request: Request):
@@ -876,7 +877,7 @@ async def ui_order(request: Request):
 
     honeypot = (form.get("website") or "").strip()
     if honeypot:
-         ui_shell("Kiitos", "<div class='hero'><h2>Kiitos</h2></div>")
+        return ui_shell("Kiitos", "<div class='hero'><h2>Kiitos</h2></div>")
 
     try:
         payload = OrderRequest(
@@ -900,7 +901,7 @@ async def ui_order(request: Request):
           <div style="margin-top:14px;"><a class="btn" href="/survey">Takaisin</a></div>
         </div>
         """
-        ui_shell("Virhe", inner)
+        return ui_shell("Virhe", inner)
 
     res = order(payload)
     if isinstance(res, dict) and res.get("ok"):
@@ -911,7 +912,7 @@ async def ui_order(request: Request):
           <a class="btn" href="/">Etusivulle</a>
         </div>
         """
-        ui_shell("Kiitos", inner)
+        return ui_shell("Kiitos", inner)
 
     inner = f"""
     <div class="card" style="width:100%;">
@@ -922,3 +923,4 @@ async def ui_order(request: Request):
     </div>
     """
     return ui_shell("Virhe", inner)
+
