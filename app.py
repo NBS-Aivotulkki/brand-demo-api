@@ -101,6 +101,18 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
 }
 
 QUESTIONS = [
+    QUESTIONS = [
+    {
+        "id": 0,
+        "text": "Onko yrityksenne asiakkaista suurin osa",
+        "options": {
+            "A": "miehiä",
+            "B": "naisia",
+            "C": "molempia yhtä paljon",
+        },
+    },
+    # ... nykyiset id=1..20 tästä eteenpäin
+]
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Ihmisten arkea helpottavalta kumppanilta", "D": "Ihmisten identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
     {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioon", "B": "Vetovoimaa tuotteeseen", "C": "Kiinnostusta ideologiaan", "D": "Yhteyttä persoonaan"}},
@@ -593,7 +605,11 @@ def ui_survey():
         name = f"q{qid}" if not multi else f"q{qid}[]"
 
         html.append("<div class='q'>")
+    if qid == 0:
+        html.append(f"<div class='q-title'>{q['text']}</div>")
+    else:
         html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
+
 
         for opt, label in q["options"].items():
             html.append(
@@ -622,6 +638,15 @@ def ui_survey():
 @app.post("/ui-assess", response_class=HTMLResponse)
 async def ui_assess(request: Request):
     form = await request.form()
+    # Luetaan ensimmäisen kysymyksen vastaus (sukupuoli)
+# A = miehiä, B = naisia, C = molempia
+audience = form.get("q0", "C")
+
+# Päätetään kuvatiedoston pääte
+# Jos valittiin "naisia", käytetään naisversiota (v2w.png)
+# Muuten käytetään miesversiota (v2.png)
+primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
+
 
     parsed: List[Answer] = []
     for q in QUESTIONS:
@@ -707,12 +732,12 @@ async def ui_assess(request: Request):
     left.append("</div>")
 
     right = []
-    right.append("""
-    <div class="archetype-images">
-      <div class="primary-img">
-        <img src="/static/archetypes/{primary}.png">
-      </div>
-    """.format(
+    right.append(f"""
+    <div class="primary-img">
+      <img src="/static/archetypes/{primary.lower()}{primary_suffix}">
+    </div>
+    """)
+    .format(
         primary=primary.lower(),
         secondary=(secondary or "").lower(),
         shadow=(shadow or "").lower()
