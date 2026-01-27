@@ -727,10 +727,9 @@ async def ui_assess(request: Request):
         secondary=(secondary or "").lower(),
         shadow=(shadow or "").lower()
     ))
-    right.append("<div class='archetype-caption'>TÄHÄN LYHYT KUVAUSTEKSTI</div>")
 
-   inner = f"""
-    <style>
+       inner = f"""
+        <style>
       .result-panel {{
         background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.70));
         border-radius: 28px;
@@ -801,15 +800,6 @@ async def ui_assess(request: Request):
           width: calc(50% - 8px);
           height: auto;
         }}
-      }}
-
-      .archetype-caption {{
-        margin-top: 8px;
-        max-width: 420px;
-        text-align: left;
-        font-size: 15px;
-        line-height: 1.4;
-        color: #dfefff;
       }}
     </style>
 
