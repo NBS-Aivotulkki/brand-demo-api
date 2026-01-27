@@ -281,6 +281,7 @@ def assess(req: AssessRequest):
     shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
+    recs = make_recommendations(primary, top_dims)
     low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
     recs = make_recommendations(primary, top_dims)
@@ -640,6 +641,15 @@ async def ui_assess(request: Request):
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
+    left.append("</ul>")
+    left.append("<div class='sep'></div>")
+    left.append("<h2>Suositukset brändille</h2>")
+
+    for block in recs:
+    left.append(f"<h3>{block['title']}</h3>")
+    left.append("<ul class='list'>")
+    for item in block["items"]:
+        left.append(f"<li>{item}</li>")
     left.append("</ul>")
 
     left.append("<div class='sep'></div>")
