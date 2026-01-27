@@ -148,27 +148,236 @@ WEIGHTS = {
 
 REC_ARCHETYPE = {
     "Ruler": {
-        "tone": ["Puhu standardeista ja periaatteista, älä trendeistä.", "Käytä päätöskieltä; vältä liiallista selittelyä."],
-        "proof": ["Sertifikaatit/auditoinnit + referenssitalot.", "SLA:t, vasteajat ja riskinpoistomekanismit."],
-        "design": ["Järjestelmällinen, selkeä hierarkia, ei koristeita."],
-        "cx": ["Ennustettava rytmi, selkeä omistajuus, eskalointipolku."],
-        "bounds": ["Karsi asiakkuudet, joissa periaatteita ei kunnioiteta."],
+        "tone": [
+            "Puhu standardeista ja periaatteista, älä trendeistä.",
+            "Käytä päätöskieltä; vältä liiallista selittelyä.",
+        ],
+        "proof": [
+            "Sertifikaatit/auditoinnit + referenssitalot.",
+            "SLA:t, vasteajat ja riskinpoistomekanismit.",
+        ],
+        "design": [
+            "Järjestelmällinen, selkeä hierarkia, ei koristeita.",
+        ],
+        "cx": [
+            "Ennustettava rytmi, selkeä omistajuus, eskalointipolku.",
+        ],
+        "bounds": [
+            "Karsi asiakkuudet, joissa periaatteita ei kunnioiteta.",
+        ],
     },
+
     "Sage": {
-        "tone": ["Opeta ja määrittele; tee päätöksenteko helpoksi."],
-        "proof": ["Data, benchmarkit, menetelmät ja perustelut."],
-        "design": ["Selkeä informaatioarkkitehtuuri, havainnollistavat kaaviot."],
-        "cx": ["Dokumentaatio ja jatkuva oppiminen osaksi toimitusta."],
-        "bounds": ["Vältä hype-kieltä; pysy todennettavassa."],
+        "tone": [
+            "Opeta ja määrittele; tee päätöksenteko helpoksi.",
+        ],
+        "proof": [
+            "Data, benchmarkit, menetelmät ja perustelut.",
+        ],
+        "design": [
+            "Selkeä informaatioarkkitehtuuri, havainnollistavat kaaviot.",
+        ],
+        "cx": [
+            "Dokumentaatio ja jatkuva oppiminen osaksi toimitusta.",
+        ],
+        "bounds": [
+            "Vältä hype-kieltä; pysy todennettavassa.",
+        ],
     },
+
     "Hero": {
-        "tone": ["Haasta ja kannusta; puhu voittamisesta ja vaikeista valinnoista."],
-        "proof": ["Ennen–jälkeen -tulokset, kovat numerot, vaikeat caset."],
-        "design": ["Selkeä ja jämäkkä; visuaalisesti energinen mutta hallittu."],
-        "cx": ["Nopea reagointi, selkeät lupaukset ja tiukka toteutus."],
-        "bounds": ["Älä pehmennä ydinhaastetta miellyttämisen takia."],
+        "tone": [
+            "Haasta ja kannusta; puhu voittamisesta ja vaikeista valinnoista.",
+        ],
+        "proof": [
+            "Ennen–jälkeen -tulokset, kovat numerot, vaikeat caset.",
+        ],
+        "design": [
+            "Selkeä ja jämäkkä; visuaalisesti energinen mutta hallittu.",
+        ],
+        "cx": [
+            "Nopea reagointi, selkeät lupaukset ja tiukka toteutus.",
+        ],
+        "bounds": [
+            "Älä pehmennä ydinhaastetta miellyttämisen takia.",
+        ],
+    },
+
+    "Creator": {
+        "tone": [
+            "Puhu luomisesta, kokeilusta ja omaperäisyydestä; vältä geneeristä best practice -kieltä.",
+            "Käytä kieltä, joka kutsuu osallistumaan ja rakentamaan yhdessä.",
+        ],
+        "proof": [
+            "Portfolio: ennen–jälkeen -näytteet, prototyypit ja konseptit.",
+            "Prosessin läpinäkyvyys: miten ideat syntyvät ja jalostuvat.",
+        ],
+        "design": [
+            "Erottuva, tunnistettava visuaalinen kieli.",
+            "Näytä tekeminen: luonnokset, variaatiot ja järjestelmät.",
+        ],
+        "cx": [
+            "Iteratiivinen toimitus: nopeat luonnokset ja palautekierrokset.",
+            "Yhteiskehittämisen formaatit vakioiduksi.",
+        ],
+        "bounds": [
+            "Älä standardisoi luovuutta hengiltä.",
+        ],
+    },
+
+    "Explorer": {
+        "tone": [
+            "Korosta vapautta ja uusia mahdollisuuksia.",
+            "Puhu uteliaisuudesta ja oppimisesta.",
+        ],
+        "proof": [
+            "Tutkimus, testit ja pilotit näkyviksi.",
+            "Caset, joissa on avattu uusia markkinoita tai kanavia.",
+        ],
+        "design": [
+            "Tilava ja liikkeen tuntuinen rakenne.",
+            "Navigaatio, joka rohkaisee tutkimaan.",
+        ],
+        "cx": [
+            "Selkeä exploration-vaihe ennen päätöksiä.",
+            "Nopea kokeilukapasiteetti ja oppien dokumentointi.",
+        ],
+        "bounds": [
+            "Älä lukitse asiakasta yhteen ratkaisuun liian aikaisin.",
+        ],
+    },
+
+    "Outlaw": {
+        "tone": [
+            "Sano ääneen, mikä nykyisessä mallissa on pielessä.",
+            "Ole suorapuheinen ja kantaaottava.",
+        ],
+        "proof": [
+            "Caset, joissa vanha tapa on rikottu ja saavutettu etu.",
+            "Selkeät rajaukset ja kompromissien näkyväksi tekeminen.",
+        ],
+        "design": [
+            "Terävä kontrasti ja vahva typografinen hierarkia.",
+        ],
+        "cx": [
+            "Nopeat päätökset ja suora yhteys tekijöihin.",
+        ],
+        "bounds": [
+            "Älä laimenna sanomaa miellyttämisen vuoksi.",
+        ],
+    },
+
+    "Magician": {
+        "tone": [
+            "Puhu transformaatiosta ja muutoksesta.",
+            "Käytä rauhallista, varmaa kieltä ilman hypeä.",
+        ],
+        "proof": [
+            "Demot ja visualisoinnit, jotka näyttävät muutoksen.",
+            "Selkeä menetelmä, jolla muutos tehdään toistettavasti.",
+        ],
+        "design": [
+            "Muutoskaaren visualisointi ennen–jälkeen.",
+        ],
+        "cx": [
+            "Onboarding, joka rakentaa oivalluksen askel askeleelta.",
+        ],
+        "bounds": [
+            "Älä lupaa taikaa ilman mitattavaa vaikutusta.",
+        ],
+    },
+
+    "Caregiver": {
+        "tone": [
+            "Puhu turvasta, tuesta ja kuormituksen vähentämisestä.",
+        ],
+        "proof": [
+            "Asiakastyytyväisyys, vasteajat ja palvelulupaukset.",
+        ],
+        "design": [
+            "Rauhallinen, selkeä ja helposti luettava ilme.",
+        ],
+        "cx": [
+            "Ennakoiva tuki ja selkeä vastuunjako.",
+        ],
+        "bounds": [
+            "Älä ota asiakkuuksia, joissa yhteistyö ei ole aitoa.",
+        ],
+    },
+
+    "Everyman": {
+        "tone": [
+            "Puhu arkisesti ja reilusti.",
+        ],
+        "proof": [
+            "Laaja käyttönäyttö ja vakaa laatu.",
+        ],
+        "design": [
+            "Tutunomainen ja ennustettava rakenne.",
+        ],
+        "cx": [
+            "Matala kitka ja helppo käyttöönotto.",
+        ],
+        "bounds": [
+            "Älä yritä olla premium tai kapinallinen samaan aikaan.",
+        ],
+    },
+
+    "Lover": {
+        "tone": [
+            "Korosta estetiikkaa, nautintoa ja tunnetta.",
+        ],
+        "proof": [
+            "Korkealaatuiset visuaaliset caset ja asiakaspalaute.",
+        ],
+        "design": [
+            "Premium-yksityiskohdat ja harkittu typografia.",
+        ],
+        "cx": [
+            "Henkilökohtainen ja huolellinen palvelukokemus.",
+        ],
+        "bounds": [
+            "Älä kiirehdi tai alihinnoittele laatulupausta.",
+        ],
+    },
+
+    "Jester": {
+        "tone": [
+            "Kevyt, nokkela ja inhimillinen.",
+        ],
+        "proof": [
+            "Esimerkit, joissa huumori on tuottanut tulosta.",
+        ],
+        "design": [
+            "Selkeä perusrakenne ja yksi hallittu twisti.",
+        ],
+        "cx": [
+            "Helppo vuorovaikutus ja nopea reagointi.",
+        ],
+        "bounds": [
+            "Älä käytä huumoria herkissä tilanteissa.",
+        ],
+    },
+
+    "Innocent": {
+        "tone": [
+            "Puhu helppoudesta, turvallisuudesta ja mielenrauhasta.",
+        ],
+        "proof": [
+            "Standardit, takuut ja virheettömyysluvut.",
+        ],
+        "design": [
+            "Pelkistetty ja valoisa visuaalinen kieli.",
+        ],
+        "cx": [
+            "Ohjattu polku ja selkeät tarkistusvaiheet.",
+        ],
+        "bounds": [
+            "Älä tee tarjouksesta monimutkaista.",
+        ],
     },
 }
+
 
 REC_DIMENSION = {
     "Integrity": ["Läpinäkyvyys oletukseksi: päätöskriteerit ja hinnoittelun logiikka näkyviin.", "Kirjoita 'mitä emme tee' ja pidä siitä kiinni."],
