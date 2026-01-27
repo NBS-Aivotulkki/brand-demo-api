@@ -712,16 +712,6 @@ async def ui_assess(request: Request):
       <div class="primary-img">
         <img src="/static/archetypes/{primary}.png">
       </div>
-
-      <div class="secondary-row">
-        <div class="secondary-img">
-          <img src="/static/archetypes/{secondary}.png">
-        </div>
-        <div class="secondary-img">
-          <img src="/static/archetypes/{shadow}.png">
-        </div>
-      </div>
-    </div>
     """.format(
         primary=primary.lower(),
         secondary=(secondary or "").lower(),
@@ -771,33 +761,11 @@ async def ui_assess(request: Request):
         max-width: 100%;
       }}
 
-      .secondary-row {{
-        display: flex;
-        width: 420px;
-        max-width: 100%;
-        justify-content: space-between;
-        gap: 16px;
-      }}
-
-      .secondary-img img {{
-        width: 202px;
-        height: 202px;
-        object-fit: cover;
-        border-radius: 18px;
-        max-width: 100%;
-      }}
 
       /* pienillä näytöillä kuvat skaalautuvat nätisti */
       @media (max-width: 520px) {{
         .primary-img img {{
           width: 100%;
-          height: auto;
-        }}
-        .secondary-row {{
-          width: 100%;
-        }}
-        .secondary-img img {{
-          width: calc(50% - 8px);
           height: auto;
         }}
       }}
