@@ -104,7 +104,7 @@ QUESTIONS = [
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Yksilöiden arkea helpottavalta kumppanilta", "D": "Yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
     {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioomme", "B": "Vetovoimaa tuotteeseemme/palveluumme", "C": "Kiinnostusta aatemaailmaamme kohtaan", "D": "Yhteyttä persoonaan"}},
-    {"id": 4, "text": "Haluamme mieluummin, että meistä sanotaan:", "options": {"A": ""Toimii aina."", "B": ""Tuntuu paremmalta kuin muut."", "C": ""Näyttää paremmalta kuin muut."", "D": ""Ajattelee pidemmälle kuin muut.""}},
+    {"id": 4, "text": "Haluamme mieluummin, että meistä sanotaan:", "options": {"A": "Toimii aina.", "B": "Tuntuu paremmalta kuin muut.", "C": "Näyttää paremmalta kuin muut.", "D": "Ajattelee pidemmälle kuin muut."}},
     {"id": 5, "text": "Kun asiakas valitsee meidät, hänen pitäisi ensisijaisesti tuntea:", "options": {"A": "Turvaa", "B": "Ylpeyttä", "C": "Innostusta", "D": "Rauhaa"}},
     {"id": 6, "text": "Haluamme brändimme olevan mieluummin:", "options": {"A": "Auktoriteetti", "B": "Kumppani", "C": "Haastaja", "D": "Suunnannäyttäjä"}},
     {"id": 7, "text": "Valitsemme mieluummin sen:", "options": {"A": "että kaikki eivät pidä meistä", "B": "että olemme helposti lähestyttäviä", "C": "että herätämme keskustelua", "D": "että koemme harvoin vastustusta"}},
@@ -120,7 +120,7 @@ QUESTIONS = [
     {"id": 17, "text": "Valitse kaksi(2) yritykseenne liitettävää arvoa, joista olette valmiita luopumaan:", "multi_select": True, "options": {"A": "Nopeus", "B": "Massasuosio", "C": "Pehmeys", "D": "Varovaisuus", "E": "Mukavuus"}},
     {"id": 18, "text": "Haluamme, että asiakas:", "options": {"A": "kuuntelee meitä", "B": "kunnioittaa meitä", "C": "luottaa meihin", "D": "toimii mallimme mukaisesti"}},
     {"id": 19, "text": "Haluamme yrityksemme olevan eniten:", "options": {"A": "ratkaisu", "B": "ajatus", "C": "kokemus", "D": "ilmiö"}},
-    {"id": 20, "text": "Jos yritystämme täytyy kuvata yhdellä lauseella, valitsemme mieluiten:", "options": {"A": ""Turvallinen ja vahva."", "B": ""Rohkea ja erottuva."", "C": ""Lämmin ja inhimillinen."", "D": ""Älykäs ja näkemyksellinen.""}},
+    {"id": 20, "text": "Jos yritystämme täytyy kuvata yhdellä lauseella, valitsemme mieluiten:", "options": {"A": "Turvallinen ja vahva.", "B": "Rohkea ja erottuva.", "C": "Lämmin ja inhimillinen.", "D": "Älykäs ja näkemyksellinen."}},
 ]
 
 WEIGHTS = {
@@ -781,19 +781,25 @@ def ui_survey():
         input_type = "checkbox" if multi else "radio"
         name = f"q{qid}" if not multi else f"q{qid}[]"
 
+        italic = (qid in (4, 20))
+
         html.append("<div class='q'>")
-        if qid == 0:
-            html.append(f"<div class='q-title'>{q['text']}</div>")
-        else:
-            html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
+        html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
 
         for opt, label in q["options"].items():
+            text = f"<em>{label}</em>" if italic else label
             html.append(
                 f"<label class='opt'>"
                 f"<input type='{input_type}' name='{name}' value='{opt}'> "
-                f"<span><b>{opt}</b> {label}</span>"
+                f"<span><b>{opt}</b> {text}</span>"
                 f"</label>"
             )
+
+    if multi:
+        html.append("<div class='hint'>Valitse 2</div>")
+
+    html.append("</div>")
+
 
         if multi:
             html.append("<div class='hint'>Valitse 2</div>")
