@@ -917,7 +917,7 @@ async def ui_assess(request: Request):
                 left.append("</ul>")
                 
         # --- Brändiarkkityypin perusväripaletti + websivu-esimerkki ---
-    # Kuvien nimet: /static/colorpalettes/{primary_lower}_cp.png ja /static/colorpalettes/{primary_lower}_ws.png
+    # Kuvien nimet: /static/colorpalettes/{primary_lower}_cp.png ja /static/archetypes/{primary_lower}_ws.png
     # Esim: ruler_cp.png, ruler_ws.png
 
     primary_lower = primary.lower()
@@ -936,7 +936,7 @@ async def ui_assess(request: Request):
 
     left.append(
         f"<div class='img-block'>"
-        f"  <img src='/static/colorpalettes/{primary_lower}_ws.png' "
+        f"  <img src='/static/archetypes/{primary_lower}_ws.png' "
         f"       alt='{primary} website example' loading='lazy'>"
         f"</div>"
     )
