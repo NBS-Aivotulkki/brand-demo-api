@@ -769,7 +769,7 @@ def ui_landing():
 
 @app.get("/survey", response_class=HTMLResponse)
 def ui_survey():
-    html: List[str] = []
+    html = []
     html.append("<div class='survey'>")
     html.append("<h2>Kysely</h2>")
     html.append("<p class='meta'>Vastaa valinnoilla. Kohtiin joissa lukee “Valitse kaksi”, voit valita kaksi.</p>")
@@ -781,10 +781,16 @@ def ui_survey():
         input_type = "checkbox" if multi else "radio"
         name = f"q{qid}" if not multi else f"q{qid}[]"
 
+        # Kursiivi vain kysymyksille 4 ja 20
         italic = (qid in (4, 20))
 
         html.append("<div class='q'>")
-        html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
+
+        # Otsikko: q0 ilman numerointia, muut numerolla
+        if qid == 0:
+            html.append(f"<div class='q-title'>{q['text']}</div>")
+        else:
+            html.append(f"<div class='q-title'>{qid}. {q['text']}</div>")
 
         for opt, label in q["options"].items():
             text = f"<em>{label}</em>" if italic else label
@@ -795,10 +801,10 @@ def ui_survey():
                 f"</label>"
             )
 
-    if multi:
-        html.append("<div class='hint'>Valitse 2</div>")
+        if multi:
+            html.append("<div class='hint'>Valitse 2</div>")
 
-    html.append("</div>")
+        html.append("</div>")  # <-- tämä sulkee yhden kysymyslaatikon JOKA kierroksella
 
     html.append("""
       <div class="actions">
