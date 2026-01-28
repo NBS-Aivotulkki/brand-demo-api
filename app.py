@@ -717,6 +717,19 @@ def ui_shell(title: str, inner_html: str) -> str:
       outline: none;
       font-family: Helvetica, Arial, sans-serif;
     }}
+    .img-block {{
+      margin: 10px 0 18px;
+    }}
+
+    .img-block img {{
+      width: 100%;
+      max-width: 720px;
+      height: auto;
+      border-radius: 14px;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }}
     textarea {{ min-height: 110px; resize: vertical; }}
     .backlink {{
       color: rgba(255,255,255,0.75);
@@ -902,6 +915,31 @@ async def ui_assess(request: Request):
                 for item in items:
                     left.append(f"<li>{item}</li>")
                 left.append("</ul>")
+                
+        # --- Brändiarkkityypin perusväripaletti + websivu-esimerkki ---
+    # Kuvien nimet: /static/colorpalettes/{primary_lower}_cp.png ja /static/colorpalettes/{primary_lower}_ws.png
+    # Esim: ruler_cp.png, ruler_ws.png
+
+    primary_lower = primary.lower()
+
+    left.append("<div class='sep'></div>")
+    left.append("<div class='meta'><b>Brändiarkkityypin perusväripaletti</b></div>")
+
+    left.append(
+        f"<div class='img-block'>"
+        f"  <img src='/static/colorpalettes/{primary_lower}_cp.png' "
+        f"       alt='{primary} color palette' loading='lazy'>"
+        f"</div>"
+    )
+
+    left.append("<div class='meta'><b>Esimerkki värien hyödyntämisestä verkkosivulla</b></div>")
+
+    left.append(
+        f"<div class='img-block'>"
+        f"  <img src='/static/colorpalettes/{primary_lower}_ws.png' "
+        f"       alt='{primary} website example' loading='lazy'>"
+        f"</div>"
+    )
 
 
     left.append("<div class='sep'></div>")
