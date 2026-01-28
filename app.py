@@ -800,12 +800,6 @@ def ui_survey():
 
     html.append("</div>")
 
-
-        if multi:
-            html.append("<div class='hint'>Valitse 2</div>")
-
-        html.append("</div>")
-
     html.append("""
       <div class="actions">
         <button class="btn" type="submit">Näytä tulos</button>
