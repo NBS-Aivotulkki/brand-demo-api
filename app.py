@@ -576,7 +576,7 @@ def ui_shell(title: str, inner_html: str) -> str:
 
     /* Väli listan ja seuraavan otsikon väliin */
     .rec-list + h3 {{
-      margin-top: 36px;
+      margin-top: 12px;
     }}
 
     .content-panel {{
@@ -688,14 +688,14 @@ def ui_shell(title: str, inner_html: str) -> str:
       list-style: none;
     }}
     .list li {{
-      margin: 6px 0;
+      margin: 4px 0;
       font-size: 14px;
       color: var(--ink);
     }}
     .sep {{
       height: 1px;
       background: rgba(255,255,255,0.10);
-      margin: 18px 0;
+      margin: 36px 0;
     }}
     label {{
       display: block;
