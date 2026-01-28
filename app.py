@@ -150,17 +150,17 @@ REC_ARCHETYPE = {
     "Ruler": {
         "tone": [
             "Puhu standardeista ja periaatteista, älä trendeistä.",
-            "Viesti määrätietoisesti; vältä selittelyä.",
+            "Viesti määrätietoisesti, vältä selittelyä.",
         ],
         "proof": [
-            "Sertifikaatit/auditoinnit, referenssit ja suosittelut.",
-            "Kirjalliset palvelulupaukset, reagoinnin vasteajat ja riskinpoistomekanismit.",
+            "sertifikaatit/auditoinnit, referenssit ja suosittelut",
+            "kirjalliset palvelulupaukset, reagoinnin vasteajat ja riskinpoistomekanismit",
         ],
-        "design": [
-            "Järjestelmällinen, selkeä ja pelkistetty.",
+        "visuaalinen ulkoasu": [
+            "järjestelmällinen, selkeä ja pelkistetty",
         ],
         "cx": [
-            "Ennustettava rytmi, selkeä omistajuus, organisoitu ongelmanratkaisu",
+            "ennustettava eteneminen, selkeä omistajuus, organisoitu ongelmanratkaisu",
         ],
         "bounds": [
             "Karsi asiakkuudet, joissa periaatteita ei kunnioiteta.",
@@ -172,31 +172,31 @@ REC_ARCHETYPE = {
             "Opeta ja määrittele; tee päätöksenteko helpoksi.",
         ],
         "proof": [
-            "Data, benchmarkit, menetelmät ja perustelut.",
+            "data, benchmarkit, menetelmät ja perustelut.",
         ],
         "design": [
-            "Selkeä informaatioarkkitehtuuri, havainnollistavat kaaviot.",
+            "selkeä informaatioarkkitehtuuri, havainnollistavat kaaviot",
         ],
         "cx": [
-            "Dokumentaatio ja jatkuva oppiminen osaksi toimitusta.",
+            "dokumentaatio ja jatkuva oppiminen",
         ],
         "bounds": [
-            "Vältä hype-kieltä; pysy todennettavassa.",
+            "Vältä maalailevaa hype-kieltä, pysy todennettavassa.",
         ],
     },
 
     "Hero": {
         "tone": [
-            "Haasta ja kannusta; puhu voittamisesta ja vaikeista valinnoista.",
+            "Haasta ja kannusta, puhu voittamisesta ja vaikeista valinnoista.",
         ],
         "proof": [
-            "Ennen–jälkeen -tulokset, kovat numerot, vaikeat caset.",
+            "ennen–jälkeen-tulokset, faktinen data, voitoiksi käännnetyt haastavat yhteistyöt",
         ],
         "design": [
-            "Selkeä ja jämäkkä; visuaalisesti energinen mutta hallittu.",
+            "selkeä ja jämäkkä, visuaalisesti energinen mutta hallittu",
         ],
         "cx": [
-            "Nopea reagointi, selkeät lupaukset ja tiukka toteutus.",
+            "nopea reagointi, selkeät lupaukset ja tiukka toteutus",
         ],
         "bounds": [
             "Älä pehmennä ydinhaastetta miellyttämisen takia.",
@@ -205,23 +205,23 @@ REC_ARCHETYPE = {
 
     "Creator": {
         "tone": [
-            "Puhu luomisesta, kokeilusta ja omaperäisyydestä; vältä geneeristä best practice -kieltä.",
+            "Puhu luomisesta, kokeilusta ja omaperäisyydestä, vältä geneeristä ja rutiineita ylentävää kieltä.",
             "Käytä kieltä, joka kutsuu osallistumaan ja rakentamaan yhdessä.",
         ],
         "proof": [
-            "Portfolio: ennen–jälkeen -näytteet, prototyypit ja konseptit.",
-            "Prosessin läpinäkyvyys: miten ideat syntyvät ja jalostuvat.",
+            "ennen–jälkeen-näytteet, prototyypit ja konseptit",
+            "prosessin läpinäkyvyys: miten ideat syntyvät ja jalostuvat.",
         ],
         "design": [
-            "Erottuva, tunnistettava visuaalinen kieli.",
+            "erottuva, tunnistettava visuaalinen kieli",
             "Näytä tekeminen: luonnokset, variaatiot ja järjestelmät.",
         ],
         "cx": [
-            "Iteratiivinen toimitus: nopeat luonnokset ja palautekierrokset.",
-            "Yhteiskehittämisen formaatit vakioiduksi.",
+            "käytännössä kehittyvä toimitus: nopeat luonnokset ja palautekierrokset",
+            "vakioidut yhteiskehittämisen formaatit",
         ],
         "bounds": [
-            "Älä standardisoi luovuutta hengiltä.",
+            "Älä rajaa ja standardoi luovuutta hengiltä.",
         ],
     },
 
@@ -231,16 +231,16 @@ REC_ARCHETYPE = {
             "Puhu uteliaisuudesta ja oppimisesta.",
         ],
         "proof": [
-            "Tutkimus, testit ja pilotit näkyviksi.",
-            "Caset, joissa on avattu uusia markkinoita tai kanavia.",
+            "tutkimus, testit ja näkyvät pilotit",
+            "Yhteistyöt, joissa on avattu uusia markkinoita tai kanavia.",
         ],
         "design": [
-            "Tilava ja liikkeen tuntuinen rakenne.",
+            "tilava ja liikkeestä vihjaava rakenne",
             "Navigaatio, joka rohkaisee tutkimaan.",
         ],
         "cx": [
-            "Selkeä exploration-vaihe ennen päätöksiä.",
-            "Nopea kokeilukapasiteetti ja oppien dokumentointi.",
+            "selkeä ja syväluotaava tutkailu ennen päätöksiä",
+            "nopea kokeilukapasiteetti ja oppien dokumentointi",
         ],
         "bounds": [
             "Älä lukitse asiakasta yhteen ratkaisuun liian aikaisin.",
@@ -253,14 +253,14 @@ REC_ARCHETYPE = {
             "Ole suorapuheinen ja kantaaottava.",
         ],
         "proof": [
-            "Caset, joissa vanha tapa on rikottu ja saavutettu etu.",
-            "Selkeät rajaukset ja kompromissien näkyväksi tekeminen.",
+            "Yhteistyöt, joissa vanhojen tapojen rikkominen on muuttunut menestykseksi.",
+            "selkeät rajaukset ja kompromissien näkyväksi tekeminen",
         ],
         "design": [
-            "Terävä kontrasti ja vahva typografinen hierarkia.",
+            "terävä kontrasti ja vahva typografinen hierarkia",
         ],
         "cx": [
-            "Nopeat päätökset ja suora yhteys tekijöihin.",
+            "nopeat päätökset ja suora yhteys tekijöihin",
         ],
         "bounds": [
             "Älä laimenna sanomaa miellyttämisen vuoksi.",
@@ -269,7 +269,7 @@ REC_ARCHETYPE = {
 
     "Magician": {
         "tone": [
-            "Puhu transformaatiosta ja muutoksesta.",
+            "Puhu muuttumisesta ja muutoksesta.",
             "Käytä rauhallista, varmaa kieltä ilman hypeä.",
         ],
         "proof": [
@@ -277,13 +277,13 @@ REC_ARCHETYPE = {
             "Selkeä menetelmä, jolla muutos tehdään toistettavasti.",
         ],
         "design": [
-            "Muutoskaaren visualisointi ennen–jälkeen.",
+            "muutoskaaren visualisointi ennen–jälkeen.",
         ],
         "cx": [
-            "Onboarding, joka rakentaa oivalluksen askel askeleelta.",
+            "selkeää ja oivalluttavaa",
         ],
         "bounds": [
-            "Älä lupaa taikaa ilman mitattavaa vaikutusta.",
+            "Älä lupaa ihmeitä ilman mitattavaa vaikutusta.",
         ],
     },
 
@@ -292,31 +292,31 @@ REC_ARCHETYPE = {
             "Puhu turvasta, tuesta ja kuormituksen vähentämisestä.",
         ],
         "proof": [
-            "Asiakastyytyväisyys, vasteajat ja palvelulupaukset.",
+            "asiakastyytyväisyys, palvelutuottamisen vasteajat ja palvelulupaukset",
         ],
         "design": [
-            "Rauhallinen, selkeä ja helposti luettava ilme.",
+            "rauhallinen, selkeä ja helposti luettava ilme",
         ],
         "cx": [
-            "Ennakoiva tuki ja selkeä vastuunjako.",
+            "ennakoiva tuki ja selkeä vastuunjako",
         ],
         "bounds": [
-            "Älä ota asiakkuuksia, joissa yhteistyö ei ole aitoa.",
+            "Älä ota asiakkuuksia, joissa yhteistyö ei ole aitoa tai joita ette halua auttaa.",
         ],
     },
 
     "Everyman": {
         "tone": [
-            "Puhu arkisesti ja reilusti.",
+            "Puhu arkisesti, ole reilu ja "hyvä tyyppi".",
         ],
         "proof": [
-            "Laaja käyttönäyttö ja vakaa laatu.",
+            "monipuoliset asiakasreferenssit ja laadullisen vakauden korostaminen",
         ],
         "design": [
-            "Tutunomainen ja ennustettava rakenne.",
+            "tutunomainen ennustettava ukoasu ja rakenne",
         ],
         "cx": [
-            "Matala kitka ja helppo käyttöönotto.",
+            "matalat riskit, helppo käyttöönotto",
         ],
         "bounds": [
             "Älä yritä olla premium tai kapinallinen samaan aikaan.",
@@ -328,13 +328,13 @@ REC_ARCHETYPE = {
             "Korosta estetiikkaa, nautintoa ja tunnetta.",
         ],
         "proof": [
-            "Korkealaatuiset visuaaliset caset ja asiakaspalaute.",
+            "näyttävät ja korkealaatuiset asiakasyhteistyöt ja asiakaspalaute.",
         ],
         "design": [
-            "Premium-yksityiskohdat ja harkittu typografia.",
+            "premium-henkisyys",
         ],
         "cx": [
-            "Henkilökohtainen ja huolellinen palvelukokemus.",
+            "henkilökohtainen ja huolellinen palvelukokemus",
         ],
         "bounds": [
             "Älä kiirehdi tai alihinnoittele laatulupausta.",
@@ -343,16 +343,16 @@ REC_ARCHETYPE = {
 
     "Jester": {
         "tone": [
-            "Kevyt, nokkela ja inhimillinen.",
+            "kevyt, nokkela ja inhimillinen",
         ],
         "proof": [
             "Esimerkit, joissa huumori on tuottanut tulosta.",
         ],
         "design": [
-            "Selkeä perusrakenne ja yksi hallittu twisti.",
+            "selkeä perusrakenne hallitulla yllätystwistillä",
         ],
         "cx": [
-            "Helppo vuorovaikutus ja nopea reagointi.",
+            "helppo vuorovaikutus ja nopea reagointi",
         ],
         "bounds": [
             "Älä käytä huumoria herkissä tilanteissa.",
@@ -364,13 +364,13 @@ REC_ARCHETYPE = {
             "Puhu helppoudesta, turvallisuudesta ja mielenrauhasta.",
         ],
         "proof": [
-            "Standardit, takuut ja virheettömyysluvut.",
+            "standardit, takuut ja virheettömyysluvut",
         ],
         "design": [
-            "Pelkistetty ja valoisa visuaalinen kieli.",
+            "pelkistetty, tilava ja valoisa visuaalinen kieli",
         ],
         "cx": [
-            "Ohjattu polku ja selkeät tarkistusvaiheet.",
+            "opastettu ja ohjattu polku, sekä selkeät tarkistusvaiheet.",
         ],
         "bounds": [
             "Älä tee tarjouksesta monimutkaista.",
@@ -866,7 +866,7 @@ async def ui_assess(request: Request):
     left.append("<div class='meta'>")
     left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
     left.append(f"Varjo: <b>{shadow_fi}</b><br><br>")
-    left.append(f"Top-dimensiot: <b>{', '.join(top_dims_fi)}</b><br><br>")
+    left.append(f"Huippuominaisuudet: <b>{', '.join(top_dims_fi)}</b><br><br>")
     left.append("</div>")
 
     left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
@@ -888,9 +888,9 @@ async def ui_assess(request: Request):
         left.append("</ul>")
 
     left.append("<div class='sep'></div>")
-    left.append("<h2>Haluatko tarkemmat ohjeet brändäykseen?</h2>")
+    left.append("<h2>Haluatko tarkemmat ja personoidut ohjeet brändäykseen?</h2>")
 
-    left.append("<p class='meta'>Täytä ja lähetä alta löytyvä lomake. Saat 24h sisällä sähköpostiisi yhteistyöehdotuksen.</p>")
+    left.append("<p class='meta'>Täytä ja lähetä alta löytyvä lomake. Saat 48h sisällä sähköpostitse etenemisehdotuksen.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
     left.append("<input type='text' name='website' style='display:none'>")
