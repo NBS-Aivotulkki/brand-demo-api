@@ -576,7 +576,7 @@ def ui_shell(title: str, inner_html: str) -> str:
 
     /* Väli listan ja seuraavan otsikon väliin */
     .rec-list + h3 {{
-      margin-top: 18px;
+      margin-top: 36px;
     }}
 
     .content-panel {{
