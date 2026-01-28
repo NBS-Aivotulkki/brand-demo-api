@@ -307,7 +307,7 @@ REC_ARCHETYPE = {
 
     "Everyman": {
         "tone": [
-            "Puhu arkisesti, ole reilu ja "hyvä tyyppi".",
+            "Puhu arkisesti, ole reilu ja hyvä tyyppi.",
         ],
         "proof": [
             "monipuoliset asiakasreferenssit ja laadullisen vakauden korostaminen",
