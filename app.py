@@ -563,9 +563,9 @@ def ui_shell(title: str, inner_html: str) -> str:
       justify-content: center;
     }}
     .rec-list {{
-      margin: 8px 0 18px;
-      padding-left: 18px;      /* sisennys palluroille */
-      list-style: disc;        /* pallurat päälle */
+      margin: 6px 0 20px;     /* ylös tiiviimpi, alas enemmän ilmaa */
+      padding-left: 18px;    
+      list-style: disc;      
     }}
 
     .rec-list li {{
@@ -574,10 +574,16 @@ def ui_shell(title: str, inner_html: str) -> str:
       color: var(--ink);
     }}
 
-    /* Väli listan ja seuraavan otsikon väliin */
-    .rec-list + h3 {{
+    /* Väli seuraavan suositusotsikon (meta) yläpuolelle */
+    .rec-list + .meta {{
       margin-top: 12px;
     }}
+
+    /* Väli viimeisen suosituksen jälkeen ennen seuraavaa erotinta */
+    .rec-list + .sep {{
+      margin-top: 20px;
+    }}
+
 
     .content-panel {{
       width: 100%;
@@ -869,23 +875,34 @@ async def ui_assess(request: Request):
     left.append(f"Huippuominaisuudet: <b>{', '.join(top_dims_fi)}</b><br><br>")
     left.append("</div>")
 
+    # Ominaisuudet
     left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
     left.append("</ul>")
-    
-    recs = make_recommendations(primary, top_dims)
-    
-    left.append("<div class='sep'></div>")
-    left.append("<h2>Suositukset brändille</h2>")
 
-    for block in recs:
-        left.append(f"<h3>{block['title']}</h3>")
-        left.append("<ul class='list'>")
-        for item in block["items"]:
-            left.append(f"<li>{item}</li>")
-        left.append("</ul>")
+    # Suositukset (ilman pääotsikkoa), samaan korttiin ominaisuuksien jälkeen
+    recs = make_recommendations(primary, top_dims)
+
+    if recs:
+        left.append("<div class='sep'></div>")
+
+        for block in recs:
+            title = block.get("title", "").strip()
+            items = block.get("items", [])
+
+            if title:
+                # Sama “meta”-tyyli kuin ominaisuuksissa, ei h2/h3
+                left.append(f"<div class='meta' style='margin-top:14px;'><b>{title}</b></div>")
+
+            if items:
+                # Suosituksille oma listaluokka, jotta pallurat saadaan näkyviin
+                left.append("<ul class='rec-list'>")
+                for item in items:
+                    left.append(f"<li>{item}</li>")
+                left.append("</ul>")
+
 
     left.append("<div class='sep'></div>")
     left.append("<h2>Haluatko tarkemmat ja personoidut ohjeet brändäykseen?</h2>")
