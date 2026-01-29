@@ -85,19 +85,68 @@ ARCHETYPE_DESCRIPTIONS = {
 }
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
-    "Ruler":     {"Authority": 0.92, "Discipline": 0.82, "Sophistication": 0.73, "Competence": 0.90, "Warmth": 0.20, "Playfulness": 0.02, "Boldness": 0.65, "Integrity": 0.52, "Vision": 0.30},
-    "Sage":      {"Competence": 0.93, "Integrity": 0.85, "Authority": 0.60, "Vision": 0.45, "Discipline": 0.48, "Sophistication": 0.75, "Warmth": 0.25, "Playfulness": 0.03, "Boldness": 0.25},
-    "Hero":      {"Boldness": 0.88, "Competence": 0.86, "Discipline": 0.60, "Authority": 0.45, "Vision": 0.38, "Integrity": 0.38, "Sophistication": 0.18, "Warmth": 0.45, "Playfulness": 0.11},
-    "Creator":   {"Vision": 0.92, "Sophistication": 0.54, "Competence": 0.55, "Boldness": 0.82, "Integrity": 0.39, "Authority": 0.20, "Discipline": 0.15, "Warmth": 0.35, "Playfulness": 0.40},
-    "Explorer":  {"Boldness": 0.90, "Vision": 0.74, "Competence": 0.77, "Integrity": 0.54, "Authority": 0.12, "Discipline": 0.22, "Sophistication": 0.48, "Warmth": 0.25, "Playfulness": 0.25},
-    "Outlaw":    {"Boldness": 0.98, "Vision": 0.80, "Authority": 0.92, "Discipline": 0.04, "Integrity": 0.66, "Sophistication": 0.06, "Competence": 0.55, "Warmth": 0.09, "Playfulness": 0.02},
-    "Magician":  {"Vision": 0.90, "Authority": 0.75, "Competence": 0.78, "Sophistication": 0.20, "Integrity": 0.18, "Discipline": 0.14, "Boldness": 0.65, "Warmth": 0.25, "Playfulness": 0.19},
-    "Caregiver": {"Warmth": 0.97, "Integrity": 0.82, "Competence": 0.45, "Discipline": 0.55, "Authority": 0.12, "Sophistication": 0.35, "Vision": 0.08, "Boldness": 0.11, "Playfulness": 0.10},
-    "Everyman":  {"Warmth": 0.90, "Integrity": 0.88, "Competence": 0.84, "Authority": 0.05, "Sophistication": 0.06, "Vision": 0.12, "Discipline": 0.45, "Boldness": 0.45, "Playfulness": 0.22},
-    "Lover":     {"Sophistication": 0.85, "Warmth": 0.78, "Playfulness": 0.74, "Integrity": 0.14, "Competence": 0.11, "Authority": 0.02, "Vision": 0.07, "Discipline": 0.10, "Boldness": 0.32},
-    "Jester":    {"Playfulness": 0.97, "Warmth": 0.85, "Boldness": 0.85, "Vision": 0.29, "Discipline": 0.02, "Authority": 0.04, "Sophistication": 0.09, "Competence": 0.33, "Integrity": 0.42},
-    "Innocent":  {"Integrity": 0.92, "Warmth": 0.89, "Discipline": 0.77, "Competence": 0.35, "Authority": 0.02, "Sophistication": 0.30, "Vision": 0.15, "Boldness": 0.03, "Playfulness": 0.39},
+    "Ruler": {
+        "Authority": 0.95, "Discipline": 0.85, "Competence": 0.80,
+        "Integrity": 0.60, "Sophistication": 0.55, "Boldness": 0.45,
+        "Vision": 0.25, "Warmth": 0.15, "Playfulness": 0.05,
+    },
+    "Sage": {
+        "Competence": 0.95, "Integrity": 0.80, "Vision": 0.65,
+        "Discipline": 0.45, "Authority": 0.40, "Sophistication": 0.35,
+        "Warmth": 0.20, "Boldness": 0.15, "Playfulness": 0.05,
+    },
+    "Hero": {
+        "Boldness": 0.90, "Competence": 0.80, "Discipline": 0.70,
+        "Integrity": 0.45, "Authority": 0.40, "Vision": 0.40,
+        "Warmth": 0.20, "Sophistication": 0.15, "Playfulness": 0.05,
+    },
+    "Creator": {
+        "Vision": 0.90, "Sophistication": 0.65, "Playfulness": 0.55,
+        "Boldness": 0.45, "Competence": 0.45, "Integrity": 0.30,
+        "Warmth": 0.25, "Authority": 0.15, "Discipline": 0.15,
+    },
+    "Explorer": {
+        "Boldness": 0.80, "Vision": 0.70, "Competence": 0.55,
+        "Integrity": 0.35, "Playfulness": 0.30, "Sophistication": 0.25,
+        "Warmth": 0.20, "Discipline": 0.20, "Authority": 0.10,
+    },
+    "Outlaw": {
+        "Boldness": 0.95, "Vision": 0.65, "Integrity": 0.45,
+        "Competence": 0.45, "Authority": 0.25, "Playfulness": 0.15,
+        "Sophistication": 0.10, "Warmth": 0.10, "Discipline": 0.05,
+    },
+    "Magician": {
+        "Vision": 0.90, "Competence": 0.70, "Authority": 0.55,
+        "Sophistication": 0.45, "Integrity": 0.35, "Boldness": 0.35,
+        "Warmth": 0.20, "Playfulness": 0.15, "Discipline": 0.20,
+    },
+    "Caregiver": {
+        "Warmth": 0.95, "Integrity": 0.80, "Discipline": 0.45,
+        "Competence": 0.45, "Playfulness": 0.15, "Vision": 0.20,
+        "Authority": 0.10, "Sophistication": 0.15, "Boldness": 0.10,
+    },
+    "Everyman": {
+        "Warmth": 0.70, "Integrity": 0.70, "Competence": 0.50,
+        "Playfulness": 0.30, "Discipline": 0.30, "Vision": 0.20,
+        "Boldness": 0.15, "Authority": 0.10, "Sophistication": 0.10,
+    },
+    "Lover": {
+        "Sophistication": 0.85, "Warmth": 0.70, "Playfulness": 0.40,
+        "Integrity": 0.35, "Boldness": 0.25, "Competence": 0.25,
+        "Vision": 0.20, "Authority": 0.10, "Discipline": 0.10,
+    },
+    "Jester": {
+        "Playfulness": 0.95, "Warmth": 0.55, "Boldness": 0.35,
+        "Vision": 0.25, "Competence": 0.20, "Integrity": 0.20,
+        "Sophistication": 0.15, "Authority": 0.05, "Discipline": 0.05,
+    },
+    "Innocent": {
+        "Integrity": 0.85, "Warmth": 0.70, "Discipline": 0.50,
+        "Competence": 0.35, "Playfulness": 0.20, "Vision": 0.20,
+        "Sophistication": 0.20, "Boldness": 0.10, "Authority": 0.10,
+    },
 }
+
 
 QUESTIONS = [
     {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
