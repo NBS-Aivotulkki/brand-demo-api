@@ -263,7 +263,7 @@ ARCHETYPE_DESCRIPTIONS = {
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
     "Ruler": {
-        "Authority": 0.95, "Discipline": 0.85, "Competence": 0.80,
+        "Authority": 0.75, "Discipline": 0.65, "Competence": 0.60,
         "Integrity": 0.60, "Sophistication": 0.55, "Boldness": 0.45,
         "Vision": 0.25, "Warmth": 0.15, "Playfulness": 0.05,
     },
@@ -842,7 +842,7 @@ def cosine_similarity(a, b):
     if na == 0 or nb == 0:
         return -1.0
 
-    return dot / (na * nb)
+    return (dot / (na * nb)) ** 3
 
 
 def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
@@ -857,8 +857,6 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         w = qmap.get(a.option, {})
         for d, val in w.items():
             v = float(val)
-            if d in ["Vision", "Authority"]:
-                v *= 0.7
             raw[d] += v
             den[d] += abs(v)
 
@@ -882,11 +880,15 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
 
     # normalisointi 0–100
     out: Dict[str, float] = {}
-    for d, v in raw.items():
-        lo, hi = -10.0, 10.0
-        vv = max(lo, min(hi, v))
-        out[d] = (vv - lo) / (hi - lo) * 100.0
+    for d in DIMENSIONS:
+        if den[d] == 0:
+            out[d] = 50.0
+        else:
+            s = raw[d] / den[d]
+            s = max(-1.0, min(1.0, s))
+            out[d] = (s + 1.0) * 50.0
     return out
+
 
 
 # 2) MUUTA score_archetypes näin
@@ -903,7 +905,6 @@ def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> 
         sim = cosine_similarity(user_vec, proto_vec)
 
         fit = industry_fit(name, industry_tags)
-        sim = sim * (0.9 + 0.1 * fit)
 
         scores.append({"key": name, "similarity": sim, "label": t(name), "fit": fit})
 
