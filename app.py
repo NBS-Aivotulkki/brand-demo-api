@@ -384,6 +384,7 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "female": "/static/archetypes/innocent_v2w.png",
         "neutral": "/static/archetypes/innocent_v2.png",
     },
+}
         
 ::contentReference[oaicite:0]{index=0}
 
