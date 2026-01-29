@@ -323,7 +323,7 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Sophistication": 0.20, "Boldness": 0.10, "Authority": 0.10,
     },
 
-    ARCHETYPE_IMAGES: = {
+    ARCHETYPE_IMAGES = {
     "Ruler": {
         "male": "/static/archetypes/ruler_v2.png",
         "female": "/static/archetypes/ruler_v2w.png",
