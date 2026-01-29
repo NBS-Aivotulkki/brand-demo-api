@@ -840,7 +840,8 @@ def cosine_similarity(a, b):
     na = math.sqrt(sum(x * x for x in a))
     nb = math.sqrt(sum(y * y for y in b))
     if na == 0 or nb == 0:
-        return 0.0
+        return -1.0
+
     return dot / (na * nb)
 
 
@@ -865,7 +866,8 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     out: Dict[str, float] = {}
     for d in DIMENSIONS:
         if den[d] <= 0:
-            out[d] = 0.0
+            out[d] = 50.0
+
         else:
             s = raw[d] / den[d]          # -1..+1 tyylinen suhdeluku
             s = max(-1.0, min(1.0, s))   # varmistus
