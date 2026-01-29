@@ -1290,7 +1290,9 @@ async def ui_assess(request: Request):
 
     dim_scores = compute_dimensions(parsed)
     industry_tags = compute_industry_tags(parsed)
+    industry_tags = compute_industry_tags(parsed)
     archetypes = score_archetypes(dim_scores, industry_tags)
+
 
 
     primary = archetypes[0]["key"] if archetypes else ""
