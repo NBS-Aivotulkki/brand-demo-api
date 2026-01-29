@@ -1264,10 +1264,9 @@ async def ui_assess(request: Request):
 
     <div class="sep"></div>
 
-    <div class="archetype-text" style="white-space: pre-line;">
-    {''.join(left)}
+    <div class="archetype-text" style="white-space: pre-line; font-size: 16px;">
+{''.join(left)}
     </div>
-
 
     <div style="width:100%; margin-top:14px;">
       <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
@@ -1276,7 +1275,8 @@ async def ui_assess(request: Request):
   </div>
 </div>
 """
-    return ui_shell("Tulos", inner)
+return ui_shell("Tulos", inner)
+
 
 
 # ---------------------------
