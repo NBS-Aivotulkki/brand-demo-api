@@ -880,16 +880,17 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
 
 
 
-    # normalisointi 0–100
+    # normalisointi 0–100 (ei keskibiasia)
     out: Dict[str, float] = {}
     for d in DIMENSIONS:
-        if den[d] == 0:
-            out[d] = 50.0
+        if den[d] <= 0:
+            out[d] = 0.0
         else:
             s = raw[d] / den[d]
             s = max(-1.0, min(1.0, s))
             out[d] = (s + 1.0) * 50.0
     return out
+
 
 
 
@@ -907,6 +908,7 @@ def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> 
         sim = cosine_similarity(user_vec, proto_vec)
 
         fit = industry_fit(name, industry_tags)
+        sim = sim * (0.6 + 0.4 * fit)
 
         scores.append({"key": name, "similarity": sim, "label": t(name), "fit": fit})
 
