@@ -694,11 +694,11 @@ def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, An
         recs.append({"title": "Asiakaskokemustekijät", "items": arch.get("cx", [])})
         recs.append({"title": "Rajojen määrittely", "items": arch.get("bounds", [])})
 
-    for d in top_dims:
-        items = REC_DIMENSION.get(d, [])
-        if items:
-            recs.append({"title": f"Tarkennus: {t(d)}", "items": items})
-    return recs
+    # for d in top_dims:
+    #     items = REC_DIMENSION.get(d, [])
+    #     if items:
+    #         recs.append({"title": f"Tarkennus: {d}", "items": items})
+
 
 
 @app.get("/questions")
