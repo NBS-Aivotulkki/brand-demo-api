@@ -1247,6 +1247,18 @@ async def ui_assess(request: Request):
             for v in vals[:2]:
                 parsed.append(Answer(question_id=qid, option=v))
 
+    answered_ids = {a.question_id for a in parsed}
+    required_ids = {q["id"] for q in QUESTIONS if q["id"] != 99}
+
+    missing = required_ids - answered_ids
+    if missing:
+        return ui_shell(
+            "Virhe",
+            "<p>Vastaa jo.</p>"
+            '<a class="backlink" href="/survey">← Takaisin kyselyyn</a>'
+    )
+
+
     dim_scores = compute_dimensions(parsed)
     industry_tags = compute_industry_tags(parsed)
     archetypes = score_archetypes(dim_scores, industry_tags)
