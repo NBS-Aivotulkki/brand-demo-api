@@ -358,6 +358,19 @@ INDUSTRY_OPTION_TAGS = {
     "J": {"industrial", "infrastructure", "regulated"},
 }
 
+def compute_industry_tags(answers: List[Answer]) -> set:
+    # Muutetaan vastaukset dictiksi: {question_id: option}
+    answers_dict = {a.question_id: a.option for a in answers}
+
+    # Haetaan toimialakysymyksen vastaus
+    opt = answers_dict.get(INDUSTRY_QID)
+    if not opt:
+        return set()
+
+    # Palautetaan siihen liittyvät tagit
+    return INDUSTRY_OPTION_TAGS.get(opt, set())
+
+
 # Arkkityyppien sopii ja ei sovi tagit
 ARCHETYPE_INDUSTRY_RULES = {
     "Ruler": {
