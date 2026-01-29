@@ -378,7 +378,7 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "male": "/static/archetypes/jester_v2.png",
         "female": "/static/archetypes/jester_v2w.png",
         "neutral": "/static/archetypes/jester_v2.png",
-        
+    },   
    "Innocent": {
         "male": "/static/archetypes/innocent_v2.png",
         "female": "/static/archetypes/innocent_v2w.png",
