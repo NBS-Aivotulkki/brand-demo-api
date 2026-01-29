@@ -676,7 +676,7 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         for d, val in w.items():
             v = float(val)
             if d in ["Vision", "Authority"]:
-            v *= 0.7
+                v *= 0.7
             raw[d] += v
 
 
