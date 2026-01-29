@@ -347,6 +347,12 @@ QUESTIONS = [
     {"id": 18, "text": "Haluamme, että asiakas:", "options": {"A": "kuuntelee meitä", "B": "kunnioittaa meitä", "C": "luottaa meihin", "D": "toimii mallimme mukaisesti"}},
     {"id": 19, "text": "Haluamme yrityksemme olevan eniten:", "options": {"A": "ratkaisu", "B": "ajatus", "C": "kokemus", "D": "ilmiö"}},
     {"id": 20, "text": "Jos yritystämme täytyy kuvata yhdellä lauseella, valitsemme mieluiten:", "options": {"A": "Turvallinen ja vahva.", "B": "Rohkea ja erottuva.", "C": "Lämmin ja inhimillinen.", "D": "Älykäs ja näkemyksellinen."}},
+    {"id": 21, "text": "Minkä haluat asiakkaan tuntevan ensikohtaamisessa brändisi kanssa?", "options": {"A": "Luottamusta ja turvallisuutta", "B": "Innostusta ja iloa", "C": "Vetovoimaa ja haluttavuutta", "D": "Kunnioitusta ja arvostusta"}},
+    {"id": 22, "text": "Miten haluat brändisi näyttäytyvän suhteessa asiakkaaseen?", "options": {"A": "Läheisenä ja välittävänä", "B": "Tasavertaisena ja helposti lähestyttävänä", "C": "Leikkisänä ja piristävänä", "D": "Esteettisenä ja tunnepitoisena"}},
+    {"id": 23, "text": "Mikä kuvaa parhaiten brändisi arvolupausta?", "options": {"A": "Teemme arjesta helpompaa ja turvallisempaa", "B": "Tuomme iloa ja keveyttä asiakkaiden elämään", "C": "Luomme kauniita ja haluttavia kokemuksia", "D": "Autamme ihmisiä tuntemaan yhteyttä ja hyväksyntää"}},
+    {"id": 24, "text": "Mikä ilme ja fiilis tuntuu yrityksellesi luontevimmalta?", "options": {"A": "Rauhallinen ja yksinkertainen", "B": "Lämmin ja hoivaava", "C": "Iloinen ja kevyt", "D": "Romanttinen ja esteettinen"}},
+    {"id": 25, "text": "Miksi asiakkaan pitäisi kiintyä brändiisi?", "options": {"A": "Koska se tuntuu aidolta ja rehelliseltä", "B": "Koska se tuntuu turvalliselta ja välittävältä", "C": "Koska se tuo iloa ja energiaa arkeen", "D": "Koska se herättää halua ja tunnetta"}},
+
 ]
 
 WEIGHTS = {
@@ -370,6 +376,13 @@ WEIGHTS = {
     18: {"A": {"Authority": 0.7, "Vision": 0.3}, "B": {"Authority": 0.7, "Integrity": 0.4}, "C": {"Integrity": 0.8, "Warmth": 0.4}, "D": {"Boldness": 0.8, "Playfulness": 0.3}},
     19: {"A": {"Competence": 0.7, "Discipline": 0.4}, "B": {"Vision": 0.7, "Integrity": 0.4}, "C": {"Warmth": 0.6, "Playfulness": 0.4}, "D": {"Boldness": 0.7, "Sophistication": 0.4}},
     20: {"A": {"Authority": 0.7, "Integrity": 0.5}, "B": {"Boldness": 0.8, "Vision": 0.4}, "C": {"Warmth": 0.8, "Integrity": 0.4}, "D": {"Vision": 0.7, "Competence": 0.4}},
+    21: {"A": {"Warmth": 0.8, "Integrity": 0.4}, "B": {"Playfulness": 0.8, "Warmth": 0.3}, "C": {"Sophistication": 0.7, "Warmth": 0.5}, "D": {"Authority": 0.7, "Competence": 0.4}},
+    22: {"A": {"Warmth": 0.8, "Integrity": 0.4}, "B": {"Warmth": 0.7, "Integrity": 0.5}, "C": {"Playfulness": 0.8, "Boldness": 0.3}, "D": {"Sophistication": 0.7, "Warmth": 0.5}},
+    23: {"A": {"Integrity": 0.7, "Warmth": 0.5}, "B": {"Playfulness": 0.8, "Warmth": 0.3}, "C": {"Sophistication": 0.8, "Warmth": 0.4}, "D": {"Warmth": 0.7, "Integrity": 0.4}},
+    24: {"A": {"Integrity": 0.8, "Warmth": 0.3}, "B": {"Warmth": 0.8, "Integrity": 0.4}, "C": {"Playfulness": 0.8, "Warmth": 0.3}, "D": {"Sophistication": 0.7, "Warmth": 0.5}},
+    25: {"A": {"Integrity": 0.8, "Warmth": 0.3}, "B": {"Warmth": 0.8, "Integrity": 0.4}, "C": {"Playfulness": 0.8, "Warmth": 0.3}, "D": {"Sophistication": 0.8, "Warmth": 0.4}},
+
+    
 }
 
 REC_ARCHETYPE = {
