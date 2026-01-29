@@ -705,9 +705,6 @@ WEIGHTS = {
     },
 }
 
-}
-
-
 REC_ARCHETYPE = {
     "Ruler": {
         "tone": [
