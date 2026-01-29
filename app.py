@@ -293,8 +293,8 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Sophistication": 0.10, "Warmth": 0.10, "Discipline": 0.05,
     },
     "Magician": {
-        "Vision": 0.70, "Competence": 0.55, "Authority": 0.40,
-        "Sophistication": 0.45, "Integrity": 0.35, "Boldness": 0.35,
+        "Vision": 0.90, "Competence": 0.30, "Authority": 0.40,
+        "Sophistication": 0.60, "Integrity": 0.20, "Boldness": 0.50,
         "Warmth": 0.20, "Playfulness": 0.15, "Discipline": 0.20,
     },
     "Caregiver": {
