@@ -1248,7 +1248,9 @@ async def ui_assess(request: Request):
                 parsed.append(Answer(question_id=qid, option=v))
 
     dim_scores = compute_dimensions(parsed)
-    archetypes = score_archetypes(dim_scores)
+    industry_tags = compute_industry_tags(parsed)
+    archetypes = score_archetypes(dim_scores, industry_tags)
+
 
     primary = archetypes[0]["key"] if archetypes else ""
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
