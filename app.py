@@ -328,7 +328,137 @@ for name, profile in ARCHETYPES.items():
     for k in profile:
         profile[k] = profile[k] / total
 
+# 1) LIITÄ TÄMÄ KOKONAISUUS samaan tiedostoon
+# Laita tämä ARCHETYPES-määrittelyn ja sen normalisoinnin ALLE, mutta ENNEN funktioita.
+
+# Toimiala kysymys id. Valitse numero jota et käytä muualla.
+INDUSTRY_QID = 99
+
+# Vaihtoehdot jotka laitat QUESTIONS-listaan tälle kysymykselle.
+# A = Johtaminen ja konsultointi
+# B = Koulutus ja asiantuntijapalvelut
+# C = Luovat alat ja design
+# D = Hyvinvointi ja hoiva
+# E = Kuluttajapalvelut ja retail
+# F = Viihde ja tapahtumat
+# G = Matkailu ja outdoor
+# H = Teknologia ja AI
+# I = Rahoitus ja juridiikka
+# J = Teollisuus ja infrastruktuuri
+INDUSTRY_OPTION_TAGS = {
+    "A": {"leadership", "consulting", "b2b"},
+    "B": {"education", "research", "expert"},
+    "C": {"creative", "design", "branding"},
+    "D": {"care", "health", "wellness"},
+    "E": {"consumer", "retail", "everyday"},
+    "F": {"entertainment", "events", "youth"},
+    "G": {"travel", "outdoor", "adventure"},
+    "H": {"tech", "ai", "innovation"},
+    "I": {"finance", "legal", "regulated"},
+    "J": {"industrial", "infrastructure", "regulated"},
+}
+
+# Arkkityyppien sopii ja ei sovi tagit
+ARCHETYPE_INDUSTRY_RULES = {
+    "Ruler": {
+        "fit": {"leadership", "consulting", "b2b", "procurement", "regulated"},
+        "nofit": {"entertainment", "creative", "youth", "lifestyle", "wellness"},
+    },
+    "Sage": {
+        "fit": {"education", "research", "expert"},
+        "nofit": {"entertainment", "fashion", "impulse", "hedonistic", "consumer"},
+    },
+    "Hero": {
+        "fit": {"sport", "fitness", "coaching", "performance", "training"},
+        "nofit": {"meditative", "luxury", "art", "entertainment"},
+    },
+    "Creator": {
+        "fit": {"creative", "design", "branding", "advertising", "architecture", "content"},
+        "nofit": {"finance", "legal", "industrial", "infrastructure", "regulated"},
+    },
+    "Explorer": {
+        "fit": {"travel", "outdoor", "adventure", "lifestyle", "growth"},
+        "nofit": {"finance", "legal", "regulated", "authority_comms"},
+    },
+    "Outlaw": {
+        "fit": {"alternative", "music", "events", "challenger", "startup", "freedom"},
+        "nofit": {"finance", "public", "clinical_health", "traditional_education", "regulated"},
+    },
+    "Magician": {
+        "fit": {"coaching", "learning", "innovation", "ai", "tech", "branding"},
+        "nofit": {"finance", "legal", "industrial", "infrastructure", "regulated"},
+    },
+    "Caregiver": {
+        "fit": {"care", "health", "social", "family", "community", "education"},
+        "nofit": {"finance", "high_risk_investing", "authoritarian"},
+    },
+    "Everyman": {
+        "fit": {"retail", "consumer", "housing", "family", "community", "everyday", "wellness"},
+        "nofit": {"luxury"},
+    },
+    "Lover": {
+        "fit": {"fashion", "beauty", "fragrance", "jewelry", "interior", "travel", "restaurants", "events"},
+        "nofit": {"industrial", "legal", "authority_comms", "regulated", "heavy_tech"},
+    },
+    "Jester": {
+        "fit": {"events", "games", "advertising", "entertainment", "kids", "food", "community"},
+        "nofit": {"finance", "legal", "critical_health", "security", "strategic_leadership"},
+    },
+    "Innocent": {
+        "fit": {"health", "wellness", "mindfulness", "family", "ethical", "sustainable", "lifestyle"},
+        "nofit": {"finance", "politics", "outlaw_subculture"},
+    },
+}
+
+def compute_industry_tags(answers_dict):
+    opt = answers_dict.get(INDUSTRY_QID)
+    if not opt:
+        return set()
+    return set(INDUSTRY_OPTION_TAGS.get(opt, set()))
+
+def industry_fit(archetype_name, industry_tags):
+    if not industry_tags:
+        return 0.5
+    rules = ARCHETYPE_INDUSTRY_RULES.get(archetype_name, {})
+    fit_tags = rules.get("fit", set())
+    nofit_tags = rules.get("nofit", set())
+
+    score = 0.5
+
+    hits_fit = len(industry_tags & fit_tags)
+    if hits_fit:
+        score += 0.25 * hits_fit
+        if score > 1.0:
+            score = 1.0
+
+    hits_nofit = len(industry_tags & nofit_tags)
+    for _ in range(hits_nofit):
+        score *= 0.2
+
+    if score < 0.0:
+        score = 0.0
+    if score > 1.0:
+        score = 1.0
+    return score
+
+
 QUESTIONS = [
+    # 4) LISÄÄ yksi uusi kysymys QUESTIONS-listaan
+# Laita tämä kysymykseksi ensimmäiseksi tai mihin haluat, kunhan id on 99.
+
+{"id": 99, "text": "Mikä kuvaa yrityksesi toimialaa parhaiten?", "options": {
+    "A": "Johtaminen ja konsultointi",
+    "B": "Koulutus ja asiantuntijapalvelut",
+    "C": "Luovat alat ja design",
+    "D": "Hyvinvointi ja hoiva",
+    "E": "Kuluttajatuotteet ja -palvelut",
+    "F": "Viihde ja tapahtumat",
+    "G": "Matkailu ja outdoor",
+    "H": "Teknologia ja AI",
+    "I": "Rahoitus ja juridiikka",
+    "J": "Teollisuus ja infrastruktuuri"
+}},
+
     {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Yksilöiden arkea helpottavalta kumppanilta", "D": "Yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
@@ -692,16 +822,27 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     return out
 
 
-def score_archetypes(dim_scores_0_100: Dict[str, float]) -> List[Dict[str, Any]]:
-    # Skaalataan 0..100 -> 0..1 jotta on samassa mittakaavassa protojen kanssa
+# 2) MUUTA score_archetypes näin
+# Etsi funktio def score_archetypes(...): ja muuta allekirjoitus ja sim lasku.
+
+def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> List[Dict[str, Any]]:
     dim_scores = {k: float(v) / 100.0 for k, v in dim_scores_0_100.items()}
-    scores: List[Dict[str, Any]] = []
+
+    scores = []
     for name, proto in ARCHETYPES.items():
-        proto_vec = {d: float(proto.get(d, 0.0)) for d in DIMENSIONS}
-        sim = cosine_similarity(dim_scores, proto_vec)
-        scores.append({"key": name, "similarity": sim, "label": t(name)})
+        proto_vec = [float(proto.get(d, 0.0)) for d in DIMENSIONS]
+        user_vec = [float(dim_scores.get(d, 0.0)) for d in DIMENSIONS]
+
+        sim = cosine_similarity(user_vec, proto_vec)
+
+        fit = industry_fit(name, industry_tags)
+        sim = sim * (0.6 + 0.4 * fit)
+
+        scores.append({"key": name, "similarity": sim, "label": t(name), "fit": fit})
+
     scores.sort(key=lambda x: x["similarity"], reverse=True)
     return scores
+
 
 
 def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, Any]]:
@@ -728,8 +869,9 @@ def get_questions():
 
 @app.post("/assess")
 def assess(req: AssessRequest):
-    dim_scores = compute_dimensions(req.answers)
-    archetypes = score_archetypes(dim_scores)
+    dim_scores = compute_dimensions(parsed)
+    industry_tags = compute_industry_tags(parsed)
+    archetypes = score_archetypes(dim_scores, industry_tags)
 
     primary = archetypes[0]["key"] if archetypes else ""
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
