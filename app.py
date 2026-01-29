@@ -759,7 +759,7 @@ REC_DIMENSION = {
     "Playfulness": ["Käytä keveyttä harkiten: selkeys ensin, vitsi vasta sitten.", "Pidä huumori brändin palvelijana, ei sen johtajana."],
 }
 
-Option = Literal["A", "B", "C", "D", "E"]
+option: Literal["A","B","C","D","E","F","G","H","I","J"]
 
 
 class Answer(BaseModel):
@@ -1275,13 +1275,13 @@ async def ui_assess(request: Request):
     answered_ids = {a.question_id for a in parsed}
     required_ids = {q["id"] for q in QUESTIONS if q["id"] != 99}
 
-    missing = required_ids - answered_ids
-    if missing:
-        return ui_shell(
-            "Virhe",
-            "<p>Vastaa jo.</p>"
-            '<a class="backlink" href="/survey">← Takaisin kyselyyn</a>'
+missing = required_ids - answered_ids
+if missing:
+    return ui_shell(
+        "Virhe",
+        "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
     )
+
 
 
     dim_scores = compute_dimensions(parsed)
