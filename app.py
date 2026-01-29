@@ -785,10 +785,10 @@ class OrderRequest(BaseModel):
     top_strengths: List[str]
 
 
-def cosine_similarity(a: Dict[str, float], b: Dict[str, float]) -> float:
-    dot = sum(a.get(k, 0.0) * b.get(k, 0.0) for k in DIMENSIONS)
-    na = math.sqrt(sum((a.get(k, 0.0) ** 2) for k in DIMENSIONS))
-    nb = math.sqrt(sum((b.get(k, 0.0) ** 2) for k in DIMENSIONS))
+def cosine_similarity(a, b):
+    dot = sum(x * y for x, y in zip(a, b))
+    na = math.sqrt(sum(x * x for x in a))
+    nb = math.sqrt(sum(y * y for y in b))
     if na == 0 or nb == 0:
         return 0.0
     return dot / (na * nb)
