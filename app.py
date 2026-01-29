@@ -278,9 +278,9 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Warmth": 0.20, "Sophistication": 0.15, "Playfulness": 0.05,
     },
     "Creator": {
-        "Vision": 0.90, "Sophistication": 0.65, "Playfulness": 0.55,
-        "Boldness": 0.45, "Competence": 0.45, "Integrity": 0.30,
-        "Warmth": 0.25, "Authority": 0.15, "Discipline": 0.15,
+        "Vision": 0.75, "Sophistication": 0.50, "Playfulness": 0.40,
+        "Boldness": 0.35, "Competence": 0.25, "Integrity": 0.15,
+        "Warmth": 0.15, "Authority": 0.05, "Discipline": 0.05,
     },
     "Explorer": {
         "Vision": 0.78, "Boldness": 0.73, "Competence": 0.55,
