@@ -347,16 +347,21 @@ INDUSTRY_OPTION_TAGS = {
     "J": {"industrial", "infrastructure", "regulated"},
 }
 
-def compute_industry_tags(answers):
-    answers_dict = {}
+def compute_industry_tags(answers) -> set:
+    # Tee sanakirja: {kysymys_id: valittu_vaihtoehto}
+    answers_map = {}
     for a in answers:
-        answers_dict[a.question_id] = a.option
+        qid = getattr(a, "question_id", None)
+        opt = getattr(a, "option", None)
+        if qid is not None:
+            answers_map[qid] = opt
 
-    opt = answers_dict.get(INDUSTRY_QID)
+    opt = answers_map.get(INDUSTRY_QID)
     if not opt:
         return set()
 
-    return INDUSTRY_OPTION_TAGS.get(opt, set())
+    return set(INDUSTRY_OPTION_TAGS.get(opt, set()))
+
 
 
 
