@@ -323,7 +323,10 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Sophistication": 0.20, "Boldness": 0.10, "Authority": 0.10,
     },
 }
-
+for name, profile in ARCHETYPES.items():
+    total = sum(profile.values())
+    for k in profile:
+        profile[k] = profile[k] / total
 
 QUESTIONS = [
     {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
