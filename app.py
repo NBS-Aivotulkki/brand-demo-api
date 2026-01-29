@@ -1180,7 +1180,8 @@ def ui_survey():
     html.append("<div class='survey'>")
     html.append("<h2>Kysely</h2>")
     html.append("<p class='meta'>Vastaa valinnoilla. Kohtiin joissa lukee “Valitse kaksi”, voit valita kaksi.</p>")
-    html.append("<form method='post' action='/ui-assess'>")
+    html.append("<form id='surveyForm' method='post' action='/ui-assess'>")
+
 
     for q in QUESTIONS:
         qid = q["id"]
@@ -1214,10 +1215,38 @@ def ui_survey():
         html.append("</div>")  # <-- tämä sulkee yhden kysymyslaatikon JOKA kierroksella
 
     html.append("""
-      <div class="actions">
-        <button class="btn" type="submit">Näytä tulos</button>
-      </div>
+        <div id="missingNotice" style="display:none; color:#ff4d4d; font-weight:700; margin:0 0 12px 0;">
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">Näytä tulos</button>
+        </div>
     """)
+    html.append("""
+    <script>
+    document.getElementById("surveyForm").addEventListener("submit", function(e) {
+        const notice = document.getElementById("missingNotice");
+        const questions = document.querySelectorAll(".q");
+        let missing = false;
+
+        questions.forEach(q => {
+            const inputs = q.querySelectorAll("input");
+            const checked = Array.from(inputs).some(i => i.checked);
+            if (!checked) {
+                missing = true;
+            }
+        });
+
+        if (missing) {
+            e.preventDefault();
+            notice.style.display = "block";
+            notice.innerText = "Täytä kaikki kysymykset ennen tuloksiin siirtymistä.";
+                notice.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    });
+    </script>
+    """)
+
 
     html.append("</form>")
     html.append("</div>")
