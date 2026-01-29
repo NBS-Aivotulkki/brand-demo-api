@@ -322,6 +322,68 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Competence": 0.35, "Playfulness": 0.20, "Vision": 0.20,
         "Sophistication": 0.20, "Boldness": 0.10, "Authority": 0.10,
     },
+
+    ARCHETYPE_IMAGES = {
+    "Ruler": {
+        "male": "/static/archetypes/ruler_v2.png",
+        "female": "/static/archetypes/ruler_v2w.png",
+        "neutral": "/static/archetypes/ruler_v2.png",
+    },
+    "Sage": {
+        "male": "/static/archetypes/sage_v2.png",
+        "female": "/static/archetypes/sage_v2w.png",
+        "neutral": "/static/archetypes/sage_v2.png",
+    },
+    "Hero": {
+        "male": "/static/archetypes/hero_v2.png",
+        "female": "/static/archetypes/hero_v2w.png",
+        "neutral": "/static/archetypes/hero_v2.png",
+    },
+    "Creator": {
+        "male": "/static/archetypes/creator_v2.png",
+        "female": "/static/archetypes/creator_v2w.png",
+        "neutral": "/static/archetypes/creator_v2.png",
+    },
+    "Explorer": {
+        "male": "/static/archetypes/explorer_v2.png",
+        "female": "/static/archetypes/explorer_v2w.png",
+        "neutral": "/static/archetypes/explorer_v2.png",
+    },
+    "Outlaw": {
+        "male": "/static/archetypes/outlaw_v2.png",
+        "female": "/static/archetypes/outlaw_v2w.png",
+        "neutral": "/static/archetypes/outlaw_v2.png",
+    },
+    "Magician": {
+        "male": "/static/archetypes/magician_v2.png",
+        "female": "/static/archetypes/magician_v2w.png",
+        "neutral": "/static/archetypes/magician_v2.png",
+    },
+    "Caregiver": {
+        "male": "/static/archetypes/caregiver_v2.png",
+        "female": "/static/archetypes/caregiver_v2w.png",
+        "neutral": "/static/archetypes/caregiver_v2.png",
+    },
+    "Everyman": {
+        "male": "/static/archetypes/everyman_v2.png",
+        "female": "/static/archetypes/everyman_v2w.png",
+        "neutral": "/static/archetypes/everyman_v2.png",
+    },
+    "Lover": {
+        "male": "/static/archetypes/lover_v2.png",
+        "female": "/static/archetypes/lover_v2w.png",
+        "neutral": "/static/archetypes/lover_v2.png",
+    },
+    "Jester": {
+        "male": "/static/archetypes/jester_v2.png",
+        "female": "/static/archetypes/jester_v2w.png",
+        "neutral": "/static/archetypes/jester_v2.png",
+    },
+    "Innocent": {
+        "male": "/static/archetypes/innocent_v2.png",
+        "fe
+::contentReference[oaicite:0]{index=0}
+
 }
 for name, profile in ARCHETYPES.items():
     total = sum(profile.values())
@@ -438,6 +500,7 @@ def industry_fit(archetype_name, industry_tags):
     return score
 
 QUESTIONS = [
+    {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
     {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Yksilöiden arkea helpottavalta kumppanilta", "D": "Yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
     {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
     {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioomme", "B": "Vetovoimaa tuotteeseemme/palveluumme", "C": "Kiinnostusta aatemaailmaamme kohtaan", "D": "Yhteyttä persoonaan"}},
@@ -749,8 +812,6 @@ REC_DIMENSION = {
     "Playfulness": ["Käytä keveyttä harkiten: selkeys ensin, vitsi vasta sitten.", "Pidä huumori brändin palvelijana, ei sen johtajana."],
 }
 
-option: Literal["A","B","C","D","E","F","G","H","I","J"]
-
 
 class Answer(BaseModel):
     question_id: int
@@ -786,17 +847,35 @@ def cosine_similarity(a, b):
 
 def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     raw = {d: 0.0 for d in DIMENSIONS}
+    den = {d: 0.0 for d in DIMENSIONS}
+
     for a in answers:
-        # q0 on UI:n valinta (sukupuoli), ei vaikuta dimensioihin
+        # q0 = sukupuoli, ei vaikuta dimensioihin
         if a.question_id == 0:
             continue
+
         qmap = WEIGHTS.get(a.question_id, {})
         w = qmap.get(a.option, {})
+
         for d, val in w.items():
             v = float(val)
-            if d in ["Vision", "Authority"]:
-                v *= 0.7
             raw[d] += v
+            den[d] += abs(v)
+
+    # dimensiokohtainen normalisointi (-1 … 1)
+    norm = {}
+    for d in DIMENSIONS:
+        norm[d] = (raw[d] / den[d]) if den[d] > 0 else 0.0
+
+    # skaalaus 0–100
+    out = {}
+    for d, v in norm.items():
+        out[d] = (v + 1.0) / 2.0 * 100.0
+
+    return out
+
+
+
 
 
     # normalisointi 0–100
@@ -833,6 +912,7 @@ def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> 
 
 def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, Any]]:
     recs: List[Dict[str, Any]] = []
+
     arch = REC_ARCHETYPE.get(primary, {})
     if arch:
         recs.append({"title": "Äänensävy (Tone of Voice)", "items": arch.get("tone", [])})
@@ -840,6 +920,9 @@ def make_recommendations(primary: str, top_dims: List[str]) -> List[Dict[str, An
         recs.append({"title": "Visuaalinen viestintä", "items": arch.get("design", [])})
         recs.append({"title": "Asiakaskokemustekijät", "items": arch.get("cx", [])})
         recs.append({"title": "Rajojen määrittely", "items": arch.get("bounds", [])})
+
+    return recs
+
 
     # for d in top_dims:
     #     items = REC_DIMENSION.get(d, [])
@@ -855,9 +938,11 @@ def get_questions():
 
 @app.post("/assess")
 def assess(req: AssessRequest):
+    parsed = req.answers
     dim_scores = compute_dimensions(parsed)
     industry_tags = compute_industry_tags(parsed)
     archetypes = score_archetypes(dim_scores, industry_tags)
+
 
     primary = archetypes[0]["key"] if archetypes else ""
     secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
@@ -1271,6 +1356,7 @@ async def ui_assess(request: Request):
             "Virhe",
             "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
     )
+
 
 
 
