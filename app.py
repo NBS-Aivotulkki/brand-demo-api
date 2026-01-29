@@ -385,10 +385,7 @@ ARCHETYPE_IMAGES = {
         "neutral": "/static/archetypes/innocent_v2.png",
     },
 }
-        
-::contentReference[oaicite:0]{index=0}
 
-}
 for name, profile in ARCHETYPES.items():
     total = sum(profile.values())
     for k in profile:
