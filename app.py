@@ -70,18 +70,195 @@ DIMENSIONS = [
 DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 
 ARCHETYPE_DESCRIPTIONS = {
-    "Ruler": "Hallitsija-brändi rakentaa luottamusta auktoriteetin, rakenteen ja selkeyden kautta. Se määrittelee suunnan, luo järjestyksen ja asettaa standardin, jota muut seuraavat. Hallitsija-brändi viestii vakaudesta, kontrollista ja pitkäjänteisyydestä. Esimerkkejä ovat Rolex, Mercedes-Benz, IBM ja Microsoft.",
-    "Sage": "Viisas-brändi perustuu tietoon, ymmärrykseen ja totuuden etsimiseen. Se auttaa asiakkaitaan näkemään maailmaa kirkkaammin ja tekemään parempia päätöksiä. Viisas-brändi rakentaa arvonsa asiantuntijuudesta ja luotettavuudesta. Esimerkkejä: Google, BBC, TED, Harvard.",
-    "Hero": "Sankari-brändi edustaa rohkeutta, päättäväisyyttä ja kykyä ylittää esteet. Se kutsuu toimintaan ja lupaa muutosta tekojen, ei sanojen kautta. Sankari-brändi kannustaa parempaan suoritukseen. Esimerkkejä: Nike, Adidas, Red Bull, Gatorade.",
-    "Creator": "Luoja-brändi ammentaa luovuudesta ja omaperäisyydestä. Se rakentaa uutta maailmaa ja haastaa tavanomaiset ratkaisut. Luoja-brändi rohkaisee ilmaisemaan itseä ja rikkomaan rajoja. Esimerkkejä: Apple, LEGO, Adobe, Pixar.",
-    "Explorer": "Tutkimusmatkailija-brändi kutsuu vapauteen ja itsensä löytämiseen. Se rikkoo rajoja, haastaa mukavuusalueen ja etsii jatkuvasti uusia mahdollisuuksia. Tutkimusmatkailija-brändi lupaa elämyksiä ja itsenäisyyttä. Esimerkkejä: Jeep, The North Face, Patagonia, National Geographic.",
-    "Outlaw": "Kapinallinen-brändi syntyy vastarinnasta ja halusta muuttaa maailmaa. Se rikkoo sääntöjä, kyseenalaistaa järjestelmän ja pakottaa muutoksen tapahtumaan. Kapinallinen-brändi vetää puoleensa rohkeita oman tiensä kulkijoita. Esimerkkejä: Harley-Davidson, Diesel, Vice, Supreme.",
-    "Magician": "Taikuri-brändi lupaa transformaatiota ja uuden todellisuuden. Se tekee monimutkaisesta yksinkertaista ja mahdottomasta mahdollista. Taikuri-brändi herättää ihmetystä ja uskoa muutokseen. Esimerkkejä: Disney, Tesla, Apple (visionäärinen puoli), SpaceX.",
-    "Caregiver": "Hoivaaja-brändi rakentaa turvaa, luottamusta ja inhimillisyyttä. Se asettaa ihmisen ja vastuullisuuden kaiken keskiöön. Hoivaaja-brändi lupaa, että asiakkaasta pidetään huolta. Esimerkkejä: UNICEF, Red Cross, Dove, Volvo.",
-    "Everyman": "Jokamies-brändi edustaa aitoutta, rehellisyyttä ja samaistuttavuutta. Se on helposti lähestyttävä ja tuntuu \"meidän kaltaiseltamme\". Jokamies-brändi rakentaa luottamusta arkisuuden kautta. Esimerkkejä: IKEA, Levi’s, Target, Volkswagen.",
-    "Lover": "Rakastaja-brändi rakentuu intohimosta, kauneudesta ja emotionaalisesta vetovoimasta. Se korostaa nautintoa, estetiikkaa ja aistillisuutta. Rakastaja-brändi lupaa elämyksiä ja syvää tunnetta. Esimerkkejä: Chanel, Dior, Ferrari, Häagen-Dazs.",
-    "Jester": "Narri-brändi tuo keveyttä, iloa ja vapautta. Se rikkoo vakavuuden huumorilla ja yllättävillä näkökulmilla. Narri-brändi tekee elämästä hauskempaa ja rennompaa. Esimerkkejä: Old Spice, M&M’s, TikTok, Netflix (viihdepuoli).",
-    "Innocent": "Viaton-brändi edustaa vilpittömyyttä, toivoa ja uskoa hyvään. Se lupaa turvallisuutta, yksinkertaisuutta ja mielenrauhaa. Viaton-brändi tuo maailmaan valoa ja selkeyttä. Esimerkkejä: Coca-Cola, Dove (puhdas puoli), Innocent Drinks, Aveeno.",
+    "Ruler": """
+    Hallitsija-brändiarkkityyppi edustaa järjestystä, kontrollia ja vastuullista johtajuutta. Se lupaa vakautta, selkeyttä ja laadukasta tuloksellisuutta. Hallitsija rakentaa luottamusta osoittamalla, että asiat ovat hallinnassa ja tavoitteet saavutetaan järjestelmällisesti ja määrätietoisesti. Visuaalisesti kyseinen brändiarkkityyppi nojaa selkeään hierarkiaan, ryhdikkääseen sommitteluun sekä arvokkuudesta, auktoriteetista ja kompetenssista viestiviin elementteihin.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy kontrollista, luotettavuudesta ja kyvystä ohjata kokonaisuuksia
+    esim. johtaminen, konsultointi, valmentaminen tai mittavat riskipitoisuudeltaan korkeat hankinnat
+
+    Ei sovi yrityksellenne:
+    - jos tarjontanne keskiössä ovat vapaus, leikkisyys, kapinallisuus tai elämyksellisyys
+    esim. viihde, luova itseilmaisu, nuorisobrändit ja kevyisiin lifestyle- ja hyvinvointikonsepteihin liittyvät tuotteet ja palvelut
+
+    Tunnettuja Hallitsija-brändiarkkityypin edustajia:
+    Rolex, Mercedes-Benz, IBM, Goldman Sachs ja McKinsey
+    """,
+
+    
+    "Sage": """
+    Viisas-brändiarkkityyppi lupaa ymmärrystä, selkeyttä ja perusteltua näkemystä. Kyseisen brändityypin missiona on auttaa ihmisiä hahmottamaan maailmaa tarkemmin, tekemään parempia päätöksiä ja perustamaan ajattelunsa tiedon varaan. Se nojaa rationaalisuuteen, kokemukseen ja luotettavuuteen viestien rauhallista asiantuntijuutta ilman tarvetta näyttävyydelle. Visuaalisesti se korostaa hillittyjä sävyjä, järjestystä, keskittymistä ja oppimista.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy ymmärryksestä, selkeydestä ja luotettavasta tiedosta 
+    esim. koulutus-, tutkimus- ja asiantuntijapalvelut
+
+    Ei sovi yrityksellenne:
+    - jos tarjontanne keskiössä ovat viihteeseen, muotiin, impulssi- ja tunnepohjaiseen ostamiseen perustuvat kuluttajatuotteet
+
+    Tunnettuja Viisas-brändiarkkityypin edustajia: 
+    Britannica, TED, Harvard Business Review ja The Economist
+    """,
+
+    
+    "Hero": """
+    Sankari-brändiarkkityyppi lupaa voimaa, rohkeutta ja kykyä ylittää esteet. Sen missiona on aktivoida ihmiset toimintaan, vahvistaa heidän uskoaan omiin kykyihinsä ja ohjata kohti tavoitteiden saavuttamista. Sankari edustaa päättäväisyyttä, kurinalaisuutta ja sinnikkyyttä sekä viestii siitä, että menestys syntyy ponnistelun, vastuunoton ja sitkeyden kautta. Visuaalisesti se korostaa liikettä, energiaa, fyysistä ja henkistä voimaa sekä selkeää päämäärätietoista etenemistä.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu suorituskykyyn, itsensä kehittämiseen, kilpailullisuuteen ja tavoitteellisuuteen 
+    esim. urheilu, fitness, personal training, valmennus, motivaatiosisällöt, suorituskyvyn seurantaan keskittyvät sovellukset ja tulosohjautuvat koulutusohjelmat
+
+    Ei sovi yrityksellenne:
+    - jos toimialallanne keskiössä ovat pehmeys, rauhoittuminen, introspektio tai esteettinen itseilmaisu
+    esim. meditatiivinen hyvinvointi, luksuslifestyle, taidepainotteinen luovuus tai puhtaasti viihteellinen eskapismi
+
+    Tunnettuja Sankari-brändiarkkityypin edustajia:
+    Nike, Adidas, Red Bull, Under Armour ja CrossFit
+    """,
+    
+
+    "Creator": """
+    Luoja-brändiarkkityyppi lupaa uuden luomista, omaperäisyyttä ja kykyä muuttaa ideat konkreettisiksi tuotoksiksi. Sen missiona on rohkaista ihmisiä ilmaisemaan itseään, kehittämään omaa näkemystään ja rakentamaan jotakin aidosti uutta ja merkityksellistä. Mielikuvituksellisuutta ja rohkeaa uteliaisuutta suosiva Luoja viestii siitä, että arvo syntyy tekemisen, muotoilun ja jatkuvan kehittämisen kautta. Visuaalisesti se korostaa lämpimiä sävyjä, käsityön tuntua, luovaa prosessia ja inspiraation hetkeä, jossa idea muuttuu muodoksi.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy luovuudesta, suunnittelusta ja uuden rakentamisesta 
+    esim. muotoilu, taide, käsityö, mainonta, brändäys, arkkitehtuuri, sisällöntuotanto, design-työkalut ja luovat koulutusohjelmat
+
+    Ei sovi yrityksellenne:
+    - jos toimialallanne korostuvat standardointi, tiukka sääntely, prosessien jäykkyys ja riskien minimointi 
+    esim. rahoitus, vakuutusala, juridiikka tai vahvasti operatiivinen teollinen tuotanto
+
+    Tunnettuja Luoja-brändiarkkityypin edustajia:
+    Adobe, LEGO, Pixar, Apple, IDEO ja Etsy
+    """,
+
+    
+    "Explorer": """
+    Tutkimusmatkailija-brändiarkkityyppi lupaa vapautta, löytämistä ja mahdollisuuden kulkea omia polkuja. Sen missiona on rohkaista ihmisiä irtautumaan rutiineista, tutkimaan uutta ja laajentamaan omaa maailmankuvaansa kokemusten kautta. Tutkija edustaa itsenäisyyttä, uteliaisuutta ja avoimuutta. Se viestii siitä, että kasvu syntyy liikkeessä, kokeilun ja rajojen ylittämisen kautta. Visuaalisesti se korostaa luontoa, avaria tiloja, liikettä ja horisonttia kohti suuntaavaa katsetta.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy vapaudesta, tutkimisesta ja uusien kokemusten mahdollistamisesta 
+    esim. matkailu, ulkoilu ja seikkailupalvelut, retkeilyvarusteet, lifestyle-brändit sekä koulutusohjelmat, jotka painottavat itsenäistä oppimista sekä henkilökohtaista kasvua tukevat palvelut
+
+    Ei sovi yrityksellenne:
+    - jos toimialanne keskiössä ovat tiukka kontrolli, hierarkia ja ennalta määritellyt prosessit 
+    esim. rahoitus- ja vakuutusala, juridiikka tai vahvasti säännelty viranomaisviestintä
+
+    Tunnettuja Tutkija-brändiarkkityypin edustajia:
+    The North Face, Patagonia, National Geographic, Jeep, REI ja Lonely Planet
+    """,
+
+    
+    "Outlaw": """
+    Kapinallinen-brändiarkkityyppi lupaa vapautta, itsenäisyyttä ja rohkeutta rikkoa vallitsevia normeja. Sen missiona on kannustaa ihmisiä haastamaan auktoriteetit, kyseenalaistamaan totutut toimintamallit ja valitsemaan omat polkunsa ilman tarvetta hyväksynnälle. Kapinallinen edustaa voimaa, suoraselkäisyyttä ja tinkimätöntä asennetta sekä viestii siitä, että todellinen muutos syntyy uskalluksesta kulkea vastavirtaan. Visuaalisesti se korostaa kontrasteja, tummia sävyjä, intensiivisyyttä ja asennetta, joka huokuu riippumattomuutta ja voimaa.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu rohkeaan erottumiseen, normien haastamiseen ja yksilön identiteetin vahvistamiseen 
+    esim. vaihtoehtomuoti, musiikki ja tapahtumat, lifestyle-brändit, haastajiksi asemoituvat startupit, sekä itsenäisyyttä ja vapautta korostavat valmennus- ja yhteisöpalvelut
+
+    Ei sovi yrityksellenne:
+    - jos toimialanne keskiössä on turvallisuus, sääntelyn noudattaminen, ennustettavuus ja institutionaalinen luottamus
+    esim. pankit, vakuutusyhtiöt, julkinen sektori, terveydenhuollon kliiniset palvelut tai perinteinen koulutusjärjestelmä
+
+    Tunnettuja Kapinallinen-brändiarkkityypin edustajia:
+    Harley-Davidson, Diesel, Varusteleka
+    """,
+
+    
+    "Magician": """
+    Taikuri-brändiarkkityyppi lupaa muutosta, oivallusta ja kykyä nähdä mahdollisuuksia siellä missä muut näkevät rajoitteita. Sen missiona on auttaa ihmisiä ymmärtämään oma potentiaalinsa ja muuttamaan ajatteluaan, toimintaansa ja lopulta todellisuuttaan. Taikuri yhdistää visionäärisyyden, luovuuden ja järjestelmällisen ajattelun tavalla, joka tekee monimutkaisesta selkeää ja mahdottomasta saavutettavaa. Se viestii siitä, että todellinen voima syntyy ymmärryksestä ja kyvystä vaikuttaa asioiden kulkuun. Visuaalisesti Taikuri nojaa valoon, energiaan, kontrasteihin ja symboliikkaan, jotka viestivät muutoksesta, heräämisestä ja sisäisestä voimasta.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu muutokseen, oivalluksiin ja uusien mahdollisuuksien avaamiseen 
+    esim. valmennus, coaching, itsensä kehittäminen, henkinen hyvinvointi, oppimisalustat, luovat teknologiat, AI-pohjaiset ratkaisut, brändistrategia ja innovaatiopalvelut
+
+    Ei sovi yrityksellenne:
+    - jos alallanne korostuvat puhdas rationaalisuus, ennustettavuus ja matalan riskin operatiivinen varmuus 
+    esim. perinteinen pankkitoiminta, vakuutusala, juridiset palvelut, infrastruktuurihankkeet tai raskas teollisuus
+
+    Tunnettuja Taikuri-brändiarkkityypin edustajia:
+    Disney, Apple, Tesla, Google, Pixar, Mindvalley ja SpaceX.
+    """,
+
+    
+    "Caregiver": """
+    Hoivaaja-brändiarkkityyppi lupaa turvaa, huolenpitoa ja aitoa välittämistä. Sen missiona on tukea ihmisiä, vahvistaa heidän hyvinvointiaan ja luoda ympäristö, jossa jokainen voi tuntea olonsa turvalliseksi ja tarpeensa huomioiduiksi. Hoivaaja edustaa empatiaa, vastuullisuutta ja luotettavuutta sekä viestii siitä, että todellinen arvo syntyy toisten auttamisesta ja elämänlaadun parantamisesta. Visuaalisesti Hoivaaja nojaa pehmeisiin sävyihin, rauhalliseen tunnelmaan ja lämpimiin kohtaamisiin, jotka viestivät turvallisuudesta, läheisyydestä ja inhimillisyydestä.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu huolenpitoon, tukeen ja ihmisten hyvinvoinnin vahvistamiseen
+    esim. terveys- ja hoivapalvelut, sosiaalipalvelut, perhe- ja lastenpalvelut, vanhustenhoito, hyvinvointialustat, tukipalvelut, koulutus ja yhteisölliset palvelut
+
+    Ei sovi yrityksellenne:
+    - jos alallanne korostuvat aggressiivinen kilpailu, kova suorituspaine tai vahvasti hierarkkinen vallankäyttö
+    esim. rahoituspalvelut, korkean riskin sijoituspalvelut tai autoritääriseen johtajuuteen nojaavat organisaatiot
+
+    Tunnettuja Hoivaaja-brändiarkkityypin edustajia:
+    Johnson & Johnson, UNICEF, WWF, Dove ja Pampers
+    """,
+
+    
+    "Everyman": """
+    Tavallinen jokamies-brändiarkkityyppi lupaa aitoutta, läheisyyttä ja samaistuttavuutta. Sen missiona on tehdä elämästä helpompaa, rennompaa ja inhimillisempää muistuttamalla, että tavallinen arki ja yksinkertaiset ilot ovat arvokkaita. Jokamies edustaa rehellisyyttä, lämpöä ja käytännöllisyyttä. Se viestii siitä, että hyvä elämä syntyy yhteydestä toisiin ihmisiin ja tasapainosta arjen keskellä. Visuaalisesti Jokamies nojaa luonnollisiin sävyihin, pehmeään valoon ja arkisiin tilanteisiin, jotka tuntuvat tutuilta ja turvallisilta.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy lähestyttävyydestä, yhteisöllisyydestä ja arjen helpottamisesta 
+    esim. vähittäiskauppa, kuluttajapalvelut, asuminen, perhepalvelut, yhteisöalustat, hyvinvointipalvelut ja työelämän peruspalvelut
+
+    Ei sovi yrityksellenne:
+    - jos alallanne korostuvat eksklusiivisuus, elitismi tai voimakas erottautuminen 
+    esim. luksusbrändit
+
+    Tunnettuja Tavallinen jokamies -brändiarkkityypin edustajia:
+    IKEA, IKEA Food, Target, H&M, Dove, Airbnb ja Coca-Cola.
+    """,
+
+    
+    "Lover": """
+    Rakastaja-brändiarkkityyppi lupaa läheisyyttä, intohimoa ja syvää emotionaalista yhteyttä. Sen missiona on vahvistaa ihmisten kykyä kokea rakkautta, kauneutta ja merkityksellisiä ihmissuhteita sekä tuoda elämään enemmän nautintoa, lämpöä ja aitoa läsnäoloa. Rakastaja edustaa sensitiivisyyttä, esteettisyyttä ja emotionaalista avoimuutta. Se viestii siitä, että elämä on tarkoitettu koettavaksi kokonaisvaltaisesti ja tunteella. Visuaalisesti Rakastaja nojaa pehmeisiin sävyihin, lämpimään valoon, kosketukseen ja katseisiin, jotka viestivät vetovoimasta, läheisyydestä ja romantiikasta.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu hedonismiin 
+    esim. muoti, kosmetiikka, hajuvedet, korut, sisustus, matkailu, ravintolat ja tapahtumat
+
+    Ei sovi yrityksellenne:
+    - jos alallanne korostuu tekninen rationaalisuus ja kylmä tehokkuus
+    esim. raskas teollisuus, teknologia-ala, juridiset palvelut tai viranomaisviestintä
+
+    Tunnettuja Rakastaja-brändiarkkityypin edustajia:
+    Chanel, Dior, Victoria’s Secret
+    """,
+    
+
+    "Jester": """
+    Narri-brändiarkkityyppi lupaa iloa, keveyttä ja vapautta ottaa elämä vähemmän vakavasti. Sen missiona on tuoda arkeen huumoria, naurua ja leikkimielisyyttä sekä muistuttaa, että nautinto, spontaanius ja hetkessä eläminen ovat olennaisia osia hyvää elämää. Visuaalisesti Narri nojaa kirkkaisiin väreihin, liikkeeseen, yllätyksellisyyteen ja energiseen ilmeeseen, joka herättää välittömästi hyvän mielen.
+
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo syntyy viihteen, huumorin ja elämyksellisyyden kautta 
+    esim. tapahtumat, pelit, mainonta, viihdepalvelut, lasten tuotteet, juoma- ja elintarvikebrändit sekä yhteisölliset elämyspalvelut
+
+    Ei sovi yrityksellenne:
+    - jos toimialanne keskiössä on vakavien, auktoriteettien ja riskipitoisten asioiden parissa toimiville yrityksille 
+    esim. rahoitus, juridiikka, terveydenhuollon kriittiset palvelut, turvallisuusala tai strateginen yritysjohtaminen
+
+    Tunnettuja Narri-brändiarkkityypin edustajia:
+    Old Spice, M&M’s, Ben & Jerry’s, TikTok, Dollar Shave Club ja Skittles
+    """,
+
+    
+    "Innocent": """
+    Viaton-brändiarkkityyppi lupaa toivoa, keveyttä ja yksinkertaisen onnen tunnetta. Sen missiona on tuoda elämään rauhaa, optimismia ja uskoa siihen, että hyvä on mahdollista ja lähellä. Se edustaa rehellisyyttä, lempeyttä ja vilpittömyyttä sekä viestii siitä, että elämä voi olla turvallista, kaunista ja tasapainoista. Visuaalisesti Viaton nojaa vaaleisiin sävyihin, pehmeään valoon, luonnollisuuteen ja rauhallisiin hetkiin, jotka huokuvat puhtautta ja harmoniaa.
+    Sopii yrityksellenne:
+    - jos tuottamanne arvo perustuu hyvinvointiin ja positiivisuuteen
+    esim. terveys ja hyvinvointi, mindfulness ja stressinhallinta, lifestyle-brändit, lasten ja perheiden palvelut sekä eettiset ja kestävät brändit
+
+    Ei sovi yrityksellenne:
+    - jos toimialallanne korostuvat kyynisyys, provokaatio, aggressiivinen kilpailu tai monimutkainen valtapeli
+    esim. finanssiala, poliittinen vaikuttaminen tai kapinallisuuteen nojaavat alakulttuuribrändit
+
+    Tunnettuja Viaton-brändiarkkityypin edustajia:
+    Dove, Innocent Drinks, The Body Shop 
+    """
+
 }
 
 ARCHETYPES: Dict[str, Dict[str, float]] = {
@@ -821,13 +998,13 @@ def ui_landing():
         <div style="height:24px;"></div>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Brändikoneen avulla selvität, miltä yrityksenne henkilöhahmon, eli brändin, kannattaa näyttää, viestiä ja toimia aikuisten yritysmaailmassa.
+          Brändikoneen avulla selvität, miltä yrityksenne brändityypin kannattaa näyttää, viestiä ja toimia aikuisten yritysmaailmassa.
         </p>
 
         <div style="height:36px;"></div>
 
         <div style="text-align:center;">
-          <a class="btn" href="/survey">Selvitä brändihahmo</a>
+          <a class="btn" href="/survey">Selvitä brändityyppinne</a>
         </div>
       </div>
     </div>
@@ -972,7 +1149,7 @@ async def ui_assess(request: Request):
     primary_lower = primary.lower()
 
     left.append("<div class='sep'></div>")
-    left.append("<div class='meta'><b>Brändiarkkityypin perusväripaletti</b></div>")
+    left.append("<div class='meta'><b>Ehdotus brändiarkkityypin perusväripaletiksi</b></div>")
 
     left.append(
         f"<div class='img-block'>"
@@ -994,7 +1171,7 @@ async def ui_assess(request: Request):
     left.append("<div class='sep'></div>")
     left.append("<h2>Huolitko apua ammattilaiselta?</h2>")
 
-    left.append("<p class='meta'>Jos huolit, ja koet tarvitsevasi apua yrityksenne brändäyksessä, markkinointiviestinnässä tai luovassa ideoinnissa, täytä ja lähetä alla oleva lomake. Otamme sinuun yhteyttä sähköpostitse 24h sisällä.</p>")
+    left.append("<p class='meta'>Jos vastasit myöntävästi, ja koet tarvitsevasi apua yrityksenne brändäyksessä, markkinointiviestinnässä tai luovassa ideoinnissa, täytä ja lähetä alla oleva lomake. Otamme sinuun yhteyttä sähköpostitse 24h sisällä.</p>")
 
     left.append("<form method='post' action='/ui-order'>")
     left.append("<input type='text' name='website' style='display:none'>")
@@ -1087,9 +1264,10 @@ async def ui_assess(request: Request):
 
     <div class="sep"></div>
 
-    <div class="archetype-text">
-      {''.join(left)}
+    <div class="archetype-text" style="white-space: pre-line;">
+    {''.join(left)}
     </div>
+
 
     <div style="width:100%; margin-top:14px;">
       <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
