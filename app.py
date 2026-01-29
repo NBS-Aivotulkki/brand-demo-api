@@ -328,10 +328,6 @@ for name, profile in ARCHETYPES.items():
     for k in profile:
         profile[k] = profile[k] / total
 
-# 1) LIITÄ TÄMÄ KOKONAISUUS samaan tiedostoon
-# Laita tämä ARCHETYPES-määrittelyn ja sen normalisoinnin ALLE, mutta ENNEN funktioita.
-
-# Toimiala kysymys id. Valitse numero jota et käytä muualla.
 INDUSTRY_QID = 99
 
 INDUSTRY_OPTION_TAGS = {
@@ -348,7 +344,6 @@ INDUSTRY_OPTION_TAGS = {
 }
 
 def compute_industry_tags(answers) -> set:
-    # Tee sanakirja: {kysymys_id: valittu_vaihtoehto}
     answers_map = {}
     for a in answers:
         qid = getattr(a, "question_id", None)
@@ -416,12 +411,6 @@ ARCHETYPE_INDUSTRY_RULES = {
         "nofit": {"finance", "politics", "outlaw_subculture"},
     },
 }
-
-def compute_industry_tags(answers_dict):
-    opt = answers_dict.get(INDUSTRY_QID)
-    if not opt:
-        return set()
-    return set(INDUSTRY_OPTION_TAGS.get(opt, set()))
 
 def industry_fit(archetype_name, industry_tags):
     if not industry_tags:
@@ -1296,7 +1285,6 @@ async def ui_assess(request: Request):
 
 
     dim_scores = compute_dimensions(parsed)
-    industry_tags = compute_industry_tags(parsed)
     industry_tags = compute_industry_tags(parsed)
     archetypes = score_archetypes(dim_scores, industry_tags)
 
