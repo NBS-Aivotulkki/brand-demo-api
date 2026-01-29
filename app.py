@@ -674,10 +674,10 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         qmap = WEIGHTS.get(a.question_id, {})
         w = qmap.get(a.option, {})
         for d, val in w.items():
-        v = float(val)
-        if d in ["Vision", "Authority"]:
+            v = float(val)
+            if d in ["Vision", "Authority"]:
             v *= 0.7
-        raw[d] += v
+            raw[d] += v
 
 
     # normalisointi 0–100
