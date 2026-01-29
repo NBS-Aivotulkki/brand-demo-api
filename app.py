@@ -16,7 +16,7 @@ from sendgrid.helpers.mail import Mail
 # --- KÄÄNNÖSKARTTA ---
 
 translations = {
-    "Competence": "Ammattitaitoisuus",
+    "Competence": "Ammattiosaaminen",
     "Integrity": "Luotettavuus / Suoraselkäisyys",
     "Authority": "Vaikutusvaltaisuus",
     "Sophistication": "Esteettisyys / Sivistyneisyys",
