@@ -535,7 +535,6 @@ QUESTIONS = [
 ]
 
 WEIGHTS = {
-    WEIGHTS = {
     1: {  # tehokas työkalu vs suunnannäyttäjä vs arjen kumppani vs ilmiö
         "A": {"Competence": 0.9, "Discipline": 0.5, "Warmth": -0.3},
         "B": {"Vision": 0.9, "Authority": 0.5, "Warmth": -0.2},
