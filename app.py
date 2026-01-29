@@ -870,6 +870,8 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
             s = raw[d] / den[d]          # -1..+1 tyylinen suhdeluku
             s = max(-1.0, min(1.0, s))   # varmistus
             out[d] = (s + 1.0) * 50.0    # -> 0..100
+            print("RAW:", raw)
+            print("DEN:", den)
 
     return out
 
@@ -1358,8 +1360,13 @@ async def ui_assess(request: Request):
         return ui_shell(
             "Virhe",
             "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
-    )
+        )
 
+    # --- LISÄÄ TÄMÄ TÄHÄN (debug) ---
+    print("PARSED:", [(a.question_id, a.option) for a in parsed])
+    # --- LISÄÄ TÄMÄ TÄHÄN (debug) ---
+
+    # (tämän jälkeen jatkuu sinun koodi: dim_scores = ..., jne.)
 
 
 
