@@ -348,10 +348,14 @@ INDUSTRY_OPTION_TAGS = {
 }
 
 def compute_industry_tags(answers):
-    answers_dict = {a.question_id: a.option for a in answers}
+    answers_dict = {}
+    for a in answers:
+        answers_dict[a.question_id] = a.option
+
     opt = answers_dict.get(INDUSTRY_QID)
     if not opt:
         return set()
+
     return INDUSTRY_OPTION_TAGS.get(opt, set())
 
 
