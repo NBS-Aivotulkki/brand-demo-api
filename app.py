@@ -283,7 +283,7 @@ ARCHETYPES: Dict[str, Dict[str, float]] = {
         "Warmth": 0.25, "Authority": 0.15, "Discipline": 0.15,
     },
     "Explorer": {
-        "Boldness": 0.80, "Vision": 0.70, "Competence": 0.55,
+        "Vision": 0.78, "Boldness": 0.73, "Competence": 0.55,
         "Integrity": 0.35, "Playfulness": 0.30, "Sophistication": 0.25,
         "Warmth": 0.20, "Discipline": 0.20, "Authority": 0.10,
     },
@@ -674,10 +674,10 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
         qmap = WEIGHTS.get(a.question_id, {})
         w = qmap.get(a.option, {})
         for d, val in w.items():
-    v = float(val)
-    if d in ["Vision", "Authority"]:
-        v *= 0.7
-    raw[d] += v
+        v = float(val)
+        if d in ["Vision", "Authority"]:
+            v *= 0.7
+        raw[d] += v
 
 
     # normalisointi 0–100
