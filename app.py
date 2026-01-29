@@ -334,17 +334,6 @@ for name, profile in ARCHETYPES.items():
 # Toimiala kysymys id. Valitse numero jota et käytä muualla.
 INDUSTRY_QID = 99
 
-# Vaihtoehdot jotka laitat QUESTIONS-listaan tälle kysymykselle.
-# A = Johtaminen ja konsultointi
-# B = Koulutus ja asiantuntijapalvelut
-# C = Luovat alat ja design
-# D = Hyvinvointi ja hoiva
-# E = Kuluttajapalvelut ja retail
-# F = Viihde ja tapahtumat
-# G = Matkailu ja outdoor
-# H = Teknologia ja AI
-# I = Rahoitus ja juridiikka
-# J = Teollisuus ja infrastruktuuri
 INDUSTRY_OPTION_TAGS = {
     "A": {"leadership", "consulting", "b2b"},
     "B": {"education", "research", "expert"},
@@ -358,17 +347,13 @@ INDUSTRY_OPTION_TAGS = {
     "J": {"industrial", "infrastructure", "regulated"},
 }
 
-def compute_industry_tags(answers: List[Answer]) -> set:
-    # Muutetaan vastaukset dictiksi: {question_id: option}
+def compute_industry_tags(answers):
     answers_dict = {a.question_id: a.option for a in answers}
-
-    # Haetaan toimialakysymyksen vastaus
     opt = answers_dict.get(INDUSTRY_QID)
     if not opt:
         return set()
-
-    # Palautetaan siihen liittyvät tagit
     return INDUSTRY_OPTION_TAGS.get(opt, set())
+
 
 
 # Arkkityyppien sopii ja ei sovi tagit
