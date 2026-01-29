@@ -1275,11 +1275,11 @@ async def ui_assess(request: Request):
     answered_ids = {a.question_id for a in parsed}
     required_ids = {q["id"] for q in QUESTIONS if q["id"] != 99}
 
-missing = required_ids - answered_ids
-if missing:
-    return ui_shell(
-        "Virhe",
-        "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
+    missing = required_ids - answered_ids
+    if missing:
+        return ui_shell(
+            "Virhe",
+            "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
     )
 
 
