@@ -550,7 +550,6 @@ WEIGHTS = {
     13: {"A": {"Competence": 0.7, "Discipline": 0.4}, "B": {"Warmth": 0.7, "Playfulness": 0.3}, "C": {"Vision": 0.7, "Integrity": 0.4}, "D": {"Boldness": 0.7, "Sophistication": 0.3}},
     14: {"A": {"Discipline": 0.8, "Integrity": 0.4}, "B": {"Competence": 0.6, "Vision": 0.4}, "C": {"Boldness": 0.8, "Vision": 0.4}, "D": {"Playfulness": 0.6, "Sophistication": 0.4}},
     15: {"A": {"Authority": 0.7, "Integrity": 0.4}, "B": {"Vision": 0.8, "Boldness": 0.4}, "C": {"Warmth": 0.7, "Integrity": 0.4}, "D": {"Sophistication": 0.8, "Playfulness": 0.4}},
-
     16: {"A": {"Authority": 0.7, "Competence": 0.4}, "B": {"Warmth": 0.7, "Integrity": 0.4}, "C": {"Boldness": 0.7, "Vision": 0.4}, "D": {"Competence": 0.7, "Vision": 0.4}},
     17: {"A": {"Discipline": 0.6, "Integrity": 0.3}, "B": {"Integrity": 0.5, "Warmth": 0.3}, "C": {"Sophistication": 0.6, "Competence": 0.3}, "D": {"Sophistication": 0.7, "Vision": 0.3}},
     18: {"A": {"Integrity": 0.7, "Discipline": 0.4}, "B": {"Vision": 0.7, "Warmth": 0.4}, "C": {"Boldness": 0.7, "Playfulness": 0.3}, "D": {"Competence": 0.7, "Vision": 0.4}},
@@ -559,7 +558,6 @@ WEIGHTS = {
     21: {"A": {"Vision": 0.6, "Competence": 0.4}, "B": {"Warmth": 0.6, "Integrity": 0.4}, "C": {"Boldness": 0.6, "Playfulness": 0.4}, "D": {"Warmth": 0.6, "Playfulness": 0.4}},
     22: {"A": {"Playfulness": 0.6, "Vision": 0.4}, "B": {"Boldness": 0.6, "Vision": 0.4}, "C": {"Warmth": 0.6, "Integrity": 0.4}, "D": {"Discipline": 0.6, "Integrity": 0.4}},
     23: {"A": {"Discipline": 0.7, "Competence": 0.3}, "B": {"Authority": 0.6, "Discipline": 0.4}, "C": {"Sophistication": 0.6, "Vision": 0.4}, "D": {"Boldness": 0.7, "Vision": 0.4}},
-
     24: {"A": {"Authority": 0.7, "Competence": 0.4}, "B": {"Authority": 0.7, "Sophistication": 0.3}, "C": {"Integrity": 0.8, "Competence": 0.3}, "D": {"Authority": 0.7, "Discipline": 0.4}},
     25: {"A": {"Competence": 0.7, "Integrity": 0.4}, "B": {"Vision": 0.7, "Competence": 0.4}, "C": {"Warmth": 0.6, "Playfulness": 0.4}, "D": {"Boldness": 0.7, "Vision": 0.4}},
     26: {"A": {"Integrity": 0.7, "Authority": 0.4}, "B": {"Boldness": 0.7, "Vision": 0.4}, "C": {"Warmth": 0.7, "Integrity": 0.4}, "D": {"Competence": 0.7, "Vision": 0.4}},
@@ -851,29 +849,30 @@ def compute_dimensions(answers: List[Answer]) -> Dict[str, float]:
     den = {d: 0.0 for d in DIMENSIONS}
 
     for a in answers:
-        # q0 = sukupuoli, ei vaikuta dimensioihin
         if a.question_id == 0:
             continue
 
         qmap = WEIGHTS.get(a.question_id, {})
         w = qmap.get(a.option, {})
-
         for d, val in w.items():
             v = float(val)
+            if d in ["Vision", "Authority"]:
+                v *= 0.7
             raw[d] += v
             den[d] += abs(v)
 
-    # dimensiokohtainen normalisointi (-1 … 1)
-    norm = {}
+    # 0–100 siten, että jos dimensio ei saanut yhtään painoa -> 0 (ei 50)
+    out: Dict[str, float] = {}
     for d in DIMENSIONS:
-        norm[d] = (raw[d] / den[d]) if den[d] > 0 else 0.0
-
-    # skaalaus 0–100
-    out = {}
-    for d, v in norm.items():
-        out[d] = (v + 1.0) / 2.0 * 100.0
+        if den[d] <= 0:
+            out[d] = 0.0
+        else:
+            s = raw[d] / den[d]          # -1..+1 tyylinen suhdeluku
+            s = max(-1.0, min(1.0, s))   # varmistus
+            out[d] = (s + 1.0) * 50.0    # -> 0..100
 
     return out
+
 
 
 
