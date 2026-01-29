@@ -832,7 +832,7 @@ def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> 
         sim = cosine_similarity(user_vec, proto_vec)
 
         fit = industry_fit(name, industry_tags)
-        sim = sim * (0.6 + 0.4 * fit)
+        sim = sim * (0.9 + 0.1 * fit)
 
         scores.append({"key": name, "similarity": sim, "label": t(name), "fit": fit})
 
