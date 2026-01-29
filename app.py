@@ -764,7 +764,7 @@ option: Literal["A","B","C","D","E","F","G","H","I","J"]
 
 class Answer(BaseModel):
     question_id: int
-    option: Option
+    option: str
 
 
 class AssessRequest(BaseModel):
