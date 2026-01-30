@@ -1385,28 +1385,28 @@ def ui_shell(title: str, inner_html: str) -> str:
       padding: 16px;
       display: flex;
       justify-content: center;
-    }}
-    .rec-list {{
-      margin: 6px 0 20px;     /* ylös tiiviimpi, alas enemmän ilmaa */
-      padding-left: 18px;    
-      list-style: disc;      
+    /* Yhtenäinen lista Ominaisuuksien kanssa */
+    .list {{
+      margin: 6px 0 20px;
+      padding-left: 18px;
+      list-style: disc;
     }}
 
-    .rec-list li {{
+    .list li {{
       margin: 6px 0;
-      font-size: 14px;
-      color: var(--ink);
+      font-size: 16px;          /* sama koko kuin Ominaisuudet */
+      color: var(--ink);        /* sama väri kuin Ominaisuudet */
     }}
 
-    /* Väli seuraavan suositusotsikon (meta) yläpuolelle */
-    .rec-list + .meta {{
+    /* Ei erillisiä välejä suositusblokille */
+    .list + .meta {{
       margin-top: 12px;
     }}
 
-    /* Väli viimeisen suosituksen jälkeen ennen seuraavaa erotinta */
-    .rec-list + .sep {{
+    .list + .sep {{
       margin-top: 20px;
     }}
+
 
 
     .content-panel {{
@@ -1798,22 +1798,15 @@ async def ui_assess(request: Request):
     recs = make_recommendations(primary, top_dims)
 
     if recs:
-        left.append("<div class='sep'></div>")
-
+        left.append("<ul class='list'>")
         for block in recs:
-            title = block.get("title", "").strip()
-            items = block.get("items", [])
-
-            if title:
-                # Sama “meta”-tyyli kuin ominaisuuksissa, ei h2/h3
-                left.append(f"<div class='meta' style='margin-top:14px;'><b>{title}</b></div>")
-
-            if items:
-                # Suosituksille oma listaluokka, jotta pallurat saadaan näkyviin
-                left.append("<ul class='rec-list'>")
-                for item in items:
-                    left.append(f"<li>{item}</li>")
-                left.append("</ul>")
+                title = (block.get("title") or "").strip()
+        items = block.get("items") or []
+            if not title or not items:
+                continue
+            for item in items:
+                left.append(f"<li><b>{title}:</b> {item}</li>")
+        left.append("</ul>")
                 
         # --- Brändiarkkityypin perusväripaletti + websivu-esimerkki ---
     # Kuvien nimet: /static/archetypes/{primary_lower}_cp.png ja /static/archetypes/{primary_lower}_ws.png
