@@ -77,9 +77,11 @@ ARCHETYPE_DESCRIPTIONS = {
     - jos tuottamanne arvo syntyy kontrollista, luotettavuudesta ja kyvystä ohjata kokonaisuuksia
     esim. johtaminen, konsultointi, valmentaminen tai mittavat riskipitoisuudeltaan korkeat hankinnat
 
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos tarjontanne keskiössä ovat vapaus, leikkisyys, kapinallisuus tai elämyksellisyys
     esim. viihde, luova itseilmaisu, nuorisobrändit ja kevyisiin lifestyle- ja hyvinvointikonsepteihin liittyvät tuotteet ja palvelut
+    </span>
 
     Tunnettuja Hallitsija-brändiarkkityypin edustajia:
     Rolex, Mercedes-Benz, IBM, Goldman Sachs ja McKinsey
@@ -92,10 +94,10 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo syntyy ymmärryksestä, selkeydestä ja luotettavasta tiedosta 
     esim. koulutus-, tutkimus- ja asiantuntijapalvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos tarjontanne keskiössä ovat viihteeseen, muotiin, impulssi- ja tunnepohjaiseen ostamiseen perustuvat kuluttajatuotteet
-
+    </span>
     Tunnettuja Viisas-brändiarkkityypin edustajia: 
     Britannica, TED, Harvard Business Review ja The Economist
     """,
@@ -108,10 +110,11 @@ ARCHETYPE_DESCRIPTIONS = {
     - jos tuottamanne arvo perustuu suorituskykyyn, itsensä kehittämiseen, kilpailullisuuteen ja tavoitteellisuuteen 
     esim. urheilu, fitness, personal training, valmennus, motivaatiosisällöt, suorituskyvyn seurantaan keskittyvät sovellukset ja tulosohjautuvat koulutusohjelmat
 
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialallanne keskiössä ovat pehmeys, rauhoittuminen, introspektio tai esteettinen itseilmaisu
     esim. meditatiivinen hyvinvointi, luksuslifestyle, taidepainotteinen luovuus tai puhtaasti viihteellinen eskapismi
-
+    </span>
     Tunnettuja Sankari-brändiarkkityypin edustajia:
     Nike, Adidas, Red Bull, Under Armour ja CrossFit
     """,
@@ -123,11 +126,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo syntyy luovuudesta, suunnittelusta ja uuden rakentamisesta 
     esim. muotoilu, taide, käsityö, mainonta, brändäys, arkkitehtuuri, sisällöntuotanto, design-työkalut ja luovat koulutusohjelmat
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialallanne korostuvat standardointi, tiukka sääntely, prosessien jäykkyys ja riskien minimointi 
     esim. rahoitus, vakuutusala, juridiikka tai vahvasti operatiivinen teollinen tuotanto
-
+    </span>
     Tunnettuja Luoja-brändiarkkityypin edustajia:
     Adobe, LEGO, Pixar, Apple, IDEO ja Etsy
     """,
@@ -139,11 +142,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo syntyy vapaudesta, tutkimisesta ja uusien kokemusten mahdollistamisesta 
     esim. matkailu, ulkoilu ja seikkailupalvelut, retkeilyvarusteet, lifestyle-brändit sekä koulutusohjelmat, jotka painottavat itsenäistä oppimista sekä henkilökohtaista kasvua tukevat palvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialanne keskiössä ovat tiukka kontrolli, hierarkia ja ennalta määritellyt prosessit 
     esim. rahoitus- ja vakuutusala, juridiikka tai vahvasti säännelty viranomaisviestintä
-
+    </span>
     Tunnettuja Tutkija-brändiarkkityypin edustajia:
     The North Face, Patagonia, National Geographic, Jeep, REI ja Lonely Planet
     """,
@@ -155,11 +158,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo perustuu rohkeaan erottumiseen, normien haastamiseen ja yksilön identiteetin vahvistamiseen 
     esim. vaihtoehtomuoti, musiikki ja tapahtumat, lifestyle-brändit, haastajiksi asemoituvat startupit, sekä itsenäisyyttä ja vapautta korostavat valmennus- ja yhteisöpalvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialanne keskiössä on turvallisuus, sääntelyn noudattaminen, ennustettavuus ja institutionaalinen luottamus
     esim. pankit, vakuutusyhtiöt, julkinen sektori, terveydenhuollon kliiniset palvelut tai perinteinen koulutusjärjestelmä
-
+    </span>
     Tunnettuja Kapinallinen-brändiarkkityypin edustajia:
     Harley-Davidson, Diesel, Varusteleka
     """,
@@ -171,11 +174,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo perustuu muutokseen, oivalluksiin ja uusien mahdollisuuksien avaamiseen 
     esim. valmennus, coaching, itsensä kehittäminen, henkinen hyvinvointi, oppimisalustat, luovat teknologiat, AI-pohjaiset ratkaisut, brändistrategia ja innovaatiopalvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos alallanne korostuvat puhdas rationaalisuus, ennustettavuus ja matalan riskin operatiivinen varmuus 
     esim. perinteinen pankkitoiminta, vakuutusala, juridiset palvelut, infrastruktuurihankkeet tai raskas teollisuus
-
+    </span>
     Tunnettuja Taikuri-brändiarkkityypin edustajia:
     Disney, Apple, Tesla, Google, Pixar, Mindvalley ja SpaceX.
     """,
@@ -187,11 +190,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo perustuu huolenpitoon, tukeen ja ihmisten hyvinvoinnin vahvistamiseen
     esim. terveys- ja hoivapalvelut, sosiaalipalvelut, perhe- ja lastenpalvelut, vanhustenhoito, hyvinvointialustat, tukipalvelut, koulutus ja yhteisölliset palvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos alallanne korostuvat aggressiivinen kilpailu, kova suorituspaine tai vahvasti hierarkkinen vallankäyttö
     esim. rahoituspalvelut, korkean riskin sijoituspalvelut tai autoritääriseen johtajuuteen nojaavat organisaatiot
-
+    </span>
     Tunnettuja Hoivaaja-brändiarkkityypin edustajia:
     Johnson & Johnson, UNICEF, WWF, Dove ja Pampers
     """,
@@ -203,11 +206,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo syntyy lähestyttävyydestä, yhteisöllisyydestä ja arjen helpottamisesta 
     esim. vähittäiskauppa, kuluttajapalvelut, asuminen, perhepalvelut, yhteisöalustat, hyvinvointipalvelut ja työelämän peruspalvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos alallanne korostuvat eksklusiivisuus, elitismi tai voimakas erottautuminen 
     esim. luksusbrändit
-
+    </span>
     Tunnettuja Tavallinen jokamies -brändiarkkityypin edustajia:
     IKEA, IKEA Food, Target, H&M, Dove, Airbnb ja Coca-Cola.
     """,
@@ -219,11 +222,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo perustuu hedonismiin 
     esim. muoti, kosmetiikka, hajuvedet, korut, sisustus, matkailu, ravintolat ja tapahtumat
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos alallanne korostuu tekninen rationaalisuus ja kylmä tehokkuus
     esim. raskas teollisuus, teknologia-ala, juridiset palvelut tai viranomaisviestintä
-
+    </span>
     Tunnettuja Rakastaja-brändiarkkityypin edustajia:
     Chanel, Dior, Victoria’s Secret
     """,
@@ -235,11 +238,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo syntyy viihteen, huumorin ja elämyksellisyyden kautta 
     esim. tapahtumat, pelit, mainonta, viihdepalvelut, lasten tuotteet, juoma- ja elintarvikebrändit sekä yhteisölliset elämyspalvelut
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialanne keskiössä on vakavien, auktoriteettien ja riskipitoisten asioiden parissa toimiville yrityksille 
     esim. rahoitus, juridiikka, terveydenhuollon kriittiset palvelut, turvallisuusala tai strateginen yritysjohtaminen
-
+    </span>
     Tunnettuja Narri-brändiarkkityypin edustajia:
     Old Spice, M&M’s, Ben & Jerry’s, TikTok, Dollar Shave Club ja Skittles
     """,
@@ -250,11 +253,11 @@ ARCHETYPE_DESCRIPTIONS = {
     Sopii yrityksellenne:
     - jos tuottamanne arvo perustuu hyvinvointiin ja positiivisuuteen
     esim. terveys ja hyvinvointi, mindfulness ja stressinhallinta, lifestyle-brändit, lasten ja perheiden palvelut sekä eettiset ja kestävät brändit
-
+    <span style="color:#ff4d4d; font-weight:700;">
     Ei sovi yrityksellenne:
     - jos toimialallanne korostuvat kyynisyys, provokaatio, aggressiivinen kilpailu tai monimutkainen valtapeli
     esim. finanssiala, poliittinen vaikuttaminen tai kapinallisuuteen nojaavat alakulttuuribrändit
-
+    </span>
     Tunnettuja Viaton-brändiarkkityypin edustajia:
     Dove, Innocent Drinks, The Body Shop 
     """
@@ -1756,15 +1759,17 @@ async def ui_assess(request: Request):
     left.append("<div class='card'>")
     left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
     left.append(
-        f"<p class='archetype-caption' style='text-align:left;'>"
+        f"<div class='meta' style='white-space:pre-line; font-size:16px; color:rgba(255,255,255,0.85);'>"
         f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
-        f"</p>"
+        f"</div>"
+    )
+
     )
     left.append("<div class='meta'>")
-    left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
-    left.append(f"Varjo: <b>{shadow_fi}</b><br><br>")
-    left.append(f"Huippuominaisuudet: <b>{', '.join(top_dims_fi)}</b><br><br>")
-    left.append("</div>")
+    left.append(f"<b>Toissijainen:</b> {secondary_fi}<br>")
+    left.append(f"<b>Varjo:</b> {shadow_fi}")
+l    eft.append("</div>")
+
 
     # Ominaisuudet
     left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
