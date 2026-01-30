@@ -1933,9 +1933,6 @@ async def ui_assess(request: Request):
 {''.join(left)}
     </div>
 
-    <div style="width:100%; margin-top:14px;">
-      <a class="backlink" href="/survey">&larr; Takaisin kyselyyn</a>
-    </div>
 
   </div>
 </div>
