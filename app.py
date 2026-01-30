@@ -1640,12 +1640,13 @@ def ui_survey():
             text = f"<em>{label}</em>" if italic else label
             checked = ""
 
-        html.append(
-            f"<label class='opt'>"
-            f"<input type='{input_type}' name='{name}' value='{opt}'{checked}> "
-            f"<span><b>{opt}</b> {text}</span>"
-            f"</label>"
+            html.append(
+                f"<label class='opt'>"
+                f"<input type='{input_type}' name='{name}' value='{opt}'{checked}> "
+                f"<span><b>{opt}</b> {text}</span>"
+                f"</label>"
         )
+
 
 
         if multi:
@@ -1731,12 +1732,12 @@ async def ui_assess(request: Request):
 
     missing = required_ids - answered_ids
     if missing:
-        missing_nums = sorted(i + 1 for i in missing if i != 0)
+        missing_nums = sorted(i for i in missing if i != 0)
         nums = ", ".join(str(i) for i in missing_nums)
         return ui_shell(
             "Virhe",
-        f"<p style='color:#ff4444; font-weight:700;'>Täytä kaikki kysymykset ennen tuloksiin siirtymistä. Puuttuu: {nums}.</p>"
-    )
+            f"<p style='color:#ff4444; font-weight:700;'>Täytä kaikki kysymykset ennen tuloksiin siirtymistä. Puuttuu kohdista: {nums}.</p>"
+        )
 
 
 
