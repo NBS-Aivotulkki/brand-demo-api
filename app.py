@@ -1763,12 +1763,10 @@ async def ui_assess(request: Request):
         f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
         f"</div>"
     )
-
-    )
     left.append("<div class='meta'>")
     left.append(f"<b>Toissijainen:</b> {secondary_fi}<br>")
     left.append(f"<b>Varjo:</b> {shadow_fi}")
-l    eft.append("</div>")
+    left.append("</div>")
 
 
     # Ominaisuudet
