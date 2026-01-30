@@ -1787,30 +1787,25 @@ async def ui_assess(request: Request):
 
 
 
-    # Ominaisuudet
     left.append("<div class='meta'><b>Ominaisuudet (0–100)</b></div>")
     left.append("<ul class='list'>")
     for k, v in sorted(dim_scores_fi.items(), key=lambda kv: kv[1], reverse=True):
         left.append(f"<li>{k}: {v:.1f}</li>")
     left.append("</ul>")
 
-    # Suositukset (ilman pääotsikkoa), samaan korttiin ominaisuuksien jälkeen
     recs = make_recommendations(primary, top_dims)
 
     if recs:
         left.append("<ul class='list'>")
         for block in recs:
-                title = (block.get("title") or "").strip()
+            title = (block.get("title") or "").strip()
         items = block.get("items") or []
-            if not title or not items:
-                continue
-            for item in items:
-                left.append(f"<li><b>{title}:</b> {item}</li>")
+        if not title or not items:
+            continue
+        for item in items:
+            left.append(f"<li><b>{title}:</b> {item}</li>")
         left.append("</ul>")
                 
-        # --- Brändiarkkityypin perusväripaletti + websivu-esimerkki ---
-    # Kuvien nimet: /static/archetypes/{primary_lower}_cp.png ja /static/archetypes/{primary_lower}_ws.png
-    # Esim: ruler_cp.png, ruler_ws.png
 
     primary_lower = primary.lower()
 
