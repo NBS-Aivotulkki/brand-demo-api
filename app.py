@@ -1638,7 +1638,7 @@ def ui_survey():
 
         for opt, label in q["options"].items():
             text = f"<em>{label}</em>" if italic else label
-            checked = " checked" if (qid == 0 and opt == "C") else ""
+            checked = ""
 
         html.append(
             f"<label class='opt'>"
