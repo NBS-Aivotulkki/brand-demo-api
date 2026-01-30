@@ -1796,24 +1796,15 @@ async def ui_assess(request: Request):
     recs = make_recommendations(primary, top_dims)
 
     if recs:
-        left.append("<ul class='list'>")
-
         for block in recs:
             title = (block.get("title") or "").strip()
             items = block.get("items") or []
-
             if not title or not items:
                 continue
 
-            left.append(f"<li><b>{title}</b></li>")
-            left.append("<ul class='list'>")
+            text = "; ".join(items)
+            left.append(f"<p><b>{title}:</b> {text}</p>")
 
-            for item in items:
-                left.append(f"<li>{item}</li>")
-
-            left.append("</ul>")
-
-        left.append("</ul>")
 
                 
 
