@@ -1797,14 +1797,24 @@ async def ui_assess(request: Request):
 
     if recs:
         left.append("<ul class='list'>")
+
         for block in recs:
             title = (block.get("title") or "").strip()
-        items = block.get("items") or []
-        if not title or not items:
-            continue
-        for item in items:
-            left.append(f"<li><b>{title}:</b> {item}</li>")
+            items = block.get("items") or []
+
+            if not title or not items:
+                continue
+
+            left.append(f"<li><b>{title}</b></li>")
+            left.append("<ul class='list'>")
+
+            for item in items:
+                left.append(f"<li>{item}</li>")
+
+            left.append("</ul>")
+
         left.append("</ul>")
+
                 
 
     primary_lower = primary.lower()
