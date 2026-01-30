@@ -533,6 +533,178 @@ QUESTIONS = [
     {"id": 27, "text": "Minkä haluat asiakkaan tuntevan ensikohtaamisessa brändisi kanssa?", "options": {"A": "Luottamusta ja turvallisuutta", "B": "Innostusta ja iloa", "C": "Vetovoimaa ja haluttavuutta", "D": "Kunnioitusta ja arvostusta"}},
     {"id": 28, "text": "Miten haluat brändisi näyttäytyvän suhteessa asiakkaaseen?", "options": {"A": "Läheisenä ja välittävänä", "B": "Tasavertaisena ja helposti lähestyttävänä", "C": "Leikkisänä ja piristävänä", "D": "Esteettisenä ja tunnepitoisena"}},
 ]
+ARCH_KEYS = ["Ruler","Sage","Hero","Creator","Explorer","Outlaw","Magician","Caregiver","Everyman","Lover","Jester","Innocent"]
+
+ARCH_WEIGHTS = {
+    1: {
+        "A": {"Ruler": 1.0, "Sage": 0.4, "Everyman": -0.2},
+        "B": {"Sage": 1.0, "Magician": 0.5, "Ruler": 0.2},
+        "C": {"Caregiver": 1.0, "Everyman": 0.7, "Ruler": -0.2},
+        "D": {"Lover": 0.8, "Jester": 0.7, "Creator": 0.4},
+    },
+    2: {
+        "A": {"Hero": 1.0, "Ruler": 0.5, "Caregiver": -0.2},
+        "B": {"Everyman": 0.6, "Lover": 0.6, "Jester": 0.4},
+        "C": {"Sage": 1.0, "Ruler": 0.3, "Jester": -0.2},
+        "D": {"Magician": 1.0, "Innocent": 0.4, "Ruler": -0.1},
+    },
+    3: {
+        "A": {"Ruler": 0.8, "Sage": 0.5, "Innocent": 0.2},
+        "B": {"Lover": 1.0, "Creator": 0.3, "Ruler": -0.1},
+        "C": {"Sage": 0.8, "Magician": 0.6, "Outlaw": 0.2},
+        "D": {"Caregiver": 0.8, "Everyman": 0.6, "Jester": 0.2},
+    },
+    4: {
+        "A": {"Ruler": 0.8, "Hero": 0.5, "Jester": -0.2},
+        "B": {"Caregiver": 0.9, "Everyman": 0.5, "Ruler": -0.2},
+        "C": {"Lover": 0.8, "Creator": 0.6, "Sage": -0.1},
+        "D": {"Sage": 0.8, "Magician": 0.6, "Everyman": -0.1},
+    },
+    5: {
+        "A": {"Innocent": 0.8, "Caregiver": 0.6, "Ruler": 0.3},
+        "B": {"Ruler": 0.7, "Hero": 0.6, "Everyman": -0.2},
+        "C": {"Jester": 0.8, "Explorer": 0.6, "Ruler": -0.2},
+        "D": {"Caregiver": 0.7, "Innocent": 0.5, "Outlaw": -0.2},
+    },
+    6: {
+        "A": {"Ruler": 1.0, "Hero": 0.4, "Caregiver": -0.2},
+        "B": {"Everyman": 0.8, "Caregiver": 0.6, "Ruler": -0.2},
+        "C": {"Outlaw": 1.0, "Explorer": 0.4, "Ruler": -0.3},
+        "D": {"Sage": 0.7, "Magician": 0.7, "Ruler": 0.1},
+    },
+    7: {
+        "A": {"Outlaw": 0.8, "Hero": 0.5, "Caregiver": -0.2},
+        "B": {"Everyman": 0.8, "Caregiver": 0.5, "Outlaw": -0.2},
+        "C": {"Jester": 0.7, "Magician": 0.4, "Ruler": -0.2},
+        "D": {"Ruler": 0.7, "Innocent": 0.4, "Jester": -0.2},
+    },
+    8: {
+        "A": {"Ruler": 0.8, "Sage": 0.5, "Outlaw": -0.2},
+        "B": {"Outlaw": 0.9, "Explorer": 0.4, "Ruler": -0.3},
+        "C": {"Magician": 0.8, "Creator": 0.4, "Ruler": -0.1},
+        "D": {"Jester": 0.7, "Explorer": 0.5, "Ruler": -0.2},
+    },
+    9: {
+        "A": {"Lover": 0.8, "Creator": 0.6, "Ruler": -0.1},
+        "B": {"Hero": 0.7, "Ruler": 0.6, "Innocent": -0.1},
+        "C": {"Sage": 0.8, "Magician": 0.5, "Jester": -0.2},
+        "D": {"Innocent": 0.7, "Caregiver": 0.6, "Outlaw": -0.2},
+    },
+    10: {
+        "A": {"Caregiver": 0.8, "Everyman": 0.6, "Ruler": -0.1},
+        "B": {"Ruler": 0.8, "Hero": 0.5, "Caregiver": -0.2},
+        "C": {"Sage": 0.8, "Magician": 0.5, "Jester": -0.1},
+        "D": {"Lover": 0.6, "Ruler": 0.4, "Jester": -0.1},
+    },
+    11: {
+        "A": {"Innocent": 0.6, "Ruler": 0.6, "Outlaw": -0.2},
+        "B": {"Ruler": 0.7, "Sage": 0.5, "Jester": -0.2},
+        "C": {"Magician": 0.7, "Creator": 0.4, "Ruler": -0.1},
+        "D": {"Outlaw": 0.8, "Jester": 0.3, "Innocent": -0.2},
+    },
+    12: {
+        "A": {"Ruler": 0.8, "Hero": 0.4, "Caregiver": -0.1},
+        "B": {"Sage": 0.9, "Ruler": 0.2, "Jester": -0.2},
+        "C": {"Everyman": 0.8, "Caregiver": 0.6, "Outlaw": -0.2},
+        "D": {"Magician": 0.8, "Explorer": 0.4, "Ruler": -0.1},
+    },
+    13: {
+        "A": {"Hero": 0.7, "Ruler": 0.5, "Jester": -0.2},
+        "B": {"Caregiver": 0.7, "Everyman": 0.5, "Ruler": -0.1},
+        "C": {"Sage": 0.8, "Magician": 0.5, "Everyman": -0.1},
+        "D": {"Creator": 0.7, "Lover": 0.6, "Ruler": -0.1},
+    },
+    14: {
+        "A": {"Ruler": 0.7, "Innocent": 0.5, "Outlaw": -0.2},
+        "B": {"Sage": 0.5, "Hero": 0.5, "Jester": -0.1},
+        "C": {"Hero": 0.7, "Outlaw": 0.5, "Caregiver": -0.2},
+        "D": {"Outlaw": 0.7, "Explorer": 0.5, "Ruler": -0.2},
+    },
+    15: {
+        "A": {"Ruler": 0.7, "Innocent": 0.4, "Jester": -0.2},
+        "B": {"Magician": 0.7, "Explorer": 0.5, "Ruler": -0.2},
+        "C": {"Caregiver": 0.7, "Innocent": 0.5, "Outlaw": -0.2},
+        "D": {"Lover": 0.7, "Jester": 0.4, "Ruler": -0.1},
+    },
+    16: {
+        "A": {"Ruler": 0.8, "Hero": 0.4, "Caregiver": -0.2},
+        "B": {"Caregiver": 0.8, "Everyman": 0.5, "Ruler": -0.2},
+        "C": {"Outlaw": 0.6, "Hero": 0.6, "Innocent": -0.2},
+        "D": {"Sage": 0.7, "Magician": 0.5, "Jester": -0.1},
+    },
+    17: {
+        "A": {"Everyman": 0.4, "Ruler": 0.3, "Lover": -0.2},
+        "B": {"Ruler": 0.3, "Sage": 0.3, "Lover": 0.1},
+        "C": {"Creator": 0.5, "Lover": 0.5, "Ruler": -0.1},
+        "D": {"Lover": 0.7, "Creator": 0.6, "Everyman": -0.2},
+    },
+    18: {
+        "A": {"Innocent": 0.7, "Caregiver": 0.4, "Outlaw": -0.2},
+        "B": {"Magician": 0.6, "Explorer": 0.5, "Ruler": -0.1},
+        "C": {"Outlaw": 0.6, "Hero": 0.6, "Caregiver": -0.2},
+        "D": {"Sage": 0.7, "Ruler": 0.3, "Jester": -0.2},
+    },
+    19: {
+        "A": {"Innocent": 0.5, "Ruler": 0.4, "Caregiver": 0.4},
+        "B": {"Lover": 0.7, "Caregiver": 0.4, "Ruler": -0.2},
+        "C": {"Sage": 0.6, "Creator": 0.5, "Everyman": -0.1},
+        "D": {"Hero": 0.6, "Outlaw": 0.5, "Innocent": -0.2},
+    },
+    20: {
+        "A": {"Ruler": 0.4, "Innocent": 0.3, "Jester": -0.2},
+        "B": {"Outlaw": 0.4, "Creator": 0.3, "Everyman": -0.2},
+        "C": {"Hero": 0.4, "Explorer": 0.3, "Caregiver": -0.2},
+        "D": {"Caregiver": 0.4, "Innocent": 0.3, "Outlaw": -0.2},
+    },
+    21: {
+        "A": {"Sage": 0.4, "Hero": 0.4, "Everyman": -0.2},
+        "B": {"Everyman": 0.7, "Caregiver": 0.4, "Outlaw": -0.2},
+        "C": {"Outlaw": 0.7, "Jester": 0.3, "Innocent": -0.2},
+        "D": {"Innocent": 0.4, "Everyman": 0.4, "Outlaw": -0.2},
+    },
+    22: {
+        "A": {"Jester": 0.6, "Explorer": 0.4, "Ruler": -0.2},
+        "B": {"Outlaw": 0.5, "Explorer": 0.4, "Innocent": -0.2},
+        "C": {"Caregiver": 0.6, "Everyman": 0.4, "Ruler": -0.2},
+        "D": {"Ruler": 0.6, "Innocent": 0.4, "Jester": -0.2},
+    },
+    23: {
+        "A": {"Hero": 0.3, "Outlaw": 0.3, "Caregiver": -0.2},
+        "B": {"Ruler": 0.3, "Sage": 0.3, "Jester": -0.2},
+        "C": {"Outlaw": 0.3, "Creator": 0.3, "Everyman": -0.2},
+        "D": {"Innocent": 0.3, "Caregiver": 0.3, "Outlaw": -0.2},
+    },
+    24: {
+        "A": {"Sage": 0.7, "Magician": 0.3, "Ruler": -0.1},
+        "B": {"Ruler": 0.7, "Hero": 0.3, "Caregiver": -0.2},
+        "C": {"Innocent": 0.4, "Caregiver": 0.4, "Everyman": 0.3},
+        "D": {"Ruler": 0.5, "Hero": 0.4, "Outlaw": -0.2},
+    },
+    25: {
+        "A": {"Ruler": 0.4, "Hero": 0.3, "Sage": 0.3},
+        "B": {"Sage": 0.6, "Magician": 0.4, "Everyman": -0.1},
+        "C": {"Everyman": 0.5, "Caregiver": 0.3, "Jester": 0.3},
+        "D": {"Outlaw": 0.4, "Creator": 0.4, "Lover": 0.3},
+    },
+    26: {
+        "A": {"Ruler": 0.6, "Innocent": 0.4, "Jester": -0.2},
+        "B": {"Outlaw": 0.5, "Hero": 0.4, "Caregiver": -0.2},
+        "C": {"Caregiver": 0.5, "Everyman": 0.4, "Ruler": -0.2},
+        "D": {"Sage": 0.6, "Magician": 0.4, "Jester": -0.2},
+    },
+    27: {
+        "A": {"Innocent": 0.5, "Caregiver": 0.4, "Ruler": 0.2},
+        "B": {"Jester": 0.7, "Explorer": 0.3, "Ruler": -0.2},
+        "C": {"Lover": 0.7, "Creator": 0.3, "Ruler": -0.1},
+        "D": {"Ruler": 0.6, "Hero": 0.3, "Caregiver": -0.2},
+    },
+    28: {
+        "A": {"Caregiver": 0.7, "Everyman": 0.3, "Ruler": -0.2},
+        "B": {"Everyman": 0.6, "Innocent": 0.3, "Outlaw": -0.2},
+        "C": {"Jester": 0.6, "Explorer": 0.3, "Ruler": -0.2},
+        "D": {"Lover": 0.6, "Creator": 0.3, "Everyman": -0.1},
+    },
+}
 
 WEIGHTS = {
     1: {  # tehokas työkalu vs suunnannäyttäjä vs arjen kumppani vs ilmiö
@@ -973,6 +1145,31 @@ class OrderRequest(BaseModel):
     dimensions: Dict[str, float]
     top_strengths: List[str]
 
+def compute_archetype_scores_from_answers(answers: List[Answer]) -> Dict[str, float]:
+    scores = {k: 0.0 for k in ARCH_KEYS}
+
+    for a in answers:
+        # q0 = kohderyhmän sukupuoli, ei vaikuta arkkityyppipisteisiin
+        if a.question_id == 0:
+            continue
+
+        qmap = ARCH_WEIGHTS.get(a.question_id, {})
+        omap = qmap.get(a.option, {})
+        for arch, w in omap.items():
+            scores[arch] = scores.get(arch, 0.0) + float(w)
+
+    # kevyt normalisointi: siirretään alin arvo nollaan ja skaalataan
+    mn = min(scores.values()) if scores else 0.0
+    if mn < 0:
+        for k in scores:
+            scores[k] -= mn
+
+    mx = max(scores.values()) if scores else 0.0
+    if mx > 0:
+        for k in scores:
+            scores[k] = scores[k] / mx
+
+    return scores
 
 def cosine_similarity(a, b):
     dot = sum(x * y for x, y in zip(a, b))
@@ -1044,7 +1241,13 @@ def score_archetypes(dim_scores_0_100: Dict[str, float], industry_tags: set) -> 
         proto_vec = [float(proto.get(d, 0.0)) for d in DIMENSIONS]
         user_vec = [float(dim_scores.get(d, 0.0)) for d in DIMENSIONS]
 
+        um = sum(user_vec) / len(user_vec)
+        pm = sum(proto_vec) / len(proto_vec)
+        user_vec = [x - um for x in user_vec]
+        proto_vec = [x - pm for x in proto_vec]
+
         sim = cosine_similarity(user_vec, proto_vec)
+
 
         fit = industry_fit(name, industry_tags)
         sim = sim * (0.6 + 0.4 * fit)
@@ -1085,14 +1288,27 @@ def get_questions():
 @app.post("/assess")
 def assess(req: AssessRequest):
     parsed = req.answers
+    # 1) Arkkityyppi päätetään suoraan vastauksista
+    arch_scores = compute_archetype_scores_from_answers(parsed)
+
+    ranked = sorted(arch_scores.items(), key=lambda kv: kv[1], reverse=True)
+    primary = ranked[0][0] if ranked else ""
+    secondary = ranked[1][0] if len(ranked) > 1 else None
+    shadow = ranked[-1][0] if len(ranked) > 2 else None
+
+    # 2) Näytetään myös top-5 listana (samaa muotoa kuin ennen)
+    archetypes = [
+        {"key": k, "similarity": float(v), "label": t(k), "fit": 0.0}
+        for k, v in ranked[:5]
+    ]
+    
+    # Dimensiot vain näkymää varten
     dim_scores = compute_dimensions(parsed)
-    industry_tags = compute_industry_tags(parsed)
-    archetypes = score_archetypes(dim_scores, industry_tags)
 
+    top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
+    low_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1])[:2]]
 
-    primary = archetypes[0]["key"] if archetypes else ""
-    secondary = archetypes[1]["key"] if len(archetypes) > 1 else None
-    shadow = archetypes[-1]["key"] if len(archetypes) > 2 else None
+    recs = make_recommendations(primary, top_dims)
 
     top_dims = [k for k, _ in sorted(dim_scores.items(), key=lambda kv: kv[1], reverse=True)[:3]]
     recs = make_recommendations(primary, top_dims)
@@ -1477,7 +1693,14 @@ async def ui_assess(request: Request):
 
     # A = miehiä, B = naisia, C = molempia
     audience = form.get("q0", "C")
-    primary_suffix = "_v2w.png" if audience == "B" else "_v2.png"
+
+    if audience == "A":
+        gender_key = "male"
+    elif audience == "B":
+        gender_key = "female"
+    else:
+        gender_key = "neutral"
+
 
     parsed: List[Answer] = []
     for q in QUESTIONS:
@@ -1628,12 +1851,15 @@ async def ui_assess(request: Request):
     left.append("</form>")
     left.append("</div>")
 
+    img_src = ARCHETYPE_IMAGES.get(primary, {}).get(gender_key, f"/static/archetypes/{primary.lower()}_v2.png")
+
     right: List[str] = []
     right.append(f"""
       <div class="primary-img">
-        <img src="/static/archetypes/{primary.lower()}{primary_suffix}" alt="{primary}">
+        <img src="{img_src}" alt="{primary}">
       </div>
     """)
+
 
     inner = f"""
 <style>
