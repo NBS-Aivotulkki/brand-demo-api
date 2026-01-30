@@ -1447,7 +1447,7 @@ def ui_shell(title: str, inner_html: str) -> str:
       border: none;
       padding: 14px 26px;
       border-radius: 999px;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
       text-decoration: none;
       box-shadow: 0 12px 26px rgba(0,0,0,0.25);
@@ -1475,7 +1475,7 @@ def ui_shell(title: str, inner_html: str) -> str:
       align-items: flex-start;
       margin: 8px 0;
       color: var(--ink);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.35;
     }}
     .opt input {{
@@ -1509,7 +1509,7 @@ def ui_shell(title: str, inner_html: str) -> str:
     }}
     .meta {{
       color: var(--ink-soft);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.4;
     }}
     .list {{
@@ -1519,7 +1519,7 @@ def ui_shell(title: str, inner_html: str) -> str:
     }}
     .list li {{
       margin: 4px 0;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--ink);
     }}
     .sep {{
@@ -1758,15 +1758,20 @@ async def ui_assess(request: Request):
     left: List[str] = []
     left.append("<div class='card'>")
     left.append(f"<h2>Pääarkkityyppi: <span>{primary_fi}</span></h2>")
-    left.append(
-        f"<div class='meta' style='white-space:pre-line; font-size:16px; color:rgba(255,255,255,0.85);'>"
-        f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
-        f"</div>"
-    )
-    left.append("<div class='meta'>")
-    left.append(f"<b>Toissijainen:</b> {secondary_fi}<br>")
-    left.append(f"<b>Varjo:</b> {shadow_fi}")
+
+    # Toissijainen + varjo suoraan pääotsikon alle
+    left.append("<div class='meta' style='margin:6px 0 14px 0;'>")
+    left.append(f"Toissijainen: <b>{secondary_fi}</b><br>")
+    left.append(f"Varjo: <b>{shadow_fi}</b>")
     left.append("</div>")
+
+    # Kuvausteksti vasta tämän jälkeen
+    left.append(
+        f"<p class='archetype-caption' style='text-align:left;'>"
+        f"{ARCHETYPE_DESCRIPTIONS.get(primary, '')}"
+        f"</p>"
+    )
+
 
 
     # Ominaisuudet
