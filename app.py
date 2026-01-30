@@ -1628,7 +1628,7 @@ def ui_survey():
         # Kursiivi vain kysymyksille 4 ja 20
         italic = (qid in (4, 20))
 
-        html.append("<div class='q'>")
+        html.append(f"<div class='q' data-qid='{qid}'>")
 
         # Otsikko: q0 ilman numerointia, muut numerolla
         if qid == 0:
@@ -1638,12 +1638,15 @@ def ui_survey():
 
         for opt, label in q["options"].items():
             text = f"<em>{label}</em>" if italic else label
-            html.append(
-                f"<label class='opt'>"
-                f"<input type='{input_type}' name='{name}' value='{opt}'> "
-                f"<span><b>{opt}</b> {text}</span>"
-                f"</label>"
-            )
+            checked = " checked" if (qid == 0 and opt == "C") else ""
+
+        html.append(
+            f"<label class='opt'>"
+            f"<input type='{input_type}' name='{name}' value='{opt}'{checked}> "
+            f"<span><b>{opt}</b> {text}</span>"
+            f"</label>"
+        )
+
 
         if multi:
             html.append("<div class='hint'>Valitse 2</div>")
@@ -1665,19 +1668,23 @@ def ui_survey():
         const questions = document.querySelectorAll(".q");
         let missing = false;
 
+        const missingIds = [];
+
         questions.forEach(q => {
-            const inputs = q.querySelectorAll("input");
-            const checked = Array.from(inputs).some(i => i.checked);
-            if (!checked) {
-                missing = true;
-            }
+          const inputs = q.querySelectorAll("input");
+          const checked = Array.from(inputs).some(i => i.checked);
+          if (!checked) {
+            const qid = parseInt(q.dataset.qid || "0", 10);
+            if (qid !== 0) missingIds.push(qid);
+          }
         });
 
-        if (missing) {
-            e.preventDefault();
-            notice.style.display = "block";
-            notice.innerText = "Täytä kaikki kysymykset ennen tuloksiin siirtymistä.";
-                notice.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (missingIds.length) {
+          e.preventDefault();
+          missingIds.sort((a,b) => a-b);
+          notice.style.display = "block";
+          notice.innerText = "Täytä kaikki kysymykset ennen tuloksiin siirtymistä. Puuttuu kohdista: " + missingIds.join(", ") + ".";
+          notice.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     });
     </script>
@@ -1724,10 +1731,13 @@ async def ui_assess(request: Request):
 
     missing = required_ids - answered_ids
     if missing:
-        return ui_shell(
-            "Virhe",
-            "<p style='color:#ff4444; font-weight:700;'>Vastaa kaikkiin kysymyksiin ennen tulosten näyttämistä.</p>"
-        )
+    missing_nums = sorted([i for i in missing if i != 0])
+    nums = ", ".join(str(i) for i in missing_nums)
+    return ui_shell(
+        "Virhe",
+        f"<p style='color:#ff4444; font-weight:700;'>Täytä kaikki kysymykset ennen tuloksiin siirtymistä. Puuttuu kohdista: {nums}.</p>"
+    )
+
 
     # --- LISÄÄ TÄMÄ TÄHÄN (debug) ---
     print("PARSED:", [(a.question_id, a.option) for a in parsed])
