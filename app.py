@@ -1731,10 +1731,10 @@ async def ui_assess(request: Request):
 
     missing = required_ids - answered_ids
     if missing:
-    missing_nums = sorted(i + 1 for i in missing if i != 0)
-    nums = ", ".join(str(i) for i in missing_nums)
-    return ui_shell(
-        "Virhe",
+        missing_nums = sorted(i + 1 for i in missing if i != 0)
+        nums = ", ".join(str(i) for i in missing_nums)
+        return ui_shell(
+            "Virhe",
         f"<p style='color:#ff4444; font-weight:700;'>Täytä kaikki kysymykset ennen tuloksiin siirtymistä. Puuttuu: {nums}.</p>"
     )
 
