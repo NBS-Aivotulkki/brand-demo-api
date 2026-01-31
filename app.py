@@ -1558,19 +1558,19 @@ def ui_landing():
         <h1 style="text-align:left;">Brändikone</h1>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Brändin luominen on todellisuudessa melko helppoa. Sinun tarvitsee vain:
+          Yritysbrändinne luominen tai kirkastaminen on melko helppoa. Sinun tarvitsee vain:
         </p>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          1. kuvitella yrityksenne tavallisuutta suuremmaksi henkilöhahmoksi<br>
-          2. muuttaa yrityksenne ulkoasu, ääni ja tekeminen henkilöhahmon mukaiseksi
+          1. kuvitella yrityksenne henkilöksi, jolla on haluamanne ominaisuudet<br>
+          2. muuttaa yrityksenne ulkoasu, ääni ja tekeminen sen henkilön mukaiseksi
         </p>
 
         <div style="height:24px;"></div>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Ilmaisen Brändikoneemme avulla se on vieläkin helpompaa: vastaa seuraavalta sivulta löytyviin 28:aan valintakysymykseen, ja saat vastaukseksi yrityksellenne sopivan arkkityypin persoonallisuuspiirteineen ja viestintäperiaatteineen. 
-          Brändikone perustuu Jungilaiseen arkkityyppiteoriaan sekä sosiaali- ja persoonallisuuspsykologisen ja kognitiivisen käyttäytymisneurotieteen havaintoihin siitä, miten brändien sensoriset ja assosiatiiviset signaalit vaikutttavat kuluttajakäyttäytymiseen. 
+          Ilmaisen Brändikoneemme avulla brändimme luominen tai kirkastaminen ottaa noin viisi minuuttia. Vastaa seuraavalta sivulta löytyviin kysymyksiin, niin saat selville yritysbrändiksenne sopivan arkkityypin persoonallisuuspiirteineen ja viestintäperiaatteineen. 
+          Brändikone perustuu Jungilaiseen arkkityyppiteoriaan ja sosiaali- ja persoonallisuuspsykologisen sekä kognitiivisen käyttäytymisneurotieteen havaintoihin siitä, miten brändien sensoriset – tietoiset ja tiedostamattomat – assosiatiiviset signaalit vaikuttavat kuluttajakäyttäytymiseen. 
         </p>
 
         <div style="height:36px;"></div>
