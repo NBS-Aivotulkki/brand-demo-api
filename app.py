@@ -1563,7 +1563,7 @@ def ui_landing():
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
           1. kuvitella yrityksenne henkilöksi, jolla on haluamanne ominaisuudet<br>
-          2. muuttaa yrityksenne ulkoasu, ääni ja tekeminen sen henkilön mukaiseksi
+          2. muuttaa yrityksenne ulkoasu, ääni ja tekeminen kuvittelemasi henkilön mukaiseksi
         </p>
 
         <div style="height:24px;"></div>
