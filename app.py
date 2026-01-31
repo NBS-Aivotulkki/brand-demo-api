@@ -1589,7 +1589,7 @@ def ui_survey():
     html = []
     html.append("<div class='survey'>")
     html.append("<h2>Kysely</h2>")
-    html.append("<p class='meta'>Vastaa valinnoilla. Kohtiin joissa lukee “Valitse kaksi”, voit valita kaksi.</p>")
+    html.append("<p class='meta'>Vastaa valitsemalla mieluisin vaihtoehto.</p>")
     html.append("<form id='surveyForm' method='post' action='/ui-assess'>")
 
 
