@@ -1928,7 +1928,7 @@ def order(req: OrderRequest):
     if not api_key or not from_email or not to_email:
         return {"ok": False, "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."}
 
-    subject = f"Uusi brändioppaan tilaus: {req.company_name} ({req.business_id})".strip()
+    subject = f"Brändikone, yhteydenotto: {req.company_name} ({req.business_id})".strip()
 
     body = f"""
 UUSI TILAUS / BRÄNDINRAKENNUSOPAS
