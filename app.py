@@ -1569,7 +1569,7 @@ def ui_landing():
         <div style="height:24px;"></div>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Ilmaisen Brändikoneemme avulla brändimme luominen tai kirkastaminen ottaa noin viisi minuuttia. Vastaa seuraavalta sivulta löytyviin kysymyksiin, niin saat selville yritysbrändiksenne sopivan arkkityypin persoonallisuuspiirteineen ja viestintäperiaatteineen. 
+          Ilmaisen Brändikoneemme avulla brändinne luominen tai kirkastaminen onnistuu muutamassa minuutissa. Vastaa seuraavalta sivulta löytyviin kysymyksiin, niin saat selville yritysbrändiksenne sopivan arkkityypin persoonallisuuspiirteineen ja viestintäperiaatteineen. 
           Brändikone perustuu Jungilaiseen arkkityyppiteoriaan ja sosiaali- ja persoonallisuuspsykologisen sekä kognitiivisen käyttäytymisneurotieteen havaintoihin siitä, miten brändien sensoriset – tietoiset ja tiedostamattomat – assosiatiiviset signaalit vaikuttavat kuluttajakäyttäytymiseen. 
         </p>
 
