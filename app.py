@@ -72,194 +72,169 @@ DIMENSIONS_FI = [t(d) for d in DIMENSIONS]
 ARCHETYPE_DESCRIPTIONS = {
     "Ruler": """
     Hallitsija-brändiarkkityyppi edustaa järjestystä, kontrollia ja vastuullista johtajuutta. Se lupaa vakautta, selkeyttä ja laadukasta tuloksellisuutta. Hallitsija rakentaa luottamusta osoittamalla, että asiat ovat hallinnassa ja tavoitteet saavutetaan järjestelmällisesti ja määrätietoisesti. Visuaalisesti kyseinen brändiarkkityyppi nojaa selkeään hierarkiaan, ryhdikkääseen sommitteluun sekä arvokkuudesta, auktoriteetista ja kompetenssista viestiviin elementteihin.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy kontrollista, luotettavuudesta ja kyvystä ohjata kokonaisuuksia
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy kontrollista, luotettavuudesta ja kyvystä ohjata kokonaisuuksia
     esim. johtaminen, konsultointi, valmentaminen tai mittavat riskipitoisuudeltaan korkeat hankinnat
-
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos tarjontanne keskiössä ovat vapaus, leikkisyys, kapinallisuus tai elämyksellisyys
+    Ei sovi yrityksellenne: jos tarjontanne keskiössä ovat vapaus, leikkisyys, kapinallisuus tai elämyksellisyys
     esim. viihde, luova itseilmaisu, nuorisobrändit ja kevyisiin lifestyle- ja hyvinvointikonsepteihin liittyvät tuotteet ja palvelut
     </span>
 
-    Tunnettuja Hallitsija-brändiarkkityypin edustajia:
-    Rolex, Mercedes-Benz, IBM, Goldman Sachs ja McKinsey
+    Tunnettuja Hallitsija-brändiarkkityypin edustajia: Rolex, Mercedes-Benz, IBM, Goldman Sachs ja McKinsey
     """,
 
     
     "Sage": """
     Viisas-brändiarkkityyppi lupaa ymmärrystä, selkeyttä ja perusteltua näkemystä. Kyseisen brändityypin missiona on auttaa ihmisiä hahmottamaan maailmaa tarkemmin, tekemään parempia päätöksiä ja perustamaan ajattelunsa tiedon varaan. Se nojaa rationaalisuuteen, kokemukseen ja luotettavuuteen viestien rauhallista asiantuntijuutta ilman tarvetta näyttävyydelle. Visuaalisesti se korostaa hillittyjä sävyjä, järjestystä, keskittymistä ja oppimista.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy ymmärryksestä, selkeydestä ja luotettavasta tiedosta 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy ymmärryksestä, selkeydestä ja luotettavasta tiedosta 
     esim. koulutus-, tutkimus- ja asiantuntijapalvelut
-    <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos tarjontanne keskiössä ovat viihteeseen, muotiin, impulssi- ja tunnepohjaiseen ostamiseen perustuvat kuluttajatuotteet
     </span>
-    Tunnettuja Viisas-brändiarkkityypin edustajia: 
-    Britannica, TED, Harvard Business Review ja The Economist
+    <span style="color:#ff4d4d; font-weight:700;">
+    Ei sovi yrityksellenne: jos tarjontanne keskiössä ovat viihteeseen, muotiin, impulssi- ja tunnepohjaiseen ostamiseen perustuvat kuluttajatuotteet
+    </span>
+    Tunnettuja Viisas-brändiarkkityypin edustajia: Britannica, TED, Harvard Business Review ja The Economist
     """,
 
     
     "Hero": """
     Sankari-brändiarkkityyppi lupaa voimaa, rohkeutta ja kykyä ylittää esteet. Sen missiona on aktivoida ihmiset toimintaan, vahvistaa heidän uskoaan omiin kykyihinsä ja ohjata kohti tavoitteiden saavuttamista. Sankari edustaa päättäväisyyttä, kurinalaisuutta ja sinnikkyyttä sekä viestii siitä, että menestys syntyy ponnistelun, vastuunoton ja sitkeyden kautta. Visuaalisesti se korostaa liikettä, energiaa, fyysistä ja henkistä voimaa sekä selkeää päämäärätietoista etenemistä.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu suorituskykyyn, itsensä kehittämiseen, kilpailullisuuteen ja tavoitteellisuuteen 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu suorituskykyyn, itsensä kehittämiseen, kilpailullisuuteen ja tavoitteellisuuteen 
     esim. urheilu, fitness, personal training, valmennus, motivaatiosisällöt, suorituskyvyn seurantaan keskittyvät sovellukset ja tulosohjautuvat koulutusohjelmat
-
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialallanne keskiössä ovat pehmeys, rauhoittuminen, introspektio tai esteettinen itseilmaisu
+    Ei sovi yrityksellenne: jos toimialallanne keskiössä ovat pehmeys, rauhoittuminen, introspektio tai esteettinen itseilmaisu
     esim. meditatiivinen hyvinvointi, luksuslifestyle, taidepainotteinen luovuus tai puhtaasti viihteellinen eskapismi
     </span>
-    Tunnettuja Sankari-brändiarkkityypin edustajia:
-    Nike, Adidas, Red Bull, Under Armour ja CrossFit
+    Tunnettuja Sankari-brändiarkkityypin edustajia: Nike, Adidas, Red Bull, Under Armour ja CrossFit
     """,
     
 
     "Creator": """
     Luoja-brändiarkkityyppi lupaa uuden luomista, omaperäisyyttä ja kykyä muuttaa ideat konkreettisiksi tuotoksiksi. Sen missiona on rohkaista ihmisiä ilmaisemaan itseään, kehittämään omaa näkemystään ja rakentamaan jotakin aidosti uutta ja merkityksellistä. Mielikuvituksellisuutta ja rohkeaa uteliaisuutta suosiva Luoja viestii siitä, että arvo syntyy tekemisen, muotoilun ja jatkuvan kehittämisen kautta. Visuaalisesti se korostaa lämpimiä sävyjä, käsityön tuntua, luovaa prosessia ja inspiraation hetkeä, jossa idea muuttuu muodoksi.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy luovuudesta, suunnittelusta ja uuden rakentamisesta 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy luovuudesta, suunnittelusta ja uuden rakentamisesta 
     esim. muotoilu, taide, käsityö, mainonta, brändäys, arkkitehtuuri, sisällöntuotanto, design-työkalut ja luovat koulutusohjelmat
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialallanne korostuvat standardointi, tiukka sääntely, prosessien jäykkyys ja riskien minimointi 
+    Ei sovi yrityksellenne: jos toimialallanne korostuvat standardointi, tiukka sääntely, prosessien jäykkyys ja riskien minimointi 
     esim. rahoitus, vakuutusala, juridiikka tai vahvasti operatiivinen teollinen tuotanto
     </span>
-    Tunnettuja Luoja-brändiarkkityypin edustajia:
-    Adobe, LEGO, Pixar, Apple, IDEO ja Etsy
+    Tunnettuja Luoja-brändiarkkityypin edustajia: Adobe, LEGO, Pixar, Apple, IDEO ja Etsy
     """,
 
     
     "Explorer": """
     Tutkimusmatkailija-brändiarkkityyppi lupaa vapautta, löytämistä ja mahdollisuuden kulkea omia polkuja. Sen missiona on rohkaista ihmisiä irtautumaan rutiineista, tutkimaan uutta ja laajentamaan omaa maailmankuvaansa kokemusten kautta. Tutkija edustaa itsenäisyyttä, uteliaisuutta ja avoimuutta. Se viestii siitä, että kasvu syntyy liikkeessä, kokeilun ja rajojen ylittämisen kautta. Visuaalisesti se korostaa luontoa, avaria tiloja, liikettä ja horisonttia kohti suuntaavaa katsetta.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy vapaudesta, tutkimisesta ja uusien kokemusten mahdollistamisesta 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy vapaudesta, tutkimisesta ja uusien kokemusten mahdollistamisesta 
     esim. matkailu, ulkoilu ja seikkailupalvelut, retkeilyvarusteet, lifestyle-brändit sekä koulutusohjelmat, jotka painottavat itsenäistä oppimista sekä henkilökohtaista kasvua tukevat palvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialanne keskiössä ovat tiukka kontrolli, hierarkia ja ennalta määritellyt prosessit 
+    Ei sovi yrityksellenne: jos toimialanne keskiössä ovat tiukka kontrolli, hierarkia ja ennalta määritellyt prosessit 
     esim. rahoitus- ja vakuutusala, juridiikka tai vahvasti säännelty viranomaisviestintä
     </span>
-    Tunnettuja Tutkija-brändiarkkityypin edustajia:
-    The North Face, Patagonia, National Geographic, Jeep, REI ja Lonely Planet
+    Tunnettuja Tutkija-brändiarkkityypin edustajia: The North Face, Patagonia, National Geographic, Jeep, REI ja Lonely Planet
     """,
 
     
     "Outlaw": """
     Kapinallinen-brändiarkkityyppi lupaa vapautta, itsenäisyyttä ja rohkeutta rikkoa vallitsevia normeja. Sen missiona on kannustaa ihmisiä haastamaan auktoriteetit, kyseenalaistamaan totutut toimintamallit ja valitsemaan omat polkunsa ilman tarvetta hyväksynnälle. Kapinallinen edustaa voimaa, suoraselkäisyyttä ja tinkimätöntä asennetta sekä viestii siitä, että todellinen muutos syntyy uskalluksesta kulkea vastavirtaan. Visuaalisesti se korostaa kontrasteja, tummia sävyjä, intensiivisyyttä ja asennetta, joka huokuu riippumattomuutta ja voimaa.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu rohkeaan erottumiseen, normien haastamiseen ja yksilön identiteetin vahvistamiseen 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu rohkeaan erottumiseen, normien haastamiseen ja yksilön identiteetin vahvistamiseen 
     esim. vaihtoehtomuoti, musiikki ja tapahtumat, lifestyle-brändit, haastajiksi asemoituvat startupit, sekä itsenäisyyttä ja vapautta korostavat valmennus- ja yhteisöpalvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialanne keskiössä on turvallisuus, sääntelyn noudattaminen, ennustettavuus ja institutionaalinen luottamus
+    Ei sovi yrityksellenne: jos toimialanne keskiössä on turvallisuus, sääntelyn noudattaminen, ennustettavuus ja institutionaalinen luottamus
     esim. pankit, vakuutusyhtiöt, julkinen sektori, terveydenhuollon kliiniset palvelut tai perinteinen koulutusjärjestelmä
     </span>
-    Tunnettuja Kapinallinen-brändiarkkityypin edustajia:
-    Harley-Davidson, Diesel, Varusteleka
+    Tunnettuja Kapinallinen-brändiarkkityypin edustajia: Harley-Davidson, Diesel, Varusteleka
     """,
 
     
     "Magician": """
     Taikuri-brändiarkkityyppi lupaa muutosta, oivallusta ja kykyä nähdä mahdollisuuksia siellä missä muut näkevät rajoitteita. Sen missiona on auttaa ihmisiä ymmärtämään oma potentiaalinsa ja muuttamaan ajatteluaan, toimintaansa ja lopulta todellisuuttaan. Taikuri yhdistää visionäärisyyden, luovuuden ja järjestelmällisen ajattelun tavalla, joka tekee monimutkaisesta selkeää ja mahdottomasta saavutettavaa. Se viestii siitä, että todellinen voima syntyy ymmärryksestä ja kyvystä vaikuttaa asioiden kulkuun. Visuaalisesti Taikuri nojaa valoon, energiaan, kontrasteihin ja symboliikkaan, jotka viestivät muutoksesta, heräämisestä ja sisäisestä voimasta.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu muutokseen, oivalluksiin ja uusien mahdollisuuksien avaamiseen 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu muutokseen, oivalluksiin ja uusien mahdollisuuksien avaamiseen 
     esim. valmennus, coaching, itsensä kehittäminen, henkinen hyvinvointi, oppimisalustat, luovat teknologiat, AI-pohjaiset ratkaisut, brändistrategia ja innovaatiopalvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos alallanne korostuvat puhdas rationaalisuus, ennustettavuus ja matalan riskin operatiivinen varmuus 
+    Ei sovi yrityksellenne: jos alallanne korostuvat puhdas rationaalisuus, ennustettavuus ja matalan riskin operatiivinen varmuus 
     esim. perinteinen pankkitoiminta, vakuutusala, juridiset palvelut, infrastruktuurihankkeet tai raskas teollisuus
     </span>
-    Tunnettuja Taikuri-brändiarkkityypin edustajia:
-    Disney, Apple, Tesla, Google, Pixar, Mindvalley ja SpaceX.
+    Tunnettuja Taikuri-brändiarkkityypin edustajia: Disney, Apple, Tesla, Google, Pixar, Mindvalley ja SpaceX.
     """,
 
     
     "Caregiver": """
     Hoivaaja-brändiarkkityyppi lupaa turvaa, huolenpitoa ja aitoa välittämistä. Sen missiona on tukea ihmisiä, vahvistaa heidän hyvinvointiaan ja luoda ympäristö, jossa jokainen voi tuntea olonsa turvalliseksi ja tarpeensa huomioiduiksi. Hoivaaja edustaa empatiaa, vastuullisuutta ja luotettavuutta sekä viestii siitä, että todellinen arvo syntyy toisten auttamisesta ja elämänlaadun parantamisesta. Visuaalisesti Hoivaaja nojaa pehmeisiin sävyihin, rauhalliseen tunnelmaan ja lämpimiin kohtaamisiin, jotka viestivät turvallisuudesta, läheisyydestä ja inhimillisyydestä.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu huolenpitoon, tukeen ja ihmisten hyvinvoinnin vahvistamiseen
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu huolenpitoon, tukeen ja ihmisten hyvinvoinnin vahvistamiseen
     esim. terveys- ja hoivapalvelut, sosiaalipalvelut, perhe- ja lastenpalvelut, vanhustenhoito, hyvinvointialustat, tukipalvelut, koulutus ja yhteisölliset palvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos alallanne korostuvat aggressiivinen kilpailu, kova suorituspaine tai vahvasti hierarkkinen vallankäyttö
+    Ei sovi yrityksellenne: jos alallanne korostuvat aggressiivinen kilpailu, kova suorituspaine tai vahvasti hierarkkinen vallankäyttö
     esim. rahoituspalvelut, korkean riskin sijoituspalvelut tai autoritääriseen johtajuuteen nojaavat organisaatiot
     </span>
-    Tunnettuja Hoivaaja-brändiarkkityypin edustajia:
-    Johnson & Johnson, UNICEF, WWF, Dove ja Pampers
+    Tunnettuja Hoivaaja-brändiarkkityypin edustajia: Johnson & Johnson, UNICEF, WWF, Dove ja Pampers
     """,
 
     
     "Everyman": """
     Tavallinen jokamies-brändiarkkityyppi lupaa aitoutta, läheisyyttä ja samaistuttavuutta. Sen missiona on tehdä elämästä helpompaa, rennompaa ja inhimillisempää muistuttamalla, että tavallinen arki ja yksinkertaiset ilot ovat arvokkaita. Jokamies edustaa rehellisyyttä, lämpöä ja käytännöllisyyttä. Se viestii siitä, että hyvä elämä syntyy yhteydestä toisiin ihmisiin ja tasapainosta arjen keskellä. Visuaalisesti Jokamies nojaa luonnollisiin sävyihin, pehmeään valoon ja arkisiin tilanteisiin, jotka tuntuvat tutuilta ja turvallisilta.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy lähestyttävyydestä, yhteisöllisyydestä ja arjen helpottamisesta 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy lähestyttävyydestä, yhteisöllisyydestä ja arjen helpottamisesta 
     esim. vähittäiskauppa, kuluttajapalvelut, asuminen, perhepalvelut, yhteisöalustat, hyvinvointipalvelut ja työelämän peruspalvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos alallanne korostuvat eksklusiivisuus, elitismi tai voimakas erottautuminen 
+    Ei sovi yrityksellenne: jos alallanne korostuvat eksklusiivisuus, elitismi tai voimakas erottautuminen 
     esim. luksusbrändit
     </span>
-    Tunnettuja Tavallinen jokamies -brändiarkkityypin edustajia:
-    IKEA, IKEA Food, Target, H&M, Dove, Airbnb ja Coca-Cola.
+    Tunnettuja Tavallinen jokamies -brändiarkkityypin edustajia: IKEA, IKEA Food, Target, H&M, Dove, Airbnb ja Coca-Cola.
     """,
 
     
     "Lover": """
     Rakastaja-brändiarkkityyppi lupaa läheisyyttä, intohimoa ja syvää emotionaalista yhteyttä. Sen missiona on vahvistaa ihmisten kykyä kokea rakkautta, kauneutta ja merkityksellisiä ihmissuhteita sekä tuoda elämään enemmän nautintoa, lämpöä ja aitoa läsnäoloa. Rakastaja edustaa sensitiivisyyttä, esteettisyyttä ja emotionaalista avoimuutta. Se viestii siitä, että elämä on tarkoitettu koettavaksi kokonaisvaltaisesti ja tunteella. Visuaalisesti Rakastaja nojaa pehmeisiin sävyihin, lämpimään valoon, kosketukseen ja katseisiin, jotka viestivät vetovoimasta, läheisyydestä ja romantiikasta.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu hedonismiin 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu hedonismiin 
     esim. muoti, kosmetiikka, hajuvedet, korut, sisustus, matkailu, ravintolat ja tapahtumat
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos alallanne korostuu tekninen rationaalisuus ja kylmä tehokkuus
+    Ei sovi yrityksellenne: jos alallanne korostuu tekninen rationaalisuus ja kylmä tehokkuus
     esim. raskas teollisuus, teknologia-ala, juridiset palvelut tai viranomaisviestintä
     </span>
-    Tunnettuja Rakastaja-brändiarkkityypin edustajia:
-    Chanel, Dior, Victoria’s Secret
+    Tunnettuja Rakastaja-brändiarkkityypin edustajia: Chanel, Dior, Victoria’s Secret
     """,
     
 
     "Jester": """
     Narri-brändiarkkityyppi lupaa iloa, keveyttä ja vapautta ottaa elämä vähemmän vakavasti. Sen missiona on tuoda arkeen huumoria, naurua ja leikkimielisyyttä sekä muistuttaa, että nautinto, spontaanius ja hetkessä eläminen ovat olennaisia osia hyvää elämää. Visuaalisesti Narri nojaa kirkkaisiin väreihin, liikkeeseen, yllätyksellisyyteen ja energiseen ilmeeseen, joka herättää välittömästi hyvän mielen.
-
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo syntyy viihteen, huumorin ja elämyksellisyyden kautta 
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo syntyy viihteen, huumorin ja elämyksellisyyden kautta 
     esim. tapahtumat, pelit, mainonta, viihdepalvelut, lasten tuotteet, juoma- ja elintarvikebrändit sekä yhteisölliset elämyspalvelut
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialanne keskiössä on vakavien, auktoriteettien ja riskipitoisten asioiden parissa toimiville yrityksille 
+    Ei sovi yrityksellenne: jos toimialanne keskiössä on vakavien, auktoriteettien ja riskipitoisten asioiden parissa toimiville yrityksille 
     esim. rahoitus, juridiikka, terveydenhuollon kriittiset palvelut, turvallisuusala tai strateginen yritysjohtaminen
     </span>
-    Tunnettuja Narri-brändiarkkityypin edustajia:
-    Old Spice, M&M’s, Ben & Jerry’s, TikTok, Dollar Shave Club ja Skittles
+    Tunnettuja Narri-brändiarkkityypin edustajia: Old Spice, M&M’s, Ben & Jerry’s, TikTok, Dollar Shave Club ja Skittles
     """,
 
     
     "Innocent": """
     Viaton-brändiarkkityyppi lupaa toivoa, keveyttä ja yksinkertaisen onnen tunnetta. Sen missiona on tuoda elämään rauhaa, optimismia ja uskoa siihen, että hyvä on mahdollista ja lähellä. Se edustaa rehellisyyttä, lempeyttä ja vilpittömyyttä sekä viestii siitä, että elämä voi olla turvallista, kaunista ja tasapainoista. Visuaalisesti Viaton nojaa vaaleisiin sävyihin, pehmeään valoon, luonnollisuuteen ja rauhallisiin hetkiin, jotka huokuvat puhtautta ja harmoniaa.
-    Sopii yrityksellenne:
-    - jos tuottamanne arvo perustuu hyvinvointiin ja positiivisuuteen
+    <span style="color:#3dd768; font-weight:700;">
+    Sopii yrityksellenne: jos tuottamanne arvo perustuu hyvinvointiin ja positiivisuuteen
     esim. terveys ja hyvinvointi, mindfulness ja stressinhallinta, lifestyle-brändit, lasten ja perheiden palvelut sekä eettiset ja kestävät brändit
+    </span>
     <span style="color:#ff4d4d; font-weight:700;">
-    Ei sovi yrityksellenne:
-    - jos toimialallanne korostuvat kyynisyys, provokaatio, aggressiivinen kilpailu tai monimutkainen valtapeli
+    Ei sovi yrityksellenne: jos toimialallanne korostuvat kyynisyys, provokaatio, aggressiivinen kilpailu tai monimutkainen valtapeli
     esim. finanssiala, poliittinen vaikuttaminen tai kapinallisuuteen nojaavat alakulttuuribrändit
     </span>
-    Tunnettuja Viaton-brändiarkkityypin edustajia:
-    Dove, Innocent Drinks, The Body Shop 
+    Tunnettuja Viaton-brändiarkkityypin edustajia: Dove, Innocent Drinks, The Body Shop 
     """
 
 }
@@ -505,36 +480,34 @@ def industry_fit(archetype_name, industry_tags):
 
 QUESTIONS = [
     {"id": 0, "text": "Onko yrityksenne asiakkaista suurin osa", "options": {"A": "miehiä", "B": "naisia", "C": "molempia yhtä paljon"}},
-    {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu enemmän:", "options": {"A": "Yritysten tehokkaalta työkalulta", "B": "Yritysten strategiselta suunnannäyttäjältä", "C": "Yksilöiden arkea helpottavalta kumppanilta", "D": "Yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
-    {"id": 2, "text": "Haluamme brändimme painottuvan enemmän:", "options": {"A": "Suorituskykyyn ja tuloksiin", "B": "Kokemukseen ja vuorovaikutukseen", "C": "Ajatteluun ja asiantuntijuuteen", "D": "Tunnesuhteeseen ja merkitykseen"}},
-    {"id": 3, "text": "Kun joku kohtaa meidät, haluamme hänen ensisijaisesti kokevan:", "options": {"A": "Luottamusta organisaatioomme", "B": "Vetovoimaa tuotteeseemme/palveluumme", "C": "Kiinnostusta aatemaailmaamme kohtaan", "D": "Yhteyttä persoonaan"}},
-    {"id": 4, "text": "Haluamme mieluummin, että meistä sanotaan:", "options": {"A": "Toimii aina.", "B": "Tuntuu paremmalta kuin muut.", "C": "Näyttää paremmalta kuin muut.", "D": "Ajattelee pidemmälle kuin muut."}},
-    {"id": 5, "text": "Kun asiakas valitsee meidät, hänen pitäisi ensisijaisesti tuntea:", "options": {"A": "Turvaa", "B": "Ylpeyttä", "C": "Innostusta", "D": "Rauhaa"}},
-    {"id": 6, "text": "Haluamme brändimme olevan mieluummin:", "options": {"A": "Auktoriteetti", "B": "Kumppani", "C": "Haastaja", "D": "Suunnannäyttäjä"}},
-    {"id": 7, "text": "Valitsemme mieluummin sen:", "options": {"A": "että kaikki eivät pidä meistä", "B": "että olemme helposti lähestyttäviä", "C": "että herätämme keskustelua", "D": "että koemme harvoin vastustusta"}},
-    {"id": 8, "text": "Yrityksemme on tarkoitus ennemmin:", "options": {"A": "määritellä oikea tapa", "B": "rikkoa vanha tapa", "C": "yhdistää molemmat", "D": "ohittaa koko keskustelu"}},
-    {"id": 9, "text": "Valitsemme mieluummin, että ratkaisumme on:", "options": {"A": "tyylikäs", "B": "nopea", "C": "älykäs", "D": "turvallinen"}},
-    {"id": 10, "text": "Haluamme yrityksemme vaikuttavan eniten:", "options": {"A": "lämpimältä", "B": "itsevarmalta", "C": "älykkäältä", "D": "ylevältä"}},
+    {"id": 1, "text": "Jos joudumme valitsemaan, haluamme että brändimme tuntuu eniten:", "options": {"A": "yritysten tehokkaalta työkalulta", "B": "yritysten strategiselta suunnannäyttäjältä", "C": "yksilöiden arkea helpottavalta kumppanilta", "D": "yksilöiden identiteettiä vahvistavalta ilmiöltä"}},
+    {"id": 2, "text": "Haluamme brändimme painottuvan eniten:", "options": {"A": "suorituskykyyn ja tuloksiin", "B": "kokemukseen ja vuorovaikutukseen", "C": "ajatteluun ja asiantuntijuuteen", "D": "tunnesuhteeseen ja merkitykseen"}},
+    {"id": 3, "text": "Haluamme kohtaamiemme asiakkaiden kokevan ensisijaisesti:", "options": {"A": "luottamusta organisaatioomme", "B": "vetovoimaa tuotteeseemme/palveluumme", "C": "kiinnostusta aatemaailmaamme kohtaan", "D": "yhteyttä persoonaan"}},
+    {"id": 4, "text": "Haluamme yrityksestämme mieluiten sanottavan:", "options": {"A": "Toimii aina.", "B": "Tuntuu paremmalta kuin muut.", "C": "Näyttää paremmalta kuin muut.", "D": "Ajattelee pidemmälle kuin muut."}},
+    {"id": 5, "text": "Toivomme asiakkaidemme tuntevan ensisijaisesti:", "options": {"A": "turvaa", "B": "ylpeyttä", "C": "innostusta", "D": "rauhaa"}},
+    {"id": 6, "text": "Haluamme brändimme näyttäytyvän:", "options": {"A": "auktoriteettina", "B": "kumppanina", "C": "haastajana", "D": "suunnannäyttäjänä"}},
+    {"id": 7, "text": "Valitsemme mieluiten sen:", "options": {"A": "että kaikki eivät pidä meistä", "B": "että olemme helposti lähestyttäviä", "C": "että herätämme keskustelua", "D": "että koemme harvoin vastustusta"}},
+    {"id": 8, "text": "Yrityksenä tavoitteemme on:", "options": {"A": "määritellä oikea tapa", "B": "rikkoa vanha tapa", "C": "yhdistää molemmat", "D": "ohittaa koko keskustelu"}},
+    {"id": 9, "text": "Valitsemme mieluiten, että ratkaisumme on:", "options": {"A": "tyylikäs", "B": "nopea", "C": "älykäs", "D": "turvallinen"}},
+    {"id": 10, "text": "Haluamme yrityksemme vaikuttavan:", "options": {"A": "lämpimältä", "B": "itsevarmalta", "C": "älykkäältä", "D": "ylevältä"}},
     {"id": 11, "text": "Yrityksemme tavoiteltu suhtautuminen sääntöihin:", "options": {"A": "Noudatamme niitä", "B": "Luomme niitä", "C": "Muutamme niitä", "D": "Rikomme niitä tarvittaessa"}},
-    {"id": 12, "text": "Jos brändimme olisi henkilö, hän olisi ennemmin:", "options": {"A": "johtaja", "B": "ajattelija", "C": "ystävä", "D": "visionääri"}},
-    {"id": 13, "text": "Haluamme että asiakkaamme muistavat meistä ensisijaisesti:", "options": {"A": "mitä me saimme aikaan", "B": "minkälaisia tunteita me herätimme", "C": "miten vaikutimme heidän ajattelutapaansa", "D": "miten uskalsimme toimia tyylillämme"}},
-    {"id": 14, "text": "Valitsemme yrityksenä mieluummin:", "options": {"A": "ennustettavuuden", "B": "hallitun riskin", "C": "rohkean aseman", "D": "epämukavan erottumisen"}},
-    {"id": 15, "text": "Haluamme yrityksemme toimivan ennen kaikkea:", "options": {"A": "vakauden lähteenä", "B": "muutoksen kiihdyttäjänä", "C": "turvan rakentajana", "D": "nautinnon mahdollistajana"}},
-
-    {"id": 16, "text": "Yrityksemme haluaa olla ennen kaikkea:", "options": {"A": "Vaikutusvaltainen", "B": "Lämminhenkinen", "C": "Rohkea", "D": "Älykäs"}},
-    {"id": 17, "text": "Yrityksemme estetiikka on meille:", "options": {"A": "Toissijaista", "B": "Mukavaa mutta ei kriittistä", "C": "Tärkeää", "D": "Keskeinen kilpailuetu"}},
-    {"id": 18, "text": "Mieluummin meidät tunnetaan siitä, että olemme:", "options": {"A": "Turvallinen valinta", "B": "Inspiroiva valinta", "C": "Rohkea vaihtoehto", "D": "Älykäs suunnannäyttäjä"}},
-    {"id": 19, "text": "Yrityksemme voima perustuu eniten:", "options": {"A": "Luottamukseen", "B": "Tunteeseen", "C": "Ideoihin", "D": "Rohkeuteen"}},
-    {"id": 20, "text": "Jos jokin pitää uhrata, luovumme mieluummin:", "options": {"A": "Nopeudesta", "B": "Massasuosiosta", "C": "Mukavuudesta", "D": "Varovaisuudesta"}},
-    {"id": 21, "text": "Mieluummin olemme:", "options": {"A": "Kapea ja terävä", "B": "Laaja ja turvallinen", "C": "Provosoiva", "D": "Helposti pidettävä"}},
-    {"id": 22, "text": "Yritykselle vaarallisin asia olisi:", "options": {"A": "Tylsyys", "B": "Turvallisuushakuisuus", "C": "Sieluttomuus", "D": "Yltiöpäinen varovaisuus"}},
-    {"id": 23, "text": "Jos jokin arvo täytyy tiputtaa, tiputamme ennemmin:", "options": {"A": "Mukavuuden", "B": "Pehmeyden", "C": "Suosion", "D": "Varman päälle pelaamisen"}},
-
-    {"id": 24, "text": "Haluamme, että asiakas:", "options": {"A": "kuuntelee meitä", "B": "kunnioittaa meitä", "C": "luottaa meihin", "D": "toimii mallimme mukaisesti"}},
+    {"id": 12, "text": "Jos brändimme olisi henkilö, hän olisi:", "options": {"A": "johtaja", "B": "ajattelija", "C": "ystävä", "D": "visionääri"}},
+    {"id": 13, "text": "Haluamme että asiakkaamme muistavat meistä ensisijaisesti:", "options": {"A": "Mitä me saimme aikaan", "B": "Minkälaisia tunteita me herätimme", "C": "Miten vaikutimme heidän ajattelutapaansa", "D": "Miten uskalsimme toimia tyylillämme"}},
+    {"id": 14, "text": "Valitsemme yrityksenä mieluiten:", "options": {"A": "ennustettavuuden", "B": "hallitun riskin", "C": "rohkean aseman", "D": "epämukavan erottumisen"}},
+    {"id": 15, "text": "Haluamme yrityksemme toimivan:", "options": {"A": "vakauden lähteenä", "B": "muutoksen kiihdyttäjänä", "C": "turvan rakentajana", "D": "nautinnon mahdollistajana"}},
+    {"id": 16, "text": "Haluamme yrityksemme vaikuttavan:", "options": {"A": "vaikutusvaltaiselta", "B": "lämminhenkiseltä", "C": "rohkealta", "D": "älykkäältä"}},
+    {"id": 17, "text": "Estetiikka on yrityksellemme:", "options": {"A": "toissijaista", "B": "mukavaa mutta ei kriittistä", "C": "tärkeää", "D": "keskeinen kilpailuetu"}},
+    {"id": 18, "text": "Haluamme ihmisten tuntevan yrityksemme mieluiten siitä, että olemme valintana:", "options": {"A": "turvallinen", "B": "inspiroiva", "C": "rohkea", "D": "älykäs suunnannäyttäjä"}},
+    {"id": 19, "text": "Haluamme yrityksemme voiman perustuvan eniten:", "options": {"A": "luottamukseen", "B": "tunteeseen", "C": "ideoihin", "D": "rohkeuteen"}},
+    {"id": 20, "text": "Jos jokin pitää uhrata, luovumme mieluiten:", "options": {"A": "nopeudesta", "B": "massasuosiosta", "C": "mukavuudesta", "D": "varovaisuudesta"}},
+    {"id": 21, "text": "Yrityksenä haluamme olla mieluiten:", "options": {"A": "kapea ja terävä", "B": "laaja ja turvallinen", "C": "provosoiva", "D": "helposti pidettävä"}},
+    {"id": 22, "text": "Negatiivisin asia yrityksellemme olisi:", "options": {"A": "tylsyys", "B": "turvallisuushakuisuus", "C": "sieluttomuus", "D": "yltiöpäinen varovaisuus"}},
+    {"id": 23, "text": "Jos yrityksemme täytyy luopua jostain arvosta, luovumme mieluiten:", "options": {"A": "mukavuudesta", "B": "pehmeydestä", "C": "suosiosta", "D": "varman päälle pelaamisesta"}},
+    {"id": 24, "text": "Haluamme, että asiakkaamme mieluiten:", "options": {"A": "kuuntelevat meitä", "B": "kunnioittavat meitä", "C": "luottavat meihin", "D": "toimivat mallimme mukaisesti"}},
     {"id": 25, "text": "Haluamme yrityksemme olevan eniten:", "options": {"A": "ratkaisu", "B": "ajatus", "C": "kokemus", "D": "ilmiö"}},
     {"id": 26, "text": "Jos yritystämme täytyy kuvata yhdellä lauseella, valitsemme mieluiten:", "options": {"A": "Turvallinen ja vahva.", "B": "Rohkea ja erottuva.", "C": "Lämmin ja inhimillinen.", "D": "Älykäs ja näkemyksellinen."}},
-    {"id": 27, "text": "Minkä haluat asiakkaan tuntevan ensikohtaamisessa brändisi kanssa?", "options": {"A": "Luottamusta ja turvallisuutta", "B": "Innostusta ja iloa", "C": "Vetovoimaa ja haluttavuutta", "D": "Kunnioitusta ja arvostusta"}},
-    {"id": 28, "text": "Miten haluat brändisi näyttäytyvän suhteessa asiakkaaseen?", "options": {"A": "Läheisenä ja välittävänä", "B": "Tasavertaisena ja helposti lähestyttävänä", "C": "Leikkisänä ja piristävänä", "D": "Esteettisenä ja tunnepitoisena"}},
+    {"id": 27, "text": "Haluamme asiakkaiden tuntevan kohdatessamme mieluiten:", "options": {"A": "luottamusta ja turvallisuutta", "B": "innostusta ja iloa", "C": "vetovoimaa ja haluttavuutta", "D": "kunnioitusta ja arvostusta"}},
+    {"id": 28, "text": "Haluamme brändinne näyttäytyvän asiakkaille:", "options": {"A": "läheisenä ja välittävänä", "B": "tasavertaisena ja helposti lähestyttävänä", "C": "leikkisänä ja piristävänä", "D": "esteettisenä ja tunnepitoisena"}},
 ]
 ARCH_KEYS = ["Ruler","Sage","Hero","Creator","Explorer","Outlaw","Magician","Caregiver","Everyman","Lover","Jester","Innocent"]
 
@@ -1585,18 +1558,19 @@ def ui_landing():
         <h1 style="text-align:left;">Brändikone</h1>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Edustamasi yrityksen brändin luominen on todellisuudessa melko helppoa. Sinun tarvitsee vain:
+          Brändin luominen on todellisuudessa melko helppoa. Sinun tarvitsee vain:
         </p>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          1. kuvitella yrityksenne henkilöhahmoksi, jollainen halusit lapsena olla<br>
-          2. muuttaa yrityksenne ulkoasu, ääni ja toiminta vastaamaan kyseistä henkilöhahmoa
+          1. kuvitella yrityksenne tavallisuutta suuremmaksi henkilöhahmoksi<br>
+          2. muuttaa yrityksenne ulkoasu, ääni ja tekeminen henkilöhahmon mukaiseksi
         </p>
 
         <div style="height:24px;"></div>
 
         <p style="font-size:16px; line-height:1.6; text-align:left;">
-          Brändikoneen avulla selvität, miltä yrityksenne brändityypin kannattaa näyttää, viestiä ja toimia aikuisten yritysmaailmassa.
+          Ilmaisen Brändikoneemme avulla se on vieläkin helpompaa: vastaa seuraavalta sivulta löytyviin 28:aan valintakysymykseen, ja saat vastaukseksi yrityksellenne sopivan arkkityypin persoonallisuuspiirteineen ja viestintäperiaatteineen. 
+          Brändikone perustuu Jungilaiseen arkkityyppiteoriaan sekä sosiaali- ja persoonallisuuspsykologisen ja kognitiivisen käyttäytymisneurotieteen havaintoihin siitä, miten brändien sensoriset ja assosiatiiviset signaalit vaikutttavat kuluttajakäyttäytymiseen. 
         </p>
 
         <div style="height:36px;"></div>
