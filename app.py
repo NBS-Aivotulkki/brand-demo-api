@@ -2008,8 +2008,8 @@ async def ui_order(request: Request):
     if isinstance(res, dict) and res.get("ok"):
         inner = """
         <div class="hero">
-          <h1>Kiitos!</h1>
-          <p class="lead">Tilaus on lähetetty.</p>
+          <h1>Kiitos.</h1>
+          <p class="lead">Viesti lähti onnistuneesti. Palaamme asiaan 24h sisällä</p>
           <a class="btn" href="/">Etusivulle</a>
         </div>
         """
