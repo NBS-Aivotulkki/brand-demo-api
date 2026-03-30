@@ -1973,6 +1973,16 @@ Dimensiot:
     )
 
     try:
+        sg = SendGridAPIClient(api_key)
+        response = sg.send(message)
+        return {"ok": True}
+
+    except Exception as e:
+        print("SEND ERROR:", repr(e))
+        return {"ok": False, "error": str(e)}
+    )
+
+    try:
         print("API KEY EXISTS:", bool(api_key))
         print("API KEY PREFIX:", api_key[:12] if api_key else None)
         print("FROM:", from_email)
