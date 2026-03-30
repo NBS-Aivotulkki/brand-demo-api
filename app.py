@@ -1979,7 +1979,7 @@ Dimensiot:
     )
 
     try:
-        print("API KEY EXISTS:", bool(api_key))
+        print("API KEY EXISTS:", bool(api_key)
         print("API KEY PREFIX:", api_key[:12] if api_key else None)
         print("FROM:", from_email)
         print("TO:", to_email)
