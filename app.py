@@ -1922,27 +1922,31 @@ async def ui_assess(request: Request):
 @app.post("/order")
 def order(req: OrderRequest):
     api_key = os.getenv("SENDGRID_API_KEY")
-    print("API KEY EXISTS:", bool(api_key))
-    print("API KEY PREFIX:", api_key[:12] if api_key else None)
-    print("FROM:", from_email)
-    print("TO:", to_email)
     from_email = os.getenv("MAIL_FROM")
     to_email = os.getenv("MAIL_TO")
 
-    if not api_key or not from_email or not to_email:
-        return {"ok": False, "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."}
+    if api_key:
+        api_key = api_key.strip()
+    if from_email:
+        from_email = from_email.strip()
+    if to_email:
+        to_email = to_email.strip()
 
-    subject = f"Brändikone, yhteydenotto: {req.company_name} ({req.business_id})".strip()
+    if not api_key or not from_email or not to_email:
+        return {
+            "ok": False,
+            "error": "Puuttuu SENDGRID_API_KEY, MAIL_FROM tai MAIL_TO (Render > Environment Variables)."
+        }
+
+    subject = f"Brandikone, yhteydenotto: {req.company_name} ({req.business_id})".strip()
 
     body = f"""
 UUSI TILAUS / BRÄNDINRAKENNUSOPAS
 
 Yritys: {req.company_name}
 Y-tunnus: {req.business_id}
-
-Tilaaja: {req.person_name}
+Yhteyshenkilö: {req.person_name}
 Sähköposti: {req.person_email}
-
 Laskutustiedot:
 {req.billing_details}
 
@@ -1958,13 +1962,6 @@ Dimensiot:
 {req.dimensions}
 """.strip()
 
-    if api_key:
-        api_key = api_key.strip()
-    if from_email:
-        from_email = from_email.strip()
-    if to_email:
-        to_email = to_email.strip()
-
     message = Mail(
         from_email=from_email,
         to_emails=to_email,
@@ -1975,8 +1972,7 @@ Dimensiot:
     try:
         sg = SendGridAPIClient(api_key)
         response = sg.send(message)
-        return {"ok": True}
-
+        return {"ok": True, "status_code": response.status_code}
     except Exception as e:
         print("SEND ERROR:", repr(e))
         return {"ok": False, "error": str(e)}
