@@ -1922,6 +1922,10 @@ async def ui_assess(request: Request):
 @app.post("/order")
 def order(req: OrderRequest):
     api_key = os.getenv("SENDGRID_API_KEY")
+    print("API KEY EXISTS:", bool(api_key))
+    print("API KEY PREFIX:", api_key[:12] if api_key else None)
+    print("FROM:", from_email)
+    print("TO:", to_email)
     from_email = os.getenv("MAIL_FROM")
     to_email = os.getenv("MAIL_TO")
 
@@ -1954,6 +1958,13 @@ Dimensiot:
 {req.dimensions}
 """.strip()
 
+    if api_key:
+        api_key = api_key.strip()
+    if from_email:
+        from_email = from_email.strip()
+    if to_email:
+        to_email = to_email.strip()
+
     message = Mail(
         from_email=from_email,
         to_emails=to_email,
@@ -1962,10 +1973,22 @@ Dimensiot:
     )
 
     try:
+        print("API KEY EXISTS:", bool(api_key))
+        print("API KEY PREFIX:", api_key[:12] if api_key else None)
+        print("FROM:", from_email)
+        print("TO:", to_email)
+
         sg = SendGridAPIClient(api_key)
-        sg.send(message)
+        response = sg.send(message)
+
+        print("SEND STATUS:", response.status_code)
+        print("SEND BODY:", response.body)
+        print("SEND HEADERS:", response.headers)
+
         return {"ok": True}
+
     except Exception as e:
+        print("SEND ERROR:", repr(e))
         return {"ok": False, "error": str(e)}
 
 
